@@ -1,0 +1,82 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using OtpAuthServices.AzureService;
+using OtpAuthServices.Model;
+using System;
+using System.Threading.Tasks;
+
+namespace OtpAuthServices.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class UserOnBoardingController : ControllerBase
+    {
+        private readonly ICosmosDbService<UserOnBoarding> _cosmosDbService;
+
+        // Constructor now accepts ICosmosDbService<UserOnBoarding>
+        public UserOnBoardingController(ICosmosDbService<UserOnBoarding> cosmosDbService)
+        {
+            _cosmosDbService = cosmosDbService;
+        }
+
+        [HttpPost]
+        [Route("UserUpload")]
+        public async Task<IActionResult> UploadUserData([FromForm] UserOnBoarding userOnBoarding)
+        {
+            // Assign a new GUID to the UserId
+            userOnBoarding.UserId = Guid.NewGuid(); 
+
+            userOnBoarding.id = Guid.NewGuid().ToString();
+
+            // Insert the UserOnBoarding object into Cosmos DB
+            await _cosmosDbService.AddItemAsync(userOnBoarding);
+         
+
+            return Ok(new { Message = "User data uploaded successfully", UserId = userOnBoarding.UserId });
+        }
+
+        [HttpGet]
+        [Route("VerifyUserProfile")]
+        public async Task<IActionResult> GetUser(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return BadRequest("Either mobile number or email address must be provided.");
+            }
+
+            // Use the GetUserByEmailOrMobileAsync method to fetch the user
+            var user = await _cosmosDbService.GetUserByEmailOrMobileAsync(value);
+
+            if (user != null)
+            {
+                return Ok(user);
+            }
+
+            return NotFound("User not found.");
+        }
+
+
+
+        [HttpGet("VerifyUserLogin")]
+        public async Task<IActionResult> VerifyUserLogin(string username, string password)
+        {
+            if (string.IsNullOrEmpty(username) && string.IsNullOrEmpty(password))
+            {
+                return BadRequest("Either mobile number or email address must be provided.");
+            }
+
+            // Use the GetUserByEmailOrMobileAsync method to fetch the user
+            var user = await _cosmosDbService.GetUserByLogin(username, password);
+
+            if (user != null)
+            {
+                return Ok(user);
+            }
+
+            return NotFound("User not found.");
+        }
+
+
+
+
+    }
+}

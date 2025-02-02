@@ -1,0 +1,4971 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "OtpAuthServices, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/AddMember/AddMemberUpload": {
+      "post": {
+        "tags": [
+          "AddMember"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "AddMemberId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Name",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Email",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "phoneNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "memberType",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AddMember/GetAddMember": {
+      "get": {
+        "tags": [
+          "AddMember"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AddMember/GetAddMemberDetailsById": {
+      "get": {
+        "tags": [
+          "AddMember"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Address/AddressUpload": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AddressModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Address/GetAddressById/{userId}": {
+      "get": {
+        "tags": [
+          "Address"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AddressModel"
+            }
+          }
+        }
+      }
+    },
+    "/api/Address/GetAddressById/{profileType}/{userId}": {
+      "get": {
+        "tags": [
+          "Address"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profileType",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AddressModel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Address/{id}": {
+      "put": {
+        "tags": [
+          "Address"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AddressModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Address"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AddTechnician/AddTechnicianUpload": {
+      "post": {
+        "tags": [
+          "AddTechnician"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AddTechnician"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AddTechnician/GetAddTechnicianDetails": {
+      "get": {
+        "tags": [
+          "AddTechnician"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AddTechnician/GetAddTechnicianDetailsById": {
+      "get": {
+        "tags": [
+          "AddTechnician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AddTechnician/DeleteAddTechnicianDetails": {
+      "delete": {
+        "tags": [
+          "AddTechnician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Auth/sendotp": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/OptRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Auth/verifyuserexist": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/VerifyUserExist"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Auth/sendotpbefore": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/OptRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Auth/validateotp": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/OtpValidationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Auth/validateFirstOtp": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/OtpValidationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Builder/BuilderUpload": {
+      "post": {
+        "tags": [
+          "Builder"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "BuilderId",
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "BuilderFirmName",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "BuilderName",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PanNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "AadharNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "GSTNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Address",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Landmark",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "State",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "StateId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "District",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "DistrictId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "AlternativeMobileNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "ZipCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PhoneNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PhoneVerificationCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EmailAddress",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EmailVerificationCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Category",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "BuilderPhotoId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "BuilderRegistrationDocumentUrl",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "BuilderRegistrationId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "UserId",
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "IsApproved",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "IsRejected",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "IsPending",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "Status",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "IsActive",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Builder/{id}": {
+      "put": {
+        "tags": [
+          "Builder"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Builder"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Builder"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Builder/builderProfileData": {
+      "get": {
+        "tags": [
+          "Builder"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profileType",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Builder/BuilderEdit": {
+      "post": {
+        "tags": [
+          "Builder"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "FullName",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "PhotoDocumentId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Builder/GetAllBuildersDetails": {
+      "get": {
+        "tags": [
+          "Builder"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Builder/GetBuilderDetailsByUserId": {
+      "get": {
+        "tags": [
+          "Builder"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Builder/BuilderDirectoryDetails": {
+      "get": {
+        "tags": [
+          "Builder"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "searchQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "State",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "District",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "ZipCode",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Status",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Builder/{builderId}": {
+      "get": {
+        "tags": [
+          "Builder"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "builderId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Builder/Status/{BuilderId}": {
+      "put": {
+        "tags": [
+          "Builder"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "BuilderId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "query",
+            "name": "Status",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Builder/UpdateIsActive/{builderId}": {
+      "put": {
+        "tags": [
+          "Builder"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "builderId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/BuyProductUpload": {
+      "post": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/BuyProduct"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/{id}": {
+      "put": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/BuyProduct"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/GetBuyProductDetailsByBuyProductId/{BuyProductId}": {
+      "get": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "BuyProductId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AddressModel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/GetTotalCountOfBuyProducts": {
+      "get": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/GetTotalCountOfBuyProductsBystateWise": {
+      "get": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/GetTotalCountOfBuyProductsBystateWiseAndDistrictWise": {
+      "get": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/GetTotalCountOfBuyProductsBystateWiseAndDistrictWiseAndZipCodeWise": {
+      "get": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "zipCode",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customer/CustomerUpload": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "CustomerId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "FirstName",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "LastName",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "MobileNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "MobileVerificationCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EmailAddress",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EmailVerificationCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "AlternativeMobileNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "GSTNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Address",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Landmark",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "State",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "StateId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "District",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "DistrictId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "ZipCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "CustomerPhotoId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "UserId",
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "IsApproved",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "Status",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customer/getcustomerdata": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customer/GetAllCustomersDetails": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customer/customerProfileData": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profileType",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customer/{id}": {
+      "put": {
+        "tags": [
+          "Customer"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customer/GetCustomerDirectory": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "searchQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "State",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "District",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Zipcode",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customer/{customerId}": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customerId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customer/GetCustomerDtailsByUserId": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customer/CustomerEdit": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "FullName",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "PhotoDocumentId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Dealer/DealerUpload": {
+      "post": {
+        "tags": [
+          "Dealer"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "DealerId",
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "DealerFirmName",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "OwnershipName",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Category",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PANNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Address",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "State",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "StateId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "District",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "DistrictId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "ZipCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "LandMark",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PhoneNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PhoneVerificationCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EmailAddress",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EmailVerificationCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "AlternativeMobile",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "GSTNUMBER",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "GSTDocumentId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "FirmRegistrationNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "FirmRegistrationDocumentId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "DealerPhotoId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "IsApproved",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "IsRejected",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "IsPending",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "Status",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "IsActive",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "UserId",
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Dealer/dealerProfileData": {
+      "get": {
+        "tags": [
+          "Dealer"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profileType",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Dealer/DealerEdit": {
+      "post": {
+        "tags": [
+          "Dealer"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "FullName",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "PhotoDocumentId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Dealer/GetAllDealerDetails": {
+      "get": {
+        "tags": [
+          "Dealer"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Dealer/GetDealerDtailsByUserId": {
+      "get": {
+        "tags": [
+          "Dealer"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Dealer/DealerDirectoryDetails": {
+      "get": {
+        "tags": [
+          "Dealer"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "searchQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "State",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "District",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "ZipCode",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Status",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Dealer/{dealerId}": {
+      "get": {
+        "tags": [
+          "Dealer"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dealerId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Dealer/Status/{DealerId}": {
+      "put": {
+        "tags": [
+          "Dealer"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "DealerId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "query",
+            "name": "Status",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Dealer/UpdateIsActive/{dealerId}": {
+      "put": {
+        "tags": [
+          "Dealer"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dealerId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Estimator/EstimatorUpload": {
+      "post": {
+        "tags": [
+          "Estimator"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "EstimatorId",
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EstimatorName",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EstimatorFirmName",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EstimatorFirmRegistrationNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PANNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "AadharNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Address",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "State",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "StateId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "District",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "DistrictId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "ZipCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PhoneNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "AlternativeMobileNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "NameOfTheOwnerShip",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PhoneVerificationCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EmailAddress",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EmailVerificationCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Category",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EstimatorPhotoId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "UserId",
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "IsApproved",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "IsRejected",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "IsPending",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "Status",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "IsActive",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Estimator/estimatorProfileData": {
+      "get": {
+        "tags": [
+          "Estimator"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profileType",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Estimator/EstimatorEdit": {
+      "post": {
+        "tags": [
+          "Estimator"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "FullName",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "PhotoDocumentId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Estimator/GetAllEstimators": {
+      "get": {
+        "tags": [
+          "Estimator"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Estimator/GetEstimatorDetailsByUserId": {
+      "get": {
+        "tags": [
+          "Estimator"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Estimator/EstimatorDirectoryDetails": {
+      "get": {
+        "tags": [
+          "Estimator"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "searchQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "State",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "District",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "ZipCode",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Status",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Estimator/{estimatorId}": {
+      "get": {
+        "tags": [
+          "Estimator"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "estimatorId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Estimator/Status/{EstimatorId}": {
+      "put": {
+        "tags": [
+          "Estimator"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "EstimatorId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "query",
+            "name": "Status",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Estimator/UpdateIsActive/{estimaorId}": {
+      "put": {
+        "tags": [
+          "Estimator"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "estimaorId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/FileUpload/upload": {
+      "post": {
+        "tags": [
+          "FileUpload"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "filename",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "ContentType",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "ContentDisposition",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Headers",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Length",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "formData",
+            "name": "Name",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "FileName",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/FileUpload/download": {
+      "get": {
+        "tags": [
+          "FileUpload"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "generatedfilename",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MasterData/getStates": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MasterData/getCategories": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MasterData/getdealerCategories": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MasterData/VerifyUserProfile": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "value",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MasterData/VerifyUserLogin": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "password",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MasterData/getDistricts/{stateId}": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stateId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Product/ProductUpload": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Product/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Product": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Product/GetProductList": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ProductOwnedBy",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AddressModel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Product/GetAdminProductList": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ProductOwnedBy",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AddressModel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Product/GetProductsByCategory": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AddressModel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RaiseAQuote/CreateRaiseAQuote": {
+      "post": {
+        "tags": [
+          "RaiseAQuote"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RaiseAQuote"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseAQuote/GetRaiseAQuoteDetails": {
+      "get": {
+        "tags": [
+          "RaiseAQuote"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseAQuote/GetRaiseAQuoteDetailsByid": {
+      "get": {
+        "tags": [
+          "RaiseAQuote"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "raiseAQuotetId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseAQuote/GetRaiseAQuoteDetailsByTechnicianId": {
+      "get": {
+        "tags": [
+          "RaiseAQuote"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "raiseAQuotetId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "TechnicianId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseAQuote/id": {
+      "put": {
+        "tags": [
+          "RaiseAQuote"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RaiseAQuote"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseAQuoteByDealer/CreateRaiseAQuoteByDealer": {
+      "post": {
+        "tags": [
+          "RaiseAQuoteByDealer"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RaiseAQuoteByDealer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseAQuoteByDealer/GetRaiseAQuoteByDealerDetails": {
+      "get": {
+        "tags": [
+          "RaiseAQuoteByDealer"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseAQuoteByDealer/id": {
+      "put": {
+        "tags": [
+          "RaiseAQuoteByDealer"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RaiseAQuoteByDealer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseAQuoteByDealer/GetRaiseAQuoteDealerDetailsByid": {
+      "get": {
+        "tags": [
+          "RaiseAQuoteByDealer"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "raiseAQuotetId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseAQuoteByDealer/GetRaiseAQuoteLowestDealerByid": {
+      "get": {
+        "tags": [
+          "RaiseAQuoteByDealer"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "raiseAQuotetDealerId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/CreateRaiseTicket": {
+      "post": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RaiseTicket"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/{id}": {
+      "delete": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RaiseTicket"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetTicket/{ticketId}": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ticketId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/customer/{customerId}": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customerId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TrackTickets"
+            }
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/EditTicket": {
+      "post": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RaiseTicket"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetTicketsNotifications": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetTicketsNotificationsForTechnician": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetRaiseTicketsForDealers": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetRaiseTicketsForCustomer": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetNotificationsByDistrict": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetRaiseTicketNotificationsByStateAndDistrictForDealer": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetTicketIdAndSubjectByStateAndDistrict": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetRecentNotifications": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetRaiseTicketsBystateAndDistrict": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetTotalCountOfRaiseTicketBystateWise": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetTotalCountOfRaiseTicketBystateWiseAndDistrictWise": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetTotalCountOfSupportTickeBystateWiseAndDistrictWiseAndZipCodeWise": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "zipCode",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetTotalCountOfRaiseTicket": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetRaiseTicketNotificationsByCustomerId": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "customerId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicketTracker/GetRaiseTicketCount": {
+      "get": {
+        "tags": [
+          "RaiseTicketTracker"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicketTracker/GetRaiseTicketCountByState": {
+      "get": {
+        "tags": [
+          "RaiseTicketTracker"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SupportTicket/CreateSupportTicket": {
+      "post": {
+        "tags": [
+          "SupportTicket"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/SupportTicket"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SupportTicket/{id}": {
+      "delete": {
+        "tags": [
+          "SupportTicket"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SupportTicket/GetTicket/{ticketId}": {
+      "get": {
+        "tags": [
+          "SupportTicket"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ticketId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SupportTicket/customer/{customerId}": {
+      "get": {
+        "tags": [
+          "SupportTicket"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customerId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TrackTickets"
+            }
+          }
+        }
+      }
+    },
+    "/api/SupportTicket/EditTicket": {
+      "post": {
+        "tags": [
+          "SupportTicket"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/SupportTicket"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SupportTicket/GetTicketsNotifications": {
+      "get": {
+        "tags": [
+          "SupportTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/TechnicianUpload": {
+      "post": {
+        "tags": [
+          "Technician"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "TechnicianId",
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "TechnicianFullName",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PANNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "NumberOfTechnicians",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "formData",
+            "name": "AadharNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Address",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "State",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "StateId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "District",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "DistrictId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "ZipCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PhoneNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "AlternativePhoneNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PhoneVerificationCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EmailAddress",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EmailVerificationCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Category",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "TechnicianPhotoId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "UserId",
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "IsApproved",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "IsRejected",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "IsPending",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "Status",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "IsActive",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/{id}": {
+      "put": {
+        "tags": [
+          "Technician"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "TechnicianId",
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "TechnicianFullName",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PANNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "NumberOfTechnicians",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "formData",
+            "name": "AadharNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Address",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "State",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "StateId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "District",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "DistrictId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "ZipCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PhoneNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "AlternativePhoneNumber",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "PhoneVerificationCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EmailAddress",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EmailVerificationCode",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Category",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "TechnicianPhotoId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "UserId",
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "IsApproved",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "IsRejected",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "IsPending",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "Status",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "IsActive",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/technicianProfileData": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profileType",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/TechnicianEdit": {
+      "post": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "FullName",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "PhotoDocumentId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/GetAllTechniciansDetails": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/GetTechnicianDetailsByUserId": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/TechnicianDirectoryDetails": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "searchQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "State",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "District",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "ZipCode",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Status",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/Status/{TechnicianId}": {
+      "put": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TechnicianId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "query",
+            "name": "Status",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/{technicianId}": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "technicianId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/UpdateIsActive/{technicianId}": {
+      "put": {
+        "tags": [
+          "Technician"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "technicianId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UpdateDocument/update": {
+      "post": {
+        "tags": [
+          "UpdateDocument"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateDocumentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserOnBoarding/UserUpload": {
+      "post": {
+        "tags": [
+          "UserOnBoarding"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "UserId",
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "UserName",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "UserPassword",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "MobileNo",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "EmailId",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "IsMobileNumberValidate",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "IsEmailValidate",
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "ProfileType",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserOnBoarding/VerifyUserProfile": {
+      "get": {
+        "tags": [
+          "UserOnBoarding"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "value",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserOnBoarding/VerifyUserLogin": {
+      "get": {
+        "tags": [
+          "UserOnBoarding"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "password",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserProfileApproval/CreateUserProfileApproval": {
+      "post": {
+        "tags": [
+          "UserProfileApproval"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserProfileApproval"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserProfileApproval/VerifyUserApproval": {
+      "get": {
+        "tags": [
+          "UserProfileApproval"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsersCount/GetTotalCount": {
+      "get": {
+        "tags": [
+          "UsersCount"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsersCount/GetTotalCountByState": {
+      "get": {
+        "tags": [
+          "UsersCount"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsersCount/GetTotalCountByStateAndDistrict": {
+      "get": {
+        "tags": [
+          "UsersCount"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsersCount/GetTotalCountByStateAndDistrictAndZipcode": {
+      "get": {
+        "tags": [
+          "UsersCount"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "zipcode",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/WeatherForecast"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AddRemark": {
+      "type": "object",
+      "properties": {
+        "requestedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "remarks": {
+          "type": "string"
+        }
+      }
+    },
+    "AddTechnician": {
+      "type": "object",
+      "properties": {
+        "addTechnicianId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "pinCode": {
+          "type": "string"
+        },
+        "landmark": {
+          "type": "string"
+        },
+        "aadharNumber": {
+          "type": "string"
+        },
+        "photoUrl": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        }
+      }
+    },
+    "AddressModel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "profileType": {
+          "type": "string"
+        },
+        "addressId": {
+          "type": "string"
+        },
+        "isPrimaryAddress": {
+          "type": "boolean"
+        },
+        "address": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "Builder": {
+      "type": "object",
+      "properties": {
+        "builderId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "builderFirmName": {
+          "type": "string"
+        },
+        "builderName": {
+          "type": "string"
+        },
+        "panNumber": {
+          "type": "string"
+        },
+        "aadharNumber": {
+          "type": "string"
+        },
+        "gstNumber": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "landmark": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "stateId": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "districtId": {
+          "type": "string"
+        },
+        "alternativeMobileNumber": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "phoneVerificationCode": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "emailVerificationCode": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "builderPhotoId": {
+          "type": "string"
+        },
+        "builderRegistrationDocumentUrl": {
+          "type": "string"
+        },
+        "builderRegistrationId": {
+          "type": "string"
+        },
+        "userId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "isApproved": {
+          "type": "boolean"
+        },
+        "isRejected": {
+          "type": "boolean"
+        },
+        "isPending": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "BuyProduct": {
+      "required": [
+        "address",
+        "category",
+        "district",
+        "productName",
+        "state",
+        "zipCode"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "buyProductId": {
+          "type": "string"
+        },
+        "address": {
+          "maxLength": 250,
+          "minLength": 0,
+          "type": "string"
+        },
+        "category": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "productName": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "productCatalogue": {
+          "type": "string"
+        },
+        "productSize": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "otherThanProduct": {
+          "type": "string"
+        },
+        "requiredQuantity": {
+          "type": "string"
+        },
+        "units": {
+          "type": "string"
+        },
+        "addressType": {
+          "type": "string"
+        },
+        "state": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "district": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "zipCode": {
+          "minLength": 1,
+          "pattern": "^[0-9]{6}$",
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        }
+      }
+    },
+    "Comment": {
+      "type": "object",
+      "properties": {
+        "updatedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "commentText": {
+          "type": "string"
+        }
+      }
+    },
+    "Customer": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "mobileNumber": {
+          "type": "string"
+        },
+        "mobileVerificationCode": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "emailVerificationCode": {
+          "type": "string"
+        },
+        "alternativeMobileNumber": {
+          "type": "string"
+        },
+        "gstNumber": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "landmark": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "stateId": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "districtId": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "customerPhotoId": {
+          "type": "string"
+        },
+        "userId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "isApproved": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "DateOnly": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "day": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dayOfWeek": {
+          "$ref": "#/definitions/DayOfWeek"
+        },
+        "dayOfYear": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "dayNumber": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        }
+      }
+    },
+    "DayOfWeek": {
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "type": "integer"
+    },
+    "Material": {
+      "type": "object",
+      "properties": {
+        "material": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "string"
+        }
+      }
+    },
+    "MaterialQuotation": {
+      "type": "object",
+      "properties": {
+        "discount": {
+          "type": "string"
+        },
+        "deliverycharges": {
+          "type": "string"
+        },
+        "servicecharges": {
+          "type": "string"
+        },
+        "gst": {
+          "type": "string"
+        },
+        "grandtotal": {
+          "type": "string"
+        },
+        "fixedDiscount": {
+          "type": "string"
+        },
+        "fixedDeliveryChargs": {
+          "type": "string"
+        },
+        "fixedServicecharges": {
+          "type": "string"
+        },
+        "fixedGST": {
+          "type": "string"
+        }
+      }
+    },
+    "Materials": {
+      "type": "object",
+      "properties": {
+        "material": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "total": {
+          "type": "string"
+        }
+      }
+    },
+    "OptRequest": {
+      "type": "object",
+      "properties": {
+        "senderValue": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "OtpValidationRequest": {
+      "type": "object",
+      "properties": {
+        "senderValue": {
+          "type": "string"
+        },
+        "otp": {
+          "type": "string"
+        }
+      }
+    },
+    "Product": {
+      "required": [
+        "catalogue",
+        "category",
+        "productName",
+        "productSize",
+        "specifications",
+        "units"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "string"
+        },
+        "category": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "productName": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "catalogue": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "productSize": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "units": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "productPhotos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rate": {
+          "format": "double",
+          "minimum": 0,
+          "type": "number"
+        },
+        "discount": {
+          "format": "double",
+          "maximum": 100,
+          "minimum": 0,
+          "type": "number"
+        },
+        "specifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Specification"
+          }
+        },
+        "specificationDesc": {
+          "type": "string"
+        },
+        "warranty": {
+          "type": "string"
+        },
+        "additionalInformation": {
+          "type": "string"
+        },
+        "productStatus": {
+          "type": "string"
+        },
+        "productOwnedBy": {
+          "type": "string"
+        }
+      }
+    },
+    "RaiseAQuote": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "quotedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "raiseAQuoteId": {
+          "type": "string"
+        },
+        "raiseTicketId": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "ticketId": {
+          "type": "string"
+        },
+        "technicianId": {
+          "type": "string"
+        },
+        "enterQuoteAmount": {
+          "type": "string"
+        },
+        "discount": {
+          "type": "string"
+        },
+        "othercharges": {
+          "type": "string"
+        },
+        "serviceCharges": {
+          "type": "string"
+        },
+        "gst": {
+          "type": "string"
+        },
+        "totalAmount": {
+          "type": "string"
+        },
+        "fixedQuote": {
+          "type": "string"
+        },
+        "fixedDiscount": {
+          "type": "string"
+        },
+        "fixedOtherCharge": {
+          "type": "string"
+        },
+        "fixedServiceCharge": {
+          "type": "string"
+        },
+        "fixedGST": {
+          "type": "string"
+        },
+        "materialQuotation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MaterialQuotation"
+          }
+        },
+        "addrRmarks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AddRemark"
+          }
+        },
+        "materials": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Materials"
+          }
+        }
+      }
+    },
+    "RaiseAQuoteByDealer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "ticketId": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "dealerId": {
+          "type": "string"
+        },
+        "raiseTicketId": {
+          "type": "string"
+        },
+        "raiseAQuoteDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "raiseAQuoteByDealerId": {
+          "type": "string"
+        },
+        "materialQuotation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MaterialQuotation"
+          }
+        },
+        "addrRmarks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AddRemark"
+          }
+        },
+        "materials": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Materials"
+          }
+        }
+      }
+    },
+    "RaiseTicket": {
+      "type": "object",
+      "properties": {
+        "raiseTicketId": {
+          "type": "string"
+        },
+        "date": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "assignedTo": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "internalStatus": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "lowestBidderTechnicainId": {
+          "type": "string"
+        },
+        "lowestBidderDealerId": {
+          "type": "string"
+        },
+        "isMaterialType": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "district": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "requestType": {
+          "type": "string"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "materials": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Material"
+          }
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Comment"
+          }
+        }
+      }
+    },
+    "Specification": {
+      "required": [
+        "label",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "value": {
+          "minLength": 1,
+          "type": "string"
+        }
+      }
+    },
+    "SupportTicket": {
+      "type": "object",
+      "properties": {
+        "supportTicketId": {
+          "type": "string"
+        },
+        "date": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "assignedTo": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "isMaterialType": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "district": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "requestType": {
+          "type": "string"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "TrackTickets": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "type": "string"
+        },
+        "ticketId": {
+          "type": "string"
+        },
+        "date": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "assignedTo": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "UpdateDocumentRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "profiletype": {
+          "type": "string"
+        },
+        "profileApprovedby": {
+          "type": "string"
+        },
+        "profileRequestedby": {
+          "type": "string"
+        },
+        "createdDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "modifiedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "comments": {
+          "type": "string"
+        }
+      }
+    },
+    "UserProfileApproval": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userid": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "requestedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "requestedBy": {
+          "type": "string"
+        },
+        "approvedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "approvedBy": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "string"
+        }
+      }
+    },
+    "VerifyUserExist": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        }
+      }
+    },
+    "WeatherForecast": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "$ref": "#/definitions/DateOnly"
+        },
+        "temperatureC": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "temperatureF": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
