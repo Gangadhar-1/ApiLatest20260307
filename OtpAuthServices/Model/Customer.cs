@@ -11,8 +11,8 @@ namespace OtpAuthServices.Model
         public required string LastName { get; set; }
         public required string MobileNumber { get; set; }
         public required string MobileVerificationCode { get; set; }
-        public required string EmailAddress { get; set; }
-        public required string EmailVerificationCode { get; set; }
+        public  string? EmailAddress { get; set; }
+        public string? EmailVerificationCode { get; set; }
 
         // Optional fields should not have [required] annotations or the 'required' keyword
         public string AlternativeMobileNumber { get; set; } = string.Empty;
