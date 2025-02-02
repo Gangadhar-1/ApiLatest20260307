@@ -1,0 +1,23 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/API/v17
+/.vs/OtpAuthServices
+/.vs/ProjectEvaluation
+/.vs
+/OtpAuthServices/bin/Debug/net8.0
+/OtpAuthServices/obj/Debug/net8.0
+/OtpAuthServices/bin/Debug/net8.0/OtpAuthServices.dll
+/OtpAuthServices/bin/Debug/net8.0/OtpAuthServices.pdb
+/OtpAuthServices/bin/Debug/net8.0/OtpAuthServices.exe
+/OtpAuthServices/obj/Debug/net8.0/ref/OtpAuthServices.dll
+/OtpAuthServices/obj/Debug/net8.0/refint/OtpAuthServices.dll
+/OtpAuthServices/obj/Debug/net8.0/staticwebassets/msbuild.build.OtpAuthServices.props
+/OtpAuthServices/obj/Debug/net8.0/OtpAuthServices.csproj.CoreCompileInputs.cache
+/OtpAuthServices/obj/Debug/net8.0/OtpAuthServices.csproj.FileListAbsolute.txt
+/OtpAuthServices/obj/Debug/net8.0/OtpAuthServices.dll
+/OtpAuthServices/obj/Debug/net8.0/OtpAuthServices.pdb
+/OtpAuthServices/obj/Debug/net8.0/staticwebassets.build.json
+/OtpAuthServices/obj/Debug/net8.0/OtpAuthServices.genruntimeconfig.cache
+/.gitignore

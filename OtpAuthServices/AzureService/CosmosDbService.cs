@@ -333,6 +333,8 @@ WHERE 1=1";
     )";
                 }
 
+                query += " order by c.timestamp desc";
+
                 // Create query definition
                 var queryDefinition = new QueryDefinition(query);
 
@@ -2614,6 +2616,8 @@ WHERE 1=1";
     )";
                 }
 
+                query += " order by c.timestamp desc";
+
                 // Log query for debugging
                 Console.WriteLine($"Generated Query: {query}");
 
@@ -2714,6 +2718,8 @@ WHERE 1=1"; // Makes appending dynamic conditions easier
         CONTAINS(c.Status, @searchQuery, true)
     )";
                 }
+
+                query += " order by c.timestamp desc";
 
                 // Log generated query
                 Console.WriteLine($"Generated Query: {query}");
@@ -2817,6 +2823,9 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
     )";
                 }
 
+                query += " order by c.timestamp desc";
+
+
                 // Log generated query
                 Console.WriteLine($"Generated Query: {query}");
 
@@ -2917,6 +2926,8 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
         CONTAINS(c.Status, @searchQuery, true)
     )";
                 }
+
+                query += " order by c.timestamp desc";
 
                 // Log generated query
                 Console.WriteLine($"Generated Query: {query}");
