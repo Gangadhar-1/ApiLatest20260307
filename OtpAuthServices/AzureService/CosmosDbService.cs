@@ -435,7 +435,7 @@ WHERE 1=1";
 
                 if (!string.IsNullOrEmpty(value))
                 {
-                   query += "c.UserId = @value and c.EstimatorFirmName !=null";
+                    query += "c.UserId = @value and c.EstimatorFirmName !=null";
                     hasCondition = true;
                 }
 
@@ -457,7 +457,7 @@ WHERE 1=1";
                 // Extract the ID from the result
                 var userdata = response.FirstOrDefault();
 
-                 var estimator = JsonConvert.DeserializeObject<Estimator>(userdata.ToString());
+                var estimator = JsonConvert.DeserializeObject<Estimator>(userdata.ToString());
 
                 return estimator;
 
@@ -507,7 +507,7 @@ WHERE 1=1";
                 // Extract the ID from the result
                 var userdata = response.FirstOrDefault();
 
-                 var technician = JsonConvert.DeserializeObject<Technician>(userdata.ToString());
+                var technician = JsonConvert.DeserializeObject<Technician>(userdata.ToString());
 
                 return technician;
 
@@ -557,7 +557,7 @@ WHERE 1=1";
                 // Extract the ID from the result
                 var userdata = response.FirstOrDefault();
 
-             var builder = JsonConvert.DeserializeObject<Builder>(userdata.ToString());
+                var builder = JsonConvert.DeserializeObject<Builder>(userdata.ToString());
 
                 return builder;
 
@@ -889,8 +889,7 @@ WHERE 1=1";
                 foreach (var field in fieldsToCheck)
                 {
                     // Dynamically construct the query for each field and State
-                    string query = $"SELECT VALUE COUNT(1) FROM c WHERE c.{field} != null AND c.State = @State  AND c.District=@district  AND c.ZipCode=@zipcode";
-
+                    string query = $"SELECT VALUE COUNT(1) FROM c WHERE c.{field} != null  and c.Address !=null and  c.Status !=null AND c.StateId = @State  AND c.DistrictId=@district  AND c.ZipCode=@zipcode";
                     // Define the query with the State parameter
                     var queryDefinition = new QueryDefinition(query)
                         .WithParameter("@State", state)
@@ -1994,9 +1993,9 @@ WHERE 1=1";
 
 
 
-        public async Task<List<T>> GetRaiseTicketNotificationsByDistrict(string district,string category)
+        public async Task<List<T>> GetRaiseTicketNotificationsByDistrict(string district, string category)
         {
-            var raiseticket=new List<T>();
+            var raiseticket = new List<T>();
             try
             {
 
@@ -2064,7 +2063,7 @@ WHERE 1=1";
 
 
 
-        
+
         public async Task<List<T>> GetTrackTicketDetailsAsync()
         {
             var supportTicket = new List<T>();
@@ -2202,13 +2201,13 @@ WHERE 1=1";
 
         public async Task<List<T>> GetRaiseTicketNotificationsByCustomerId(string customerId)
         {
-                         var raiseticket = new List<T>();
+            var raiseticket = new List<T>();
             try
             {
 
                 var queryDefinition = new QueryDefinition("SELECT * FROM c where c.RaiseTicketId !=null and  c.LowestBidderTechnicainId !=null and c.CustomerId=@customerId and c.AssignedTo='Customer'")
                     .WithParameter("@customerId", customerId);
-                   
+
 
                 var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
 
@@ -3148,7 +3147,7 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
 
 
 
-        
+
         }
 
         public async Task<List<T>> GetRaiseAQuoteByDealerDetails()
@@ -3159,14 +3158,14 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
             {
                 var queryDefinition = new QueryDefinition("SELECT * FROM c  where c.RaiseAQuoteByDealerId !=null and c.RaiseAQuoteDate  !=null");
 
-                
+
                 var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
 
                 // Iterate through query results
                 while (queryIterator.HasMoreResults)
                 {
                     var response = await queryIterator.ReadNextAsync();
-                    raiseAQuoteByDealer.AddRange(response); 
+                    raiseAQuoteByDealer.AddRange(response);
                 }
             }
             catch (CosmosException ex)
@@ -3316,7 +3315,7 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
             return notifications;
         }
 
-        public async Task<T> GetRaiseAQuoteDetailsByTechnicianId(string raiseAQuotetId,string TechnicianId)
+        public async Task<T> GetRaiseAQuoteDetailsByTechnicianId(string raiseAQuotetId, string TechnicianId)
         {
             var notifications = new List<T>();
             try
@@ -3388,14 +3387,14 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
             var results = new List<T>();
             try
             {
-                
+
                 var queryDefinition = new QueryDefinition("SELECT * FROM c WHERE c.EstimatorId = @estimatorId")
                     .WithParameter("@estimatorId", EstimatorId.ToString()); // Convert Guid to string
 
-           
+
                 var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
 
-               
+
                 while (queryIterator.HasMoreResults)
                 {
                     var response = await queryIterator.ReadNextAsync();
@@ -3404,12 +3403,12 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
             }
             catch (CosmosException ex)
             {
-               
+
                 Console.WriteLine($"Cosmos DB error: {ex.Message}");
             }
             catch (Exception ex)
             {
-                
+
                 Console.WriteLine($"Internal server error: {ex.Message}");
             }
 
@@ -3422,14 +3421,14 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
             var results = new List<T>();
             try
             {
-               
+
                 var queryDefinition = new QueryDefinition("SELECT * FROM c WHERE c.BuilderId = @builderId")
                     .WithParameter("@builderId", BuilderId.ToString()); // Convert Guid to string
 
-             
+
                 var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
 
-              
+
                 while (queryIterator.HasMoreResults)
                 {
                     var response = await queryIterator.ReadNextAsync();
@@ -3438,12 +3437,12 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
             }
             catch (CosmosException ex)
             {
-                
+
                 Console.WriteLine($"Cosmos DB error: {ex.Message}");
             }
             catch (Exception ex)
             {
-               
+
                 Console.WriteLine($"Internal server error: {ex.Message}");
             }
 
@@ -3458,14 +3457,14 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
             var results = new List<T>();
             try
             {
-              
+
                 var queryDefinition = new QueryDefinition("SELECT * FROM c WHERE c.TechnicianId = @technicianId")
                     .WithParameter("@technicianId", TechnicianId.ToString()); // Convert Guid to string
 
-               
+
                 var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
 
-               
+
                 while (queryIterator.HasMoreResults)
                 {
                     var response = await queryIterator.ReadNextAsync();
@@ -3474,12 +3473,12 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
             }
             catch (CosmosException ex)
             {
-               
+
                 Console.WriteLine($"Cosmos DB error: {ex.Message}");
             }
             catch (Exception ex)
             {
-                
+
                 Console.WriteLine($"Internal server error: {ex.Message}");
             }
 
@@ -3492,14 +3491,14 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
             var results = new List<T>();
             try
             {
-               
+
                 var queryDefinition = new QueryDefinition("SELECT * FROM c WHERE c.CustomerId = @customerId")
                     .WithParameter("@customerId", CustomerId.ToString());
 
-               
+
                 var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
 
-               
+
                 while (queryIterator.HasMoreResults)
                 {
                     var response = await queryIterator.ReadNextAsync();
@@ -3508,12 +3507,12 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
             }
             catch (CosmosException ex)
             {
-                
+
                 Console.WriteLine($"Cosmos DB error: {ex.Message}");
             }
             catch (Exception ex)
             {
-              
+
                 Console.WriteLine($"Internal server error: {ex.Message}");
             }
 
@@ -3597,17 +3596,17 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
         {
             try
             {
-              
+
                 await _container.ReplaceItemAsync(technician, technician.id.ToString());
 
-                return true; 
+                return true;
             }
             catch (Exception ex)
             {
-               
+
                 Console.WriteLine($"Error updating technician: {ex.Message}");
 
-                return false; 
+                return false;
             }
         }
 
@@ -3639,13 +3638,13 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
                 Console.WriteLine($"Internal server error: {ex.Message}");
             }
 
-            
+
             return approvallist;
         }
 
-        public async Task<List<T>> GetPendingActionsAsync(string State = null, string District = null)
+        public async Task<List<T>> GetPendingActionsAsync(string State = null, string District = null, string ZipCode = null)
         {
-            var supportTicket = new List<T>();
+            var pendingactions = new List<T>();
             try
             {
 
@@ -3664,23 +3663,19 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
                 if (!string.IsNullOrEmpty(State))
                     query += " AND c.State = @State";
 
-                // Rule 2: Include District only if State is also provided
-                if (!string.IsNullOrEmpty(District) && !string.IsNullOrEmpty(State))
+                if (!string.IsNullOrEmpty(State))
                     query += " AND c.District = @District";
 
-                query += " order by c.date desc";
-
-                // Log the generated query (optional for debugging)
-                Console.WriteLine($"Generated Query: {query}");
-
-                // Create query definition and add parameters dynamically
                 var queryDefinition = new QueryDefinition(query);
 
                 if (!string.IsNullOrEmpty(State))
                     queryDefinition = queryDefinition.WithParameter("@State", State);
 
-                if (!string.IsNullOrEmpty(District) && !string.IsNullOrEmpty(State))
+                if (!string.IsNullOrEmpty(District))
                     queryDefinition = queryDefinition.WithParameter("@District", District);
+
+                if (!string.IsNullOrEmpty(ZipCode))
+                    queryDefinition = queryDefinition.WithParameter("@ZipCode", ZipCode);
 
 
                 // Execute the query
@@ -3689,29 +3684,333 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
                 while (queryIterator.HasMoreResults)
                 {
                     var response = await queryIterator.ReadNextAsync();
-                    supportTicket.AddRange(response);
+                    pendingactions.AddRange(response);
                 }
-
-                return supportTicket;
             }
-
             catch (Exception ex)
             {
-                // Log the error
-                Console.WriteLine($"Error: {ex.Message}");
-                return supportTicket;
+                Console.WriteLine($"Internal server error: {ex.Message}");
             }
+
+            return pendingactions;
         }
 
 
+        // Rule 2: Include District only if State is also provided
+        public async Task<T> GetRaiseTicketInvoice(string RaiseTicketId)
+                {
+                    try
+                    {
+                        if (string.IsNullOrEmpty(RaiseTicketId))
+                        {
+                            throw new ArgumentException(nameof(RaiseTicketId), "RaiseTicketId cannot be null or Empty.");
+                        }
+
+                        var queryDefinition = new QueryDefinition("SELECT * FROM c WHERE c.RaiseTicketId != null AND c.CustomerName != null AND c.id = @RaiseTicketId")
+                            .WithParameter("@RaiseTicketId", RaiseTicketId);
+                        var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                        while (queryIterator.HasMoreResults)
+                        {
+                            var response = await queryIterator.ReadNextAsync();
+                            foreach (var item in response)
+                            {
+                                return item;
+                            }
+                        }
+
+                        return default;
+                    }
+                    catch (CosmosException ex)
+                    {
+
+                        return default;
+                    }
+                    catch (Exception ex)
+                    {
+
+                        return default;
+                    }
+                }
+            
+            
+                    public async Task<T> GetTechnicianDetailsForInvoice(string TechnicianId)
+                    {
+                        try
+                        {
+                            if (string.IsNullOrEmpty(TechnicianId))
+                            {
+                                throw new ArgumentException(nameof(TechnicianId), "TechnicianId cannot be null or Empty.");
+                            }
+
+                            var queryDefinition = new QueryDefinition("SELECT * FROM c where c.TechnicianId !=null  and c.NumberOfTechnicians !=null  and c.TechnicianId=@TechnicianId")
+                                .WithParameter("@TechnicianId", TechnicianId);
+                            var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                            while (queryIterator.HasMoreResults)
+                            {
+                                var response = await queryIterator.ReadNextAsync();
+                                foreach (var item in response)
+                                {
+                                    return item;
+                                }
+                            }
+
+                            return default;
+                        }
+                        catch (CosmosException ex)
+                        {
+
+                            return default;
+                        }
+                        catch (Exception ex)
+                        {
+
+                            return default;
+                        }
+                    }
+                    public async Task<T> GetDealerDetailsForInvoice(string DealerId)
+                    {
+                        try
+                        {
+                            if (string.IsNullOrEmpty(DealerId))
+                            {
+                                throw new ArgumentException(nameof(DealerId), "DealerId cannot be null or Empty.");
+                            }
+
+                            var queryDefinition = new QueryDefinition("  SELECT * FROM c where c.DealerId !=null  and c.DealerFirmName !=null  and c.OwnershipName !=null and c.DealerId=@DealerId")
+
+
+
+                                .WithParameter("@DealerId", DealerId);
+                            var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                            while (queryIterator.HasMoreResults)
+                            {
+                                var response = await queryIterator.ReadNextAsync();
+                                foreach (var item in response)
+                                {
+                                    return item;
+                                }
+                            }
+
+                            return default;
+                        }
+                        catch (CosmosException ex)
+                        {
+
+                            return default;
+                        }
+                        catch (Exception ex)
+                        {
+
+                            return default;
+                        }
+                    }
+
+
+                    public async Task<T> GetRaiseTicketDetailsForTrader(string RaiseTicketId)
+                    {
+                        try
+                        {
+                            if (string.IsNullOrEmpty(RaiseTicketId))
+                            {
+                                throw new ArgumentException(nameof(RaiseTicketId), "RaiseTicketId cannot be null or Empty.");
+                            }
+
+                            var queryDefinition = new QueryDefinition("SELECT * FROM c  where c.DeliveryNoteId !=null  and  c.Option1Day !=null and  c.TicketId=@RaiseTicketId")
+                                .WithParameter("@RaiseTicketId", RaiseTicketId);
+                            var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                            while (queryIterator.HasMoreResults)
+                            {
+                                var response = await queryIterator.ReadNextAsync();
+                                foreach (var item in response)
+                                {
+                                    return item;
+                                }
+                            }
+
+                            return default;
+                        }
+                        catch (CosmosException ex)
+                        {
+
+                            return default;
+                        }
+                        catch (Exception ex)
+                        {
+
+                            return default;
+                        }
+                    }
+
+                    public async Task<T> GetPaymentDetailsByRaiseTicketId(string RaiseTicketId)
+                    {
+                        try
+                        {
+                            if (string.IsNullOrEmpty(RaiseTicketId))
+                            {
+                                throw new ArgumentException(nameof(RaiseTicketId), "RaiseTicketId cannot be null or Empty.");
+                            }
+
+                            var queryDefinition = new QueryDefinition("SELECT * FROM c   where c.PaymentId !=null  and   c.PaymentMode  !=null  and c.RaiseTicketId=@RaiseTicketId")
+                                .WithParameter("@RaiseTicketId", RaiseTicketId);
+                            var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                            while (queryIterator.HasMoreResults)
+                            {
+                                var response = await queryIterator.ReadNextAsync();
+                                foreach (var item in response)
+                                {
+                                    return item;
+                                }
+                            }
+
+                            return default;
+                        }
+                        catch (CosmosException ex)
+                        {
+
+                            return default;
+                        }
+                        catch (Exception ex)
+                        {
+
+                            return default;
+
+
+
+
+                        }
+
+                    }
+
+
+
+                    public async Task<List<T>> GetRaiseTicketsByTechnicalAgency()
+                    {
+                        var approvallist = new List<T>();
+                        try
+                        {
+                            var queryDefinition = new QueryDefinition("SELECT * FROM c where c.RaiseTicketId !=null   and c.AssignedTo='Technical Agency'");
+
+
+                            var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                            while (queryIterator.HasMoreResults)
+                            {
+                                var response = await queryIterator.ReadNextAsync();
+                                approvallist.AddRange(response);
+                            }
+                        }
+                        catch (CosmosException ex)
+                        {
+                            Console.WriteLine($"Cosmos DB error:{ex.Message}");
+                        }
+
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Internal server error: {ex.Message}");
+                        }
+
+
+                        return approvallist;
+                    }
+
+
+
+                    public async Task<List<T>> GetTechnicianMobileAndEmail(string Category, string District)
+                    {
+                        try
+                        {
+                            if (string.IsNullOrEmpty(Category))
+                            {
+                                throw new ArgumentException(nameof(Category), "Category cannot be null or Empty.");
+                            }
+
+                            var queryDefinition = new QueryDefinition("SELECT c.EmailAddress, c.PhoneNumber FROM c WHERE c.TechnicianId != null AND c.Address != null AND c.Category = @Category AND c.District = @District")
+                                .WithParameter("@Category", Category)
+                                .WithParameter("@District", District);
+
+                            var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+                            var results = new List<T>(); // Store all results
+
+                            while (queryIterator.HasMoreResults)
+                            {
+                                var response = await queryIterator.ReadNextAsync();
+                                results.AddRange(response);
+                            }
+
+                            return results;
+                        }
+                        catch (CosmosException ex)
+                        {
+                            return new List<T>(); // Return empty list in case of exception
+                        }
+                        catch (Exception ex)
+                        {
+                            return new List<T>();
+                        }
+                    }
+
+
+                    public async Task<List<T>> GetRaiseAQuoteDetailsByTechnicianIdAndRiseTicketId(string TicketId, string TechnicianId)
+                    {
+                        try
+                        {
+                            if (string.IsNullOrEmpty(TicketId))
+                            {
+                                throw new ArgumentException(nameof(TicketId), "TicketId cannot be null or Empty.");
+                            }
+
+                            var queryDefinition = new QueryDefinition("select * from  c where c.RaiseAQuoteId !=null  and c.TicketId !=null   and c.TicketId=@TicketId    and   c.TechnicianId=@TechnicianId")
+                                .WithParameter("@TicketId", TicketId)
+                                .WithParameter("@TechnicianId", TechnicianId);
+
+                            var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+                            var results = new List<T>(); // Store all results
+
+                            while (queryIterator.HasMoreResults)
+                            {
+                                var response = await queryIterator.ReadNextAsync();
+                                results.AddRange(response);
+                            }
+
+                            return results;
+                        }
+                        catch (CosmosException ex)
+                        {
+                            return new List<T>(); // Return empty list in case of exception
+                        }
+                        catch (Exception ex)
+                        {
+                            return new List<T>();
+                        }
+                    }
 
 
 
 
 
 
-    }
 
+
+
+
+
+
+
+
+
+
+                
+            
+            }
+    
 }
+
+            
+            
 
             

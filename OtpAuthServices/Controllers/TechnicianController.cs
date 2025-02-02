@@ -387,6 +387,51 @@ namespace OtpAuthServices.Controllers
         }
 
 
+ [HttpGet("GetTechnicianDetailsForInvoice")]
+        public async Task<ActionResult> GetTechnicianDetailsForInvoice(string TechnicianId)
+        {
+            try
+            {
+
+                // Fetch the total count from the service
+                var technicianInvoice = await _cosmosDbService.GetTechnicianDetailsForInvoice(TechnicianId);
+
+                if (technicianInvoice == null)
+                {
+                    return StatusCode(500, "Error fetching total counts .");
+                }
+                return Ok(technicianInvoice);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, "Unexpected  error occurred.");
+            }
+        }
+
+
+
+        [HttpGet("GetTechnicianMobileAndEmail")]
+        public async Task<ActionResult> GetTechnicianMobileAndEmail(string Category, string District)
+        {
+            try
+            {
+                var technicianMobileAndEmails = await _cosmosDbService.GetTechnicianMobileAndEmail(Category, District);
+
+                if (technicianMobileAndEmails == null || !technicianMobileAndEmails.Any())
+                {
+                    return NotFound("No data found.");
+                }
+
+                return Ok(technicianMobileAndEmails);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, "Unexpected error occurred.");
+            }
+        }
+
 
         [HttpPut("UpdateIsActive/{technicianId}")]
         public async Task<IActionResult> UpdateIsActive(Guid technicianId, [FromBody] bool isActive)

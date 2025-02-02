@@ -503,14 +503,19 @@ namespace OtpAuthServices.Controllers
                 }
             }
 
-        [HttpGet("GetPendingActions")]
-        public async Task<IActionResult> GetPendingActions(string state = null, string district = null)
+
+
+
+
+
+  [HttpGet("GetRaiseTicketsByTechnicalAgency")]
+        public async Task<IActionResult> GetRaiseTicketsByTechnicalAgency()
         {
             try
             {
-                var RaiseTicket = await _cosmosDbService.GetPendingActionsAsync(state, district);
+                var RaiseTicket = await _cosmosDbService.GetRaiseTicketsByTechnicalAgency();
 
-                // Return 200 OK with tickets
+               
                 return Ok(RaiseTicket);
             }
             catch (Exception ex)
@@ -520,6 +525,32 @@ namespace OtpAuthServices.Controllers
                 return StatusCode(500, "An error occurred while retrieving tickets.");
             }
         }
+
+
+
+
+
+        [HttpGet("GetPendingActions")]
+        public async Task<IActionResult> GetPendingActions(string state = null, string district = null, string ZipCode = null)
+        {
+            try
+            {
+                var RaiseTicket = await _cosmosDbService.GetPendingActionsAsync(state, district, ZipCode);
+
+                // Return 200 OK with ticketss
+                return Ok(RaiseTicket);
+            }
+            catch (Exception ex)
+            {
+                // Log and return 500 Internal Server Error
+                Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+                return StatusCode(500, "An error occurred while retrieving tickets.");
+            }
+        }
+
+
+
+
 
 
     }

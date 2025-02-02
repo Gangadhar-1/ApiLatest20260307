@@ -106,7 +106,7 @@ namespace OtpAuthServices.Controllers
 
 
         [HttpGet("builderProfileData")]
-        public async Task<IActionResult> dealerProfileData(string profileType, string UserId)
+        public async Task<IActionResult> BuilderProfileData(string profileType, string UserId)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace OtpAuthServices.Controllers
                 }
 
 
-                var user = await _cosmosDbService.GetEstimatorProflie(UserId, profileType);
+                var user = await _cosmosDbService.GetBuilderProflie(UserId, profileType);
 
                 if (user != null)
                 {

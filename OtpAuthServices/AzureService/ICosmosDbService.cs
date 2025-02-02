@@ -186,7 +186,23 @@ namespace OtpAuthServices.AzureService
         Task<bool> UpdateEstimatorAsync(Estimator estimator);
         Task<bool> UpdateTechnicianAsync(Technician technician);
 
-        Task<List<T>> GetPendingActionsAsync(string State = null, string District = null);
+        Task<List<T>> GetPendingActionsAsync(string State = null, string District = null, string ZipCode = null);
+
+        Task<T> GetRaiseTicketInvoice(string RaiseTicketId);
+
+        Task<T> GetTechnicianDetailsForInvoice(string TechnicianId);
+        Task<T> GetDealerDetailsForInvoice(string DealerId);
+
+
+
+        Task<T> GetRaiseTicketDetailsForTrader(string RaiseTicketId);
+        Task<T> GetPaymentDetailsByRaiseTicketId(string RaiseTicketId);
+        Task<List<T>> GetRaiseTicketsByTechnicalAgency();
+        Task<List<T>> GetTechnicianMobileAndEmail(string Category, string District);
+
+
+        Task<List<T>> GetRaiseAQuoteDetailsByTechnicianIdAndRiseTicketId(string TicketId, string TechnicianId);
+
     }
 
 

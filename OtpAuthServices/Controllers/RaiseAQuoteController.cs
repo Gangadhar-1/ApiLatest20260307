@@ -124,5 +124,24 @@ namespace OtpAuthServices.Controllers
             return Ok("RaiseAQuote Updated Successfully");
         }
 
+
+        [HttpGet("GetRaiseAQuoteDetailsByTechnicianIdAndRiseTicketId")]
+        public async Task<IActionResult> GetRaiseAQuoteDetailsByTechnicianIdAndRiseTicketId(string TicketId, string TechnicianId)
+
+        {
+            try
+            {
+                var RaiseTicket = await _cosmosDbService.GetRaiseAQuoteDetailsByTechnicianIdAndRiseTicketId( TicketId,  TechnicianId);
+
+
+                return Ok(RaiseTicket);
+            }
+            catch (Exception ex)
+            {
+                // Log and return 500 Internal Server Error
+                Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+                return StatusCode(500, "An error occurred while retrieving tickets.");
+            }
+        }
     }
 }
