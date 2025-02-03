@@ -1825,8 +1825,6 @@ WHERE 1=1";
 
 
 
-
-
         public async Task<List<T>> GetAddress(string userId)
         {
             try
@@ -1838,7 +1836,7 @@ WHERE 1=1";
 
                 // Define the query with a parameter for UserId
                 var queryDefinition = new QueryDefinition(
-                    "SELECT c.id,c.AddressId,c.IsPrimaryAddress,c.Address,c.State,c.District,c.ZipCode  from c WHERE c.UserId = @userId and c.ZipCode !=null")
+                    "SELECT c.id,c.AddressId,c.IsPrimaryAddress,c.Address,c.State,c.District,c.ZipCode,c.FirstName,c.LastName, CONCAT (c.FirstName, ' ', c.LastName) AS FullName from c WHERE c.UserId = @userId and c.ZipCode !=null")
                     .WithParameter("@userId", userId);
 
                 // Create a query iterator
@@ -1863,6 +1861,8 @@ WHERE 1=1";
                 return new List<T>(); // Return an empty list on unexpected errors
             }
         }
+
+
 
 
 

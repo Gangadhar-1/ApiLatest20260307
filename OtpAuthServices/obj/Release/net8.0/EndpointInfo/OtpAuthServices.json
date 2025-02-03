@@ -2071,6 +2071,162 @@
         }
       }
     },
+    "/api/DeliveryNote/CreateDeliveryNote": {
+      "post": {
+        "tags": [
+          "DeliveryNote"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryNote"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryNote"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryNote"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DeliveryNote/GetDeliveryNoteByDeliveryNoteId": {
+      "get": {
+        "tags": [
+          "DeliveryNote"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DeliveryNote/{id}": {
+      "put": {
+        "tags": [
+          "DeliveryNote"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryNote"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryNote"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryNote"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DeliveryNote"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DeliveryNote/GetRaiseTicketForDealer": {
+      "get": {
+        "tags": [
+          "DeliveryNote"
+        ],
+        "parameters": [
+          {
+            "name": "RaiseTicketId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DisplayTechniciansByRaiseTicketId/GetTechnicianDetailsByRaiseTicketId/{raiseTicketId}": {
+      "get": {
+        "tags": [
+          "DisplayTechniciansByRaiseTicketId"
+        ],
+        "parameters": [
+          {
+            "name": "raiseTicketId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Estimator/EstimatorUpload": {
       "post": {
         "tags": [
@@ -2720,6 +2876,140 @@
         }
       }
     },
+    "/api/Payment/CreatePayment": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payment"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payment"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Payment/GetPaymentByPamentId": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Payment/{id}": {
+      "put": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payment"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payment"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Payment/GetPaymentDetailsByRaiseTicketId": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "RaiseTicketId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Product/ProductUpload": {
       "post": {
         "tags": [
@@ -3110,6 +3400,34 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseAQuote/GetRaiseAQuoteDetailsByTechnicianIdAndRiseTicketId": {
+      "get": {
+        "tags": [
+          "RaiseAQuote"
+        ],
+        "parameters": [
+          {
+            "name": "TicketId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TechnicianId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success"
@@ -3702,6 +4020,53 @@
         "parameters": [
           {
             "name": "customerId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetRaiseTicketsByTechnicalAgency": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetPendingActions": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "name": "state",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "district",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ZipCode",
             "in": "query",
             "schema": {
               "type": "string"
@@ -4469,6 +4834,55 @@
         }
       }
     },
+    "/api/Technician/GetTechnicianDetailsForInvoice": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "name": "TechnicianId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/GetTechnicianMobileAndEmail": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "name": "Category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "District",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Technician/UpdateIsActive/{technicianId}": {
       "put": {
         "tags": [
@@ -4504,6 +4918,119 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/TicketNotifications/CreateTicketNotifications": {
+      "post": {
+        "tags": [
+          "TicketNotifications"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TicketNotifications"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TicketNotifications"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TicketNotifications"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/TicketNotifications/{id}": {
+      "delete": {
+        "tags": [
+          "TicketNotifications"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "TicketNotifications"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TicketNotifications"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TicketNotifications"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TicketNotifications"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/TicketNotifications/GetTicketNotificationsById": {
+      "get": {
+        "tags": [
+          "TicketNotifications"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success"
@@ -4971,6 +5498,18 @@
           "userId": {
             "type": "string",
             "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5324,6 +5863,106 @@
         "type": "integer",
         "format": "int32"
       },
+      "DealerAcceptance": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "dealerRemarks": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeliveryNote": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticketId": {
+            "type": "string",
+            "nullable": true
+          },
+          "deliveryNoteId": {
+            "type": "string",
+            "nullable": true
+          },
+          "uploadInvoice": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "option1Day": {
+            "type": "string",
+            "nullable": true
+          },
+          "option1Time": {
+            "type": "string",
+            "nullable": true
+          },
+          "option2Day": {
+            "type": "string",
+            "nullable": true
+          },
+          "option2Time": {
+            "type": "string",
+            "nullable": true
+          },
+          "deliveryTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "deliveryInvoiceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "internalStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "technicianStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "dealerStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "technicianAcceptance": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TechnicianAcceptance"
+            },
+            "nullable": true
+          },
+          "dealerAcceptance": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DealerAcceptance"
+            },
+            "nullable": true
+          },
+          "materialCollection": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MaterialCollection"
+            },
+            "nullable": true
+          },
+          "assignedTo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Material": {
         "type": "object",
         "properties": {
@@ -5332,6 +5971,28 @@
             "nullable": true
           },
           "quantity": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MaterialCollection": {
+        "type": "object",
+        "properties": {
+          "material": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "string",
+            "nullable": true
+          },
+          "receivedQuantity": {
+            "type": "string",
+            "nullable": true
+          },
+          "remainingQuantity": {
             "type": "string",
             "nullable": true
           }
@@ -5424,6 +6085,64 @@
             "nullable": true
           },
           "otp": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Payment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "raiseTicketId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "approvedAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "paidAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "balancedAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentDataTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "technicianAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "dealerAmont": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerCareAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "utrTransactionNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "technicianConfirmationCode": {
             "type": "string",
             "nullable": true
           }
@@ -5859,6 +6578,76 @@
             "items": {
               "type": "string"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TechnicianAcceptance": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "technicianRemarks": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TicketNotifications": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticketNotificationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticketId": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailId": {
+            "type": "string",
+            "nullable": true
+          },
+          "isSMSDelivered": {
+            "type": "boolean"
+          },
+          "isMobileDelivered": {
+            "type": "boolean"
+          },
+          "smslog": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileLog": {
+            "type": "string",
+            "nullable": true
+          },
+          "smsDispatchedDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailDispatchedDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "technicianId": {
+            "type": "string",
+            "nullable": true
+          },
+          "dealerId": {
+            "type": "string",
             "nullable": true
           }
         },

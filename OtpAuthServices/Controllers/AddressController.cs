@@ -73,14 +73,14 @@ namespace OtpAuthServices.Controllers
                 // Fetch the address by UserId from Cosmos DB
                 var address = await _cosmosDbService.GetAddress(userId);
                 List<AddressModel> addresses = new List<AddressModel>();
-                foreach(var addres in address)
+                foreach (var addres in address)
                 {
-                    if(addres.IsPrimaryAddress ==null)
+                    if (addres.IsPrimaryAddress == null)
                     {
                         addres.IsPrimaryAddress = true;
-                        
+
                     }
-                    if(addres.AddressId ==null)
+                    if (addres.AddressId == null)
                     {
                         addres.AddressId = addres.id;
                     }
@@ -130,7 +130,7 @@ namespace OtpAuthServices.Controllers
         }
 
 
-        
+
 
 
         [HttpPut("{id}")]
@@ -147,7 +147,7 @@ namespace OtpAuthServices.Controllers
                 return NotFound();
             }
 
-            await _cosmosDbService.UpdateItemAsync(address); 
+            await _cosmosDbService.UpdateItemAsync(address);
             return Ok("Address data Updated Successfully.");
         }
 

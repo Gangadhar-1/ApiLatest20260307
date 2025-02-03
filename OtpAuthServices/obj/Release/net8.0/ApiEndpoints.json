@@ -431,7 +431,7 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.BuilderController",
-    "Method": "dealerProfileData",
+    "Method": "BuilderProfileData",
     "RelativePath": "api/Builder/builderProfileData",
     "HttpMethod": "GET",
     "IsController": true,
@@ -1417,6 +1417,107 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.DeliveryNoteController",
+    "Method": "UpdateRaiseTicket",
+    "RelativePath": "api/DeliveryNote/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "deliveryNote",
+        "Type": "OtpAuthServices.Model.DeliveryNote",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.DeliveryNoteController",
+    "Method": "DeleteDeliveryNote",
+    "RelativePath": "api/DeliveryNote/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.DeliveryNoteController",
+    "Method": "CreateTicket",
+    "RelativePath": "api/DeliveryNote/CreateDeliveryNote",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "deliveryNote",
+        "Type": "OtpAuthServices.Model.DeliveryNote",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.DeliveryNoteController",
+    "Method": "GetDeliveryNoteByDeliveryNoteId",
+    "RelativePath": "api/DeliveryNote/GetDeliveryNoteByDeliveryNoteId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.DeliveryNoteController",
+    "Method": "GetRaiseTicketForDealer",
+    "RelativePath": "api/DeliveryNote/GetRaiseTicketForDealer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "RaiseTicketId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.DisplayTechniciansByRaiseTicketIdController",
+    "Method": "GetTechnicianDetailsByRaiseTicketId",
+    "RelativePath": "api/DisplayTechniciansByRaiseTicketId/GetTechnicianDetailsByRaiseTicketId/{raiseTicketId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "raiseTicketId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.EstimatorController",
     "Method": "GetEstimatorById",
     "RelativePath": "api/Estimator/{estimatorId}",
@@ -1885,6 +1986,91 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.PaymentController",
+    "Method": "UpdateRaiseTicket",
+    "RelativePath": "api/Payment/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "payment",
+        "Type": "OtpAuthServices.Model.Payment",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.PaymentController",
+    "Method": "DeletePayment",
+    "RelativePath": "api/Payment/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.PaymentController",
+    "Method": "CreateTicket",
+    "RelativePath": "api/Payment/CreatePayment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "payment",
+        "Type": "OtpAuthServices.Model.Payment",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.PaymentController",
+    "Method": "GetPaymentByPamentId",
+    "RelativePath": "api/Payment/GetPaymentByPamentId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.PaymentController",
+    "Method": "GetPaymentDetailsByRaiseTicketId",
+    "RelativePath": "api/Payment/GetPaymentDetailsByRaiseTicketId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "RaiseTicketId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.ProductController",
     "Method": "GetProducts",
     "RelativePath": "api/Product",
@@ -2093,6 +2279,27 @@
     "Parameters": [
       {
         "Name": "raiseAQuotetId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TechnicianId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseAQuoteController",
+    "Method": "GetRaiseAQuoteDetailsByTechnicianIdAndRiseTicketId",
+    "RelativePath": "api/RaiseAQuote/GetRaiseAQuoteDetailsByTechnicianIdAndRiseTicketId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TicketId",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -2322,6 +2529,32 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetPendingActions",
+    "RelativePath": "api/RaiseTicket/GetPendingActions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "state",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "district",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ZipCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
     "Method": "GetRaiseTicketNotificationsByCustomerId",
     "RelativePath": "api/RaiseTicket/GetRaiseTicketNotificationsByCustomerId",
     "HttpMethod": "GET",
@@ -2376,6 +2609,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetRaiseTicketsByTechnicalAgency",
+    "RelativePath": "api/RaiseTicket/GetRaiseTicketsByTechnicalAgency",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -2849,6 +3092,43 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.TechnicianController",
+    "Method": "GetTechnicianDetailsForInvoice",
+    "RelativePath": "api/Technician/GetTechnicianDetailsForInvoice",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TechnicianId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.TechnicianController",
+    "Method": "GetTechnicianMobileAndEmail",
+    "RelativePath": "api/Technician/GetTechnicianMobileAndEmail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "District",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.TechnicianController",
     "Method": "UpdateTechnicianStatus",
     "RelativePath": "api/Technician/Status/{TechnicianId}",
     "HttpMethod": "PUT",
@@ -3109,6 +3389,75 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.TicketNotificationsController",
+    "Method": "DeleteTicketNotifications",
+    "RelativePath": "api/TicketNotifications/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.TicketNotificationsController",
+    "Method": "UpdateTicketNotifications",
+    "RelativePath": "api/TicketNotifications/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "ticketNotifications",
+        "Type": "OtpAuthServices.Model.TicketNotifications",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.TicketNotificationsController",
+    "Method": "CreateTicket",
+    "RelativePath": "api/TicketNotifications/CreateTicketNotifications",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketNotifications",
+        "Type": "OtpAuthServices.Model.TicketNotifications",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.TicketNotificationsController",
+    "Method": "GetTicketNotificationsById",
+    "RelativePath": "api/TicketNotifications/GetTicketNotificationsById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.UpdateDocumentController",
     "Method": "UpdateDocument",
     "RelativePath": "api/UpdateDocument/update",
@@ -3169,7 +3518,7 @@
       },
       {
         "Name": "IsEmailValidate",
-        "Type": "System.Boolean",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
