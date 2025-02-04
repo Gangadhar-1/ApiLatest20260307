@@ -2065,6 +2065,130 @@ WHERE 1=1";
 
 
 
+        public async Task<List<RaiseTicket>> GetNotificationsByExistingTechnicianId(
+    string district, string category, string technicianId)
+        {
+            var raiseTickets = new List<RaiseTicket>();
+
+            try
+            {
+                // Step 1: Verify if TechnicianId exists in RaiseAQuote
+                var quoteQueryDefinition = new QueryDefinition(@"
+            SELECT VALUE COUNT(1) FROM c 
+            WHERE IS_DEFINED(c.RaiseAQuoteId) 
+            AND c.TechnicianId = @technicianId")
+                    .WithParameter("@technicianId", technicianId.ToString());
+
+                var quoteQueryIterator = _container.GetItemQueryIterator<int>(quoteQueryDefinition);
+                int technicianCount = 0;
+
+                if (quoteQueryIterator.HasMoreResults)
+                {
+                    var response = await quoteQueryIterator.ReadNextAsync();
+                    technicianCount = response.FirstOrDefault();  // Extract count correctly
+                }
+
+                // If the TechnicianId does not exist in RaiseAQuote, return an empty list
+                if (technicianCount == 0)
+                {
+                    return raiseTickets;
+                }
+
+                // Step 2: Fetch only RaiseTicket records matching the conditions
+                var queryDefinition = new QueryDefinition(@"
+            SELECT * FROM c 
+            WHERE c.RaiseTicketId !=null 
+            AND c.AssignedTo = 'Technical Agency' 
+            AND c.District = @district 
+            AND c.Category = @category 
+            ")
+                    .WithParameter("@district", district)
+                    .WithParameter("@category", category);
+
+
+                var queryIterator = _container.GetItemQueryIterator<RaiseTicket>(queryDefinition);
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    raiseTickets.AddRange(response);
+                }
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"Cosmos DB error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Internal server error: {ex.Message}");
+            }
+
+            return raiseTickets;
+        }
+
+
+
+        public async Task<List<RaiseTicket>> GetRaiseTicketNotificationsByNotExistTechnicianId(
+    string district, string category, string technicianId)
+        {
+            var raiseTickets = new List<RaiseTicket>();
+
+            try
+            {
+                // Step 1: Check if the TechnicianId exists in RaiseAQuote
+                var quoteQueryDefinition = new QueryDefinition(@"
+        SELECT VALUE COUNT(1) FROM c 
+        WHERE IS_DEFINED(c.RaiseAQuoteId) 
+        AND c.TechnicianId = @technicianId")
+                    .WithParameter("@technicianId", technicianId.ToString());
+
+                var quoteQueryIterator = _container.GetItemQueryIterator<int>(quoteQueryDefinition);
+                int technicianCount = 0;
+
+                if (quoteQueryIterator.HasMoreResults)
+                {
+                    var response = await quoteQueryIterator.ReadNextAsync();
+                    technicianCount = response.FirstOrDefault();  // Extract count correctly
+                }
+
+                // Step 2: If TechnicianId is found (count > 0), return empty list
+                if (technicianCount > 0)
+                {
+                    return new List<RaiseTicket>();  // No records should be retrieved
+                }
+
+                // Step 3: Fetch RaiseTicket records if TechnicianId does not exist in RaiseAQuote (count = 0)
+                var queryDefinition = new QueryDefinition(@"
+        SELECT * FROM c 
+        WHERE c.RaiseTicketId !=null
+        AND c.AssignedTo = 'Technical Agency' 
+        AND c.District = @district 
+        AND c.Category = @category")
+                    .WithParameter("@district", district)
+                    .WithParameter("@category", category);
+
+                var queryIterator = _container.GetItemQueryIterator<RaiseTicket>(queryDefinition);
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    raiseTickets.AddRange(response);
+                }
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"[ERROR] Cosmos DB error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Internal server error: {ex.Message}");
+            }
+
+            return raiseTickets;
+        }
+
+
+
 
         public async Task<List<T>> GetTrackTicketDetailsAsync()
         {

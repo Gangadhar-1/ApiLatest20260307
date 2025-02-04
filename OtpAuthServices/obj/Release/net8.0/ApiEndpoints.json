@@ -2508,8 +2508,8 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
-    "Method": "GetNotificationsByDistrict",
-    "RelativePath": "api/RaiseTicket/GetNotificationsByDistrict",
+    "Method": "GetNotificationsByExistingTechnicianId",
+    "RelativePath": "api/RaiseTicket/GetNotificationsByExistingTechnicianId",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -2521,6 +2521,37 @@
       },
       {
         "Name": "category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "technicianId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetNotificationsByNotExistTechnicianId",
+    "RelativePath": "api/RaiseTicket/GetNotificationsByNotExistTechnicianId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "district",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "technicianId",
         "Type": "System.String",
         "IsRequired": false
       }

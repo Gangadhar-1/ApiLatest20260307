@@ -205,26 +205,97 @@ namespace OtpAuthServices.Controllers
             }
         }
 
-        [HttpGet("GetNotificationsByDistrict")]
+        //[HttpGet("GetNotificationsByDistrict")]
 
-        public async Task<IActionResult> GetNotificationsByDistrict(string district, string category)
+        //public async Task<IActionResult> GetNotificationsByDistrict(string district, string category)
+        //{
+        //    try
+        //    {
+        //        var RaiseTicket = await _cosmosDbService.GetRaiseTicketNotificationsByDistrict(district, category);
+
+        //        // Return 200 OK with tickets
+        //        return Ok(RaiseTicket);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log and return 500 Internal Server Error
+        //        Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+        //        return StatusCode(500, "An error occurred while retrieving tickets.");
+        //    }
+        //}
+
+
+        [HttpGet("GetNotificationsByExistingTechnicianId")]
+        public async Task<IActionResult> GetNotificationsByExistingTechnicianId(string district, string category, string technicianId)
         {
             try
             {
-                var RaiseTicket = await _cosmosDbService.GetRaiseTicketNotificationsByDistrict(district, category);
+                var raiseTickets = await _cosmosDbService.GetNotificationsByExistingTechnicianId(district, category, technicianId);
 
-                // Return 200 OK with tickets
-                return Ok(RaiseTicket);
+                Console.WriteLine($"Technician ID: {technicianId}");
+                Console.WriteLine($"Retrieved Tickets Count: {raiseTickets.Count}");
+
+                if (raiseTickets.Count == 0)
+                {
+                    return NotFound(new { message = "No RaiseTickets found matching the criteria.", technicianId, district, category });
+                }
+
+                return Ok(new { tickets = raiseTickets });
             }
             catch (Exception ex)
             {
-                // Log and return 500 Internal Server Error
                 Console.WriteLine($"Error retrieving tickets: {ex.Message}");
                 return StatusCode(500, "An error occurred while retrieving tickets.");
             }
         }
 
-            [HttpGet("GetRaiseTicketNotificationsByStateAndDistrictForDealer")]
+
+        [HttpGet("GetNotificationsByNotExistTechnicianId")]
+        public async Task<IActionResult> GetNotificationsByNotExistTechnicianId(string district, string category, string technicianId)
+        {
+            try
+            {
+                Console.WriteLine($"[INFO] Fetching RaiseTickets for Technician ID: {technicianId}, District: {district}, Category: {category}");
+
+                var raiseTickets = await _cosmosDbService.GetRaiseTicketNotificationsByNotExistTechnicianId(district, category, technicianId);
+
+                Console.WriteLine($"[INFO] Retrieved Tickets Count: {raiseTickets.Count}");
+
+                if (raiseTickets == null || raiseTickets.Count == 0)
+                {
+                    return NotFound(new
+                    {
+                        message = "No RaiseTickets found matching the criteria.",
+                        technicianId,
+                        district,
+                        category
+                    });
+                }
+
+                return Ok(new
+                {
+                    message = "RaiseTickets retrieved successfully.",
+                    technicianId,
+                    district,
+                    category,
+                    totalTickets = raiseTickets.Count,
+                    tickets = raiseTickets
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Error retrieving tickets: {ex.Message}");
+
+                return StatusCode(500, new
+                {
+                    message = "An internal server error occurred while retrieving tickets.",
+                    error = ex.Message
+                });
+            }
+        }
+
+
+        [HttpGet("GetRaiseTicketNotificationsByStateAndDistrictForDealer")]
 
             public async Task<IActionResult> GetRaiseTicketNotificationsByStateAndDistrict(string district, string category)
             {

@@ -3792,7 +3792,7 @@
         }
       }
     },
-    "/api/RaiseTicket/GetNotificationsByDistrict": {
+    "/api/RaiseTicket/GetNotificationsByExistingTechnicianId": {
       "get": {
         "tags": [
           "RaiseTicket"
@@ -3807,6 +3807,48 @@
           },
           {
             "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "technicianId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetNotificationsByNotExistTechnicianId": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "name": "district",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "technicianId",
             "in": "query",
             "schema": {
               "type": "string"
