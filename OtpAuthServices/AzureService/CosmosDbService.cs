@@ -2067,63 +2067,60 @@ WHERE 1=1";
 
         public async Task<List<RaiseTicket>> GetNotificationsByExistingTechnicianId(
     string district, string category, string technicianId)
+        
         {
             var raiseTickets = new List<RaiseTicket>();
 
             try
             {
-                // Step 1: Verify if TechnicianId exists in RaiseAQuote
-                var quoteQueryDefinition = new QueryDefinition(@"
-            SELECT VALUE COUNT(1) FROM c 
-            WHERE IS_DEFINED(c.RaiseAQuoteId) 
-            AND c.TechnicianId = @technicianId")
-                    .WithParameter("@technicianId", technicianId.ToString());
-
-                var quoteQueryIterator = _container.GetItemQueryIterator<int>(quoteQueryDefinition);
-                int technicianCount = 0;
-
-                if (quoteQueryIterator.HasMoreResults)
-                {
-                    var response = await quoteQueryIterator.ReadNextAsync();
-                    technicianCount = response.FirstOrDefault();  // Extract count correctly
-                }
-
-                // If the TechnicianId does not exist in RaiseAQuote, return an empty list
-                if (technicianCount == 0)
-                {
-                    return raiseTickets;
-                }
-
-                // Step 2: Fetch only RaiseTicket records matching the conditions
-                var queryDefinition = new QueryDefinition(@"
+                var ticketQuery = new QueryDefinition(@"
             SELECT * FROM c 
-            WHERE c.RaiseTicketId !=null 
-            AND c.AssignedTo = 'Technical Agency' 
+            WHERE c.AssignedTo = 'Technical Agency' 
             AND c.District = @district 
-            AND c.Category = @category 
-            ")
+            AND c.Category = @category")
                     .WithParameter("@district", district)
                     .WithParameter("@category", category);
 
+                var ticketIterator = _container.GetItemQueryIterator<RaiseTicket>(ticketQuery);
 
-                var queryIterator = _container.GetItemQueryIterator<RaiseTicket>(queryDefinition);
-
-                while (queryIterator.HasMoreResults)
+                while (ticketIterator.HasMoreResults)
                 {
-                    var response = await queryIterator.ReadNextAsync();
+                    var response = await ticketIterator.ReadNextAsync();
                     raiseTickets.AddRange(response);
                 }
+
+                var filteredTickets = new List<RaiseTicket>();
+
+                foreach (var ticket in raiseTickets)
+                {
+                    var quoteQuery = new QueryDefinition(@"
+                SELECT * FROM c 
+                WHERE c.RaiseTicketId = @ticketId 
+                AND c.TechnicianId = @technicianId")
+                        .WithParameter("@ticketId", ticket.RaiseTicketId)
+                        .WithParameter("@technicianId", technicianId);
+
+                    var quoteIterator = _container.GetItemQueryIterator<RaiseAQuote>(quoteQuery);
+                    var quoteResponse = await quoteIterator.ReadNextAsync();
+
+                    if (quoteResponse.Count > 0)  
+                    {
+                        filteredTickets.Add(ticket);
+                    }
+                }
+
+                return filteredTickets;  
             }
             catch (CosmosException ex)
             {
-                Console.WriteLine($"Cosmos DB error: {ex.Message}");
+                Console.WriteLine($"[ERROR] Cosmos DB error: {ex.Message}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Internal server error: {ex.Message}");
+                Console.WriteLine($"[ERROR] Internal server error: {ex.Message}");
             }
 
-            return raiseTickets;
+            return new List<RaiseTicket>(); 
         }
 
 
@@ -2135,45 +2132,43 @@ WHERE 1=1";
 
             try
             {
-                // Step 1: Check if the TechnicianId exists in RaiseAQuote
-                var quoteQueryDefinition = new QueryDefinition(@"
-        SELECT VALUE COUNT(1) FROM c 
-        WHERE IS_DEFINED(c.RaiseAQuoteId) 
-        AND c.TechnicianId = @technicianId")
-                    .WithParameter("@technicianId", technicianId.ToString());
-
-                var quoteQueryIterator = _container.GetItemQueryIterator<int>(quoteQueryDefinition);
-                int technicianCount = 0;
-
-                if (quoteQueryIterator.HasMoreResults)
-                {
-                    var response = await quoteQueryIterator.ReadNextAsync();
-                    technicianCount = response.FirstOrDefault();  // Extract count correctly
-                }
-
-                // Step 2: If TechnicianId is found (count > 0), return empty list
-                if (technicianCount > 0)
-                {
-                    return new List<RaiseTicket>();  // No records should be retrieved
-                }
-
-                // Step 3: Fetch RaiseTicket records if TechnicianId does not exist in RaiseAQuote (count = 0)
-                var queryDefinition = new QueryDefinition(@"
-        SELECT * FROM c 
-        WHERE c.RaiseTicketId !=null
-        AND c.AssignedTo = 'Technical Agency' 
-        AND c.District = @district 
-        AND c.Category = @category")
+                var ticketQuery = new QueryDefinition(@"
+            SELECT * FROM c 
+            WHERE c.AssignedTo = 'Technical Agency' 
+            AND c.District = @district 
+            AND c.Category = @category")
                     .WithParameter("@district", district)
                     .WithParameter("@category", category);
 
-                var queryIterator = _container.GetItemQueryIterator<RaiseTicket>(queryDefinition);
+                var ticketIterator = _container.GetItemQueryIterator<RaiseTicket>(ticketQuery);
 
-                while (queryIterator.HasMoreResults)
+                while (ticketIterator.HasMoreResults)
                 {
-                    var response = await queryIterator.ReadNextAsync();
+                    var response = await ticketIterator.ReadNextAsync();
                     raiseTickets.AddRange(response);
                 }
+
+                var filteredTickets = new List<RaiseTicket>();
+
+                foreach (var ticket in raiseTickets)
+                {
+                    var quoteQuery = new QueryDefinition(@"
+                SELECT * FROM c 
+                WHERE c.RaiseTicketId = @ticketId 
+                AND c.TechnicianId = @technicianId")
+                        .WithParameter("@ticketId", ticket.RaiseTicketId)
+                        .WithParameter("@technicianId", technicianId);
+
+                    var quoteIterator = _container.GetItemQueryIterator<RaiseAQuote>(quoteQuery);
+                    var quoteResponse = await quoteIterator.ReadNextAsync();
+
+                    if (quoteResponse.Count == 0)  
+                    {
+                        filteredTickets.Add(ticket);
+                    }
+                }
+
+                return filteredTickets;  
             }
             catch (CosmosException ex)
             {
@@ -2184,9 +2179,8 @@ WHERE 1=1";
                 Console.WriteLine($"[ERROR] Internal server error: {ex.Message}");
             }
 
-            return raiseTickets;
+            return new List<RaiseTicket>(); 
         }
-
 
 
 
