@@ -27,6 +27,8 @@ namespace OtpAuthServices.Controllers
 
 
         // POST: api/RaiseTicket
+        
+
         [HttpPost("CreateRaiseTicket")]
         public async Task<IActionResult> CreateTicket([FromBody] RaiseTicket RaiseTicket)
         {
@@ -35,15 +37,28 @@ namespace OtpAuthServices.Controllers
                 return BadRequest("Ticket data cannot be null.");
             }
 
-            // Assigning a new GUID for TicketId
-            // RaiseTicket.RaiseTicketId = Guid.NewGuid().ToString();
+            string ticketId=GenerateRaiseTicketId();
+
+           
             RaiseTicket.id = Guid.NewGuid().ToString();
             RaiseTicket.status = "Open";
             RaiseTicket.Date = DateTime.UtcNow;
+            RaiseTicket.RaiseTicketId = ticketId;
 
             // Insert the support ticket into Cosmos DB
             await _cosmosDbService.AddItemAsync(RaiseTicket);
-            return Ok(new { Message = "Raise ticket created successfully", RaiseTicketId = RaiseTicket.id });
+            return Ok(new { Message = "Raise ticket created successfully", RaiseTicketId = RaiseTicket.id, TicketId = RaiseTicket.RaiseTicketId });
+        }
+
+       
+        private string GenerateRaiseTicketId()
+        {
+            Random random = new Random();
+            string prefix = "VSKPAKP"; // Fixed prefix
+            string numbers = random.Next(1000, 9999).ToString(); // Random 4-digit number
+            char letter = (char)random.Next('A', 'Z' + 1); // Random uppercase letter
+
+            return $"{prefix}{numbers}{letter}";
         }
 
 

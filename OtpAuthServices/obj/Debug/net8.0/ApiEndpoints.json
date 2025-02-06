@@ -2271,6 +2271,22 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.RaiseAQuoteController",
+    "Method": "GetRaiseAQuoteDetailsByQuoteId",
+    "RelativePath": "api/RaiseAQuote/GetRaiseAQuoteDetailsByQuoteId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseAQuoteController",
     "Method": "GetRaiseAQuoteDetailsByid",
     "RelativePath": "api/RaiseAQuote/GetRaiseAQuoteDetailsByTechnicianId",
     "HttpMethod": "GET",

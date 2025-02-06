@@ -2075,11 +2075,11 @@ WHERE 1=1";
             {
                 var ticketQuery = new QueryDefinition(@"
             SELECT * FROM c 
-            WHERE c.AssignedTo = 'Technical Agency' 
+            WHERE c.RaiseTicketId !=null
             AND c.District = @district 
-            AND c.Category = @category")
+            ")
                     .WithParameter("@district", district)
-                    .WithParameter("@category", category);
+                   ;
 
                 var ticketIterator = _container.GetItemQueryIterator<RaiseTicket>(ticketQuery);
 
@@ -2095,7 +2095,7 @@ WHERE 1=1";
                 {
                     var quoteQuery = new QueryDefinition(@"
                 SELECT * FROM c 
-                WHERE c.RaiseTicketId = @ticketId 
+                WHERE c.RaiseAQuoteId !=null AND  c.TicketId = @ticketId 
                 AND c.TechnicianId = @technicianId")
                         .WithParameter("@ticketId", ticket.RaiseTicketId)
                         .WithParameter("@technicianId", technicianId);
