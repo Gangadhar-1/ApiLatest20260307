@@ -295,32 +295,32 @@ namespace OtpAuthServices.Controllers
         }
 
 
-        [HttpGet("GetRaiseTicketNotificationsByStateAndDistrictForDealer")]
+        //[HttpGet("GetRaiseTicketNotificationsByStateAndDistrictForDealer")]
 
-            public async Task<IActionResult> GetRaiseTicketNotificationsByStateAndDistrict(string district, string category)
-            {
-                try
-                {
-                    var raiseAQuotebyDealer = await _cosmosDbService.GetRaiseTicketNotificationsByStateAndDistrict(district, category);
+        //    public async Task<IActionResult> GetRaiseTicketNotificationsByStateAndDistrict(string district, string category)
+        //    {
+        //        try
+        //        {
+        //            var raiseAQuotebyDealer = await _cosmosDbService.GetRaiseTicketNotificationsByStateAndDistrict(district, category);
 
-                    // Return 200 OK with tickets
-                    return Ok(raiseAQuotebyDealer);
-                }
-                catch (Exception ex)
-                {
-                    // Log and return 500 Internal Server Error
-                    Console.WriteLine($"Error retrieving tickets: {ex.Message}");
-                    return StatusCode(500, "An error occurred while retrieving tickets.");
-                }
-
-
-            }
+        //            // Return 200 OK with tickets
+        //            return Ok(raiseAQuotebyDealer);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            // Log and return 500 Internal Server Error
+        //            Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+        //            return StatusCode(500, "An error occurred while retrieving tickets.");
+        //        }
 
 
+        //    }
 
 
 
-            [HttpGet("GetTicketIdAndSubjectByStateAndDistrict")]
+
+
+        [HttpGet("GetTicketIdAndSubjectByStateAndDistrict")]
         public async Task<IActionResult> getTicketIdAndSubjectByStateAndDistrict(string state, string district)
         {
             try
@@ -341,6 +341,77 @@ namespace OtpAuthServices.Controllers
             {
                 Console.WriteLine($"Error  fetching raisetickets: {ex.Message}");
                 return StatusCode(500, "An error occurred while fetching raisetickets.");
+            }
+        }
+
+
+
+        [HttpGet("GetNotificationsByExistingDealerId")]
+        public async Task<IActionResult> GetNotificationsByExistingDealerId(string district, string category, string technicianId)
+        {
+            try
+            {
+                var raiseTickets = await _cosmosDbService.GetNotificationsByExistingDealerId(district, category, technicianId);
+
+                Console.WriteLine($"Technician ID: {technicianId}");
+                Console.WriteLine($"Retrieved Tickets Count: {raiseTickets.Count}");
+
+                if (raiseTickets.Count == 0)
+                {
+                    return NotFound(new { message = "No RaiseTickets found matching the criteria.", technicianId, district, category });
+                }
+
+                return Ok(new { tickets = raiseTickets });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+                return StatusCode(500, "An error occurred while retrieving tickets.");
+            }
+        }
+
+
+        [HttpGet("GetNotificationsByNotExistDealerId")]
+        public async Task<IActionResult> GetNotificationsByNotExistDeaerId(string district, string category, string technicianId)
+        {
+            try
+            {
+                Console.WriteLine($"[INFO] Fetching RaiseTickets for Technician ID: {technicianId}, District: {district}, Category: {category}");
+
+                var raiseTickets = await _cosmosDbService.GetRaiseTicketNotificationsByNotExistDealerId(district, category, technicianId);
+
+                Console.WriteLine($"[INFO] Retrieved Tickets Count: {raiseTickets.Count}");
+
+                if (raiseTickets == null || raiseTickets.Count == 0)
+                {
+                    return NotFound(new
+                    {
+                        message = "No RaiseTickets found matching the criteria.",
+                        technicianId,
+                        district,
+                        category
+                    });
+                }
+
+                return Ok(new
+                {
+                    message = "RaiseTickets retrieved successfully.",
+                    technicianId,
+                    district,
+                    category,
+                    totalTickets = raiseTickets.Count,
+                    tickets = raiseTickets
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Error retrieving tickets: {ex.Message}");
+
+                return StatusCode(500, new
+                {
+                    message = "An internal server error occurred while retrieving tickets.",
+                    error = ex.Message
+                });
             }
         }
 

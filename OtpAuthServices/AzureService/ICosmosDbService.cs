@@ -209,6 +209,15 @@ namespace OtpAuthServices.AzureService
 
         Task<List<RaiseTicket>> GetRaiseTicketNotificationsByNotExistTechnicianId(
     string district, string category, string technicianId);
+
+
+        Task<List<RaiseTicket>> GetNotificationsByExistingDealerId(
+   string district, string category, string dealerId);
+
+
+        Task<List<RaiseTicket>> GetRaiseTicketNotificationsByNotExistDealerId(
+    string district, string category, string dealerId);
+
     }
 
 

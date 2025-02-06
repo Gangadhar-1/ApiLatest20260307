@@ -3339,6 +3339,27 @@
         }
       }
     },
+    "/api/RaiseAQuote/GetRaiseAQuoteDetailsByQuoteId": {
+      "get": {
+        "tags": [
+          "RaiseAQuote"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/RaiseAQuote/GetRaiseAQuoteDetailsByTechnicianId": {
       "get": {
         "tags": [
@@ -3862,7 +3883,35 @@
         }
       }
     },
-    "/api/RaiseTicket/GetRaiseTicketNotificationsByStateAndDistrictForDealer": {
+    "/api/RaiseTicket/GetTicketIdAndSubjectByStateAndDistrict": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "name": "state",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "district",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetNotificationsByExistingDealerId": {
       "get": {
         "tags": [
           "RaiseTicket"
@@ -3881,6 +3930,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "technicianId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3890,21 +3946,28 @@
         }
       }
     },
-    "/api/RaiseTicket/GetTicketIdAndSubjectByStateAndDistrict": {
+    "/api/RaiseTicket/GetNotificationsByNotExistDealerId": {
       "get": {
         "tags": [
           "RaiseTicket"
         ],
         "parameters": [
           {
-            "name": "state",
+            "name": "district",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "district",
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "technicianId",
             "in": "query",
             "schema": {
               "type": "string"

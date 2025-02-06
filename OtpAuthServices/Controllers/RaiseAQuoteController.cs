@@ -77,6 +77,26 @@ namespace OtpAuthServices.Controllers
         }
 
 
+
+        [HttpGet("GetRaiseAQuoteDetailsByQuoteId")]
+        public async Task<IActionResult> GetRaiseAQuoteDetailsByQuoteId(string id)
+        {
+            try
+            {
+                var RaiseAQuoteId = await _cosmosDbService.GetItemAsync(id);
+
+
+                return Ok(RaiseAQuoteId);
+            }
+            catch (Exception ex)
+            {
+                // Log and return 500 Internal Server Error
+                Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+                return StatusCode(500, "An error occurred while retrieving tickets.");
+            }
+        }
+
+
         [HttpGet("GetRaiseAQuoteDetailsByTechnicianId")]
         public async Task<IActionResult> GetRaiseAQuoteDetailsByid(string raiseAQuotetId, string TechnicianId)
         {

@@ -2184,6 +2184,121 @@ WHERE 1=1";
 
 
 
+        public async Task<List<RaiseTicket>> GetNotificationsByExistingDealerId(
+    string district, string category, string dealerId)
+
+        {
+            var raiseTickets = new List<RaiseTicket>();
+
+            try
+            {
+                var ticketQuery = new QueryDefinition(@"
+            SELECT * FROM c  where c.RaiseTicketId !=null and c.AssignedTo='Dealer/Trader' and 
+c.District=@district and c.Category=@category and c.LowestBidderTechnicainId !=null")
+                    .WithParameter("@district", district)
+                    .WithParameter("@category", category);
+
+                var ticketIterator = _container.GetItemQueryIterator<RaiseTicket>(ticketQuery);
+
+                while (ticketIterator.HasMoreResults)
+                {
+                    var response = await ticketIterator.ReadNextAsync();
+                    raiseTickets.AddRange(response);
+                }
+
+                var filteredTickets = new List<RaiseTicket>();
+
+                foreach (var ticket in raiseTickets)
+                {
+                    var quoteQuery = new QueryDefinition(@"
+                SELECT * FROM c 
+                WHERE c.RaiseAQuoteByDealerId !=null AND c.TicketId = @ticketId 
+                AND c.DealerId = @dealerId")
+                        .WithParameter("@ticketId", ticket.RaiseTicketId)
+                        .WithParameter("@dealerId", dealerId);
+
+                    var quoteIterator = _container.GetItemQueryIterator<RaiseAQuoteByDealer>(quoteQuery);
+                    var quoteResponse = await quoteIterator.ReadNextAsync();
+
+                    if (quoteResponse.Count > 0)
+                    {
+                        filteredTickets.Add(ticket);
+                    }
+                }
+
+                return filteredTickets;
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"[ERROR] Cosmos DB error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Internal server error: {ex.Message}");
+            }
+
+            return new List<RaiseTicket>();
+        }
+
+
+
+        public async Task<List<RaiseTicket>> GetRaiseTicketNotificationsByNotExistDealerId(
+    string district, string category, string dealerId)
+        {
+            var raiseTickets = new List<RaiseTicket>();
+
+            try
+            {
+                var ticketQuery = new QueryDefinition(@"
+            SELECT * FROM c  where c.RaiseTicketId !=null and c.AssignedTo='Dealer/Trader' and 
+c.District=@district and c.Category=@category and c.LowestBidderTechnicainId !=null")
+                    .WithParameter("@district", district)
+                    .WithParameter("@category", category);
+
+                var ticketIterator = _container.GetItemQueryIterator<RaiseTicket>(ticketQuery);
+
+                while (ticketIterator.HasMoreResults)
+                {
+                    var response = await ticketIterator.ReadNextAsync();
+                    raiseTickets.AddRange(response);
+                }
+
+                var filteredTickets = new List<RaiseTicket>();
+
+                foreach (var ticket in raiseTickets)
+                {
+                    var quoteQuery = new QueryDefinition(@"
+                SELECT * FROM c 
+                WHERE c.RaiseAQuoteByDealerId !=null AND c.TicketId = @ticketId 
+                AND c.DealerId = @DealerId")
+                        .WithParameter("@ticketId", ticket.RaiseTicketId)
+                        .WithParameter("@DealerId", dealerId);
+
+
+                    var quoteIterator = _container.GetItemQueryIterator<RaiseAQuoteByDealer>(quoteQuery);
+                    var quoteResponse = await quoteIterator.ReadNextAsync();
+
+                    if (quoteResponse.Count == 0)
+                    {
+                        filteredTickets.Add(ticket);
+                    }
+                }
+
+                return filteredTickets;
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"[ERROR] Cosmos DB error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Internal server error: {ex.Message}");
+            }
+
+            return new List<RaiseTicket>();
+        }
+
+
         public async Task<List<T>> GetTrackTicketDetailsAsync()
         {
             var supportTicket = new List<T>();
