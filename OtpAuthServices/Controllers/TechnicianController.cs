@@ -94,6 +94,7 @@ namespace OtpAuthServices.Controllers
 
 
 
+
         [HttpGet("technicianProfileData")]
         public async Task<IActionResult> technicianProfileData(string profileType, string UserId)
         {
@@ -142,7 +143,8 @@ namespace OtpAuthServices.Controllers
                     profileData.UserId = UserId;
                     profileData.UserProfileType = profileType;
 
-
+                    profileData.Status = user.Status;
+                    profileData.IsActive = user.IsActive;
 
 
 
@@ -163,6 +165,8 @@ namespace OtpAuthServices.Controllers
                 return StatusCode(500, new { message = "An error occurred while processing the request.", error = ex.Message });
             }
         }
+
+
 
         [HttpPost]
         [Route("TechnicianEdit")]

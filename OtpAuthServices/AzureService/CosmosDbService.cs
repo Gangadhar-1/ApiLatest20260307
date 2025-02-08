@@ -231,7 +231,6 @@ namespace OtpAuthServices.AzureService
 
 
 
-
         public async Task<T> GetUserProflie(string value, string profileType)
         {
             try
@@ -280,6 +279,8 @@ namespace OtpAuthServices.AzureService
                 return null;
             }
         }
+
+
 
 
 
@@ -378,6 +379,7 @@ WHERE 1=1";
         }
 
 
+
         public async Task<T> GetDealerProflie(string value, string profileType)
         {
             try
@@ -426,6 +428,9 @@ WHERE 1=1";
                 return null;
             }
         }
+
+
+
 
         public async Task<T> GetEstimatorProflie(string value, string profileType)
         {
@@ -477,6 +482,8 @@ WHERE 1=1";
         }
 
 
+
+
         public async Task<T> GetTechnicianProflie(string value, string profileType)
         {
             try
@@ -526,6 +533,11 @@ WHERE 1=1";
                 return null;
             }
         }
+
+
+
+
+
 
         public async Task<T> GetBuilderProflie(string value, string profileType)
         {

@@ -133,9 +133,6 @@ namespace OtpAuthServices.Controllers
         }
 
 
-
-
-
         [HttpGet("customerProfileData")]
         public async Task<IActionResult> customerProfileData(string profileType, string UserId)
         {
@@ -205,7 +202,11 @@ namespace OtpAuthServices.Controllers
                 return StatusCode(500, new { message = "An error occurred while processing the request.", error = ex.Message });
             }
         }
-            [HttpPut("{id}")]
+
+
+
+
+        [HttpPut("{id}")]
             public async Task<IActionResult> UpdateCustomerDetails(string id, [FromBody] Customer customer)
             {
                 if (customer == null || customer.id != id)
