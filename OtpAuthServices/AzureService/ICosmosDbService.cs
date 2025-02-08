@@ -217,7 +217,12 @@ string district, string category, string technicianId);
 
         Task<List<RaiseTicket>> GetNotificationsByExistingDealerId( string category, string district, string dealerId);
 
-       
+
+
+
+        Task<T> GetGSTAccountDetails(string profileType, string category);
+
+
 
 
     }

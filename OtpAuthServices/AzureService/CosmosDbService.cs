@@ -4248,6 +4248,52 @@ c.District=@district and c.Category=@category and c.LowestBidderTechnicainId !=n
 
 
 
+
+
+        public async Task<T> GetGSTAccountDetails(string profileType, string category)
+        {
+            var gstaccountdetails = new List<T>();
+            try
+            {
+                var queryDefinition = new QueryDefinition("select * from c where c.accountid !=null and  c.ProfileType=@profileType and c.Category=@category")
+                    .WithParameter("@profileType", profileType)
+                   .WithParameter("@category", category);
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    gstaccountdetails.AddRange(response);
+                }
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"Cosmos DB error:{ex.Message}");
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Internal server error: {ex.Message}");
+            }
+
+            if (gstaccountdetails.Any())
+                return gstaccountdetails.First();
+
+            return null;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 }
