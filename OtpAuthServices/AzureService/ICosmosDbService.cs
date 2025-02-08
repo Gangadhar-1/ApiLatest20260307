@@ -173,8 +173,8 @@ namespace OtpAuthServices.AzureService
         Task<List<T>> GetRaiseAQuoteByDealerDetails();
         Task<List<T>> GetRaiseTicketNotificationsByStateAndDistrict(string district, string category);
 
-        Task<List<T>> GetRaiseAQuoteDealerDetailsById(string raiseAQuotetId);
-
+        Task<List<T>> GetRaiseAQuoteDealerDetailsById(string raiseTicketId, string dealerId);
+        
 
         Task<List<T>> GetRaiseAQuoteLowestDealerByIdAsync(string raiseAQuotetDealerId);
 
@@ -202,6 +202,23 @@ namespace OtpAuthServices.AzureService
 
 
         Task<List<T>> GetRaiseAQuoteDetailsByTechnicianIdAndRiseTicketId(string TicketId, string TechnicianId);
+
+
+
+
+        Task<List<RaiseTicket>> GetNotificationsByExistingTechnicianId(
+string district, string category, string technicianId);
+
+        Task<List<RaiseTicket>> GetRaiseTicketNotificationsByNotExistTechnicianId(
+    string district, string category, string technicianId);
+
+        Task<List<RaiseTicket>> GetRaiseTicketNotificationsByNotExistDealerId(
+    string category, string district, string dealerId);
+
+        Task<List<RaiseTicket>> GetNotificationsByExistingDealerId( string category, string district, string dealerId);
+
+       
+
 
     }
 

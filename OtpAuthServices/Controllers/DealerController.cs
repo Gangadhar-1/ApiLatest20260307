@@ -413,6 +413,30 @@ namespace OtpAuthServices.Controllers
         }
 
 
+        [HttpGet("GetDealerDetailsForInvoice")]
+        public async Task<ActionResult> GetDealerDetailsForInvoice(string DealerId)
+        {
+            try
+            {
+
+                // Fetch the total count from the service
+                var dealerInvoice = await _cosmosDbService.GetDealerDetailsForInvoice(DealerId);
+
+                if (dealerInvoice == null)
+                {
+                    return StatusCode(500, "Error fetching total counts .");
+                }
+                return Ok(dealerInvoice);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, "Unexpected  error occurred.");
+            }
+        }
+
+
+
     }
 }
 

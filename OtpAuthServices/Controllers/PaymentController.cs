@@ -80,7 +80,7 @@ namespace OtpAuthServices.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateRaiseTicket(string id, [FromBody] Payment payment)
+        public async Task<IActionResult> UpdatePayment(string id, [FromBody] Payment payment)
         {
             if (payment == null || payment.id != id)
             {

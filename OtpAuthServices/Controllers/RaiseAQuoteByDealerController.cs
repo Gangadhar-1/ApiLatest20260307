@@ -76,11 +76,11 @@ namespace OtpAuthServices.Controllers
         }
 
         [HttpGet("GetRaiseAQuoteDealerDetailsByid")]
-        public async Task<IActionResult> GetRaiseAQuoteDealerDetailsByid(string raiseAQuotetId)
+        public async Task<IActionResult> GetRaiseAQuoteDealerDetailsByid(string raiseTicketId, string dealerId)
         {
             try
             {
-                var RaiseTicket = await _cosmosDbService.GetRaiseAQuoteDealerDetailsById(raiseAQuotetId);
+                var RaiseTicket = await _cosmosDbService.GetRaiseAQuoteDealerDetailsById( raiseTicketId,  dealerId);
 
 
                 return Ok(RaiseTicket);

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Bogus.DataSets;
+using System.ComponentModel.DataAnnotations;
+using static OtpAuthServices.Model.Comment;
 
 namespace OtpAuthServices.Model
 {
@@ -7,6 +9,10 @@ namespace OtpAuthServices.Model
     {
         public string RaiseTicketId { get; set; }
         public DateTime Date { get; set; }
+
+
+        public string ApprovedAmount { get; set; }
+        public string CustomerName { get; set; }
         public string Address { get; set; }
         public string Subject { get; set; }
 
@@ -14,16 +20,18 @@ namespace OtpAuthServices.Model
         public string Category { get; set; }
         public string AssignedTo { get; set; }
 
-        public string id     { get; set; }
-        public string status { get; set; } 
+        public string id { get; set; }
+        public string status { get; set; }
 
-        public string internalStatus { get; set; }  
+        public string internalStatus { get; set; }
         public string CustomerId { get; set; }
 
         public string State { get; set; }
 
-            public string LowestBidderTechnicainId { get; set; }
-        public string LowestBidderDealerId {  get; set; }
+        public string LowestBidderTechnicainId { get; set; }
+        public string LowestBidderDealerId { get; set; }
+
+
 
 
         public int IsMaterialType { get; set; }
@@ -34,10 +42,16 @@ namespace OtpAuthServices.Model
         public List<string> Attachments { get; set; } = new List<string>();
         public List<Material> Materials { get; set; }
 
-        public List <Comment> comments { get; set; } 
+        public List<Comment> comments { get; set; }
+
+        public string Option1Day { get; set; }
+        public string Option1Time { get; set; }
+        public string Option2Day { get; set; }
+        public string Option2Time { get; set; }
+
     }
 
-   
+
     public class Material
     {
         public string material { get; set; }
@@ -52,8 +66,9 @@ namespace OtpAuthServices.Model
             get; set;
         }
 
-    }
 
+
+    }
 }
 
 
@@ -62,4 +77,4 @@ namespace OtpAuthServices.Model
 
 
 
-    
+

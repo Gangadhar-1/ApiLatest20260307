@@ -1360,6 +1360,22 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.DealerController",
+    "Method": "GetDealerDetailsForInvoice",
+    "RelativePath": "api/Dealer/GetDealerDetailsForInvoice",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DealerId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.DealerController",
     "Method": "GetDealerDetails",
     "RelativePath": "api/Dealer/GetDealerDtailsByUserId",
     "HttpMethod": "GET",
@@ -1987,7 +2003,7 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.PaymentController",
-    "Method": "UpdateRaiseTicket",
+    "Method": "UpdatePayment",
     "RelativePath": "api/Payment/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -2271,6 +2287,22 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.RaiseAQuoteController",
+    "Method": "GetRaiseAQuoteDetailsByQuoteId",
+    "RelativePath": "api/RaiseAQuote/GetRaiseAQuoteDetailsByQuoteId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseAQuoteController",
     "Method": "GetRaiseAQuoteDetailsByid",
     "RelativePath": "api/RaiseAQuote/GetRaiseAQuoteDetailsByTechnicianId",
     "HttpMethod": "GET",
@@ -2278,7 +2310,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "raiseAQuotetId",
+        "Name": "raiseTicketId",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -2367,7 +2399,12 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "raiseAQuotetId",
+        "Name": "raiseTicketId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "dealerId",
         "Type": "System.String",
         "IsRequired": false
       }
@@ -2521,6 +2558,110 @@
       },
       {
         "Name": "category",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetNotificationsByExistingDealerId",
+    "RelativePath": "api/RaiseTicket/GetNotificationsByExistingDealerId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "district",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "dealerId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetNotificationsByExistingTechnicianId",
+    "RelativePath": "api/RaiseTicket/GetNotificationsByExistingTechnicianId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "district",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "technicianId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetNotificationsByNotExistDeaerId",
+    "RelativePath": "api/RaiseTicket/GetNotificationsByNotExistDealerId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "district",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "dealerId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetNotificationsByNotExistTechnicianId",
+    "RelativePath": "api/RaiseTicket/GetNotificationsByNotExistTechnicianId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "district",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "technicianId",
         "Type": "System.String",
         "IsRequired": false
       }

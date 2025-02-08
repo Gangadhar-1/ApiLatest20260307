@@ -26,7 +26,7 @@ namespace OtpAuthServices.Controllers
 
 
 
-        // POST: api/RaiseTicket
+
         [HttpPost("CreateRaiseTicket")]
         public async Task<IActionResult> CreateTicket([FromBody] RaiseTicket RaiseTicket)
         {
@@ -35,21 +35,34 @@ namespace OtpAuthServices.Controllers
                 return BadRequest("Ticket data cannot be null.");
             }
 
-            // Assigning a new GUID for TicketId
-            // RaiseTicket.RaiseTicketId = Guid.NewGuid().ToString();
+            string ticketId = GenerateRaiseTicketId();
+
+
             RaiseTicket.id = Guid.NewGuid().ToString();
             RaiseTicket.status = "Open";
             RaiseTicket.Date = DateTime.UtcNow;
+            RaiseTicket.RaiseTicketId = ticketId;
 
             // Insert the support ticket into Cosmos DB
             await _cosmosDbService.AddItemAsync(RaiseTicket);
-            return Ok(new { Message = "Raise ticket created successfully", RaiseTicketId = RaiseTicket.id });
+            return Ok(new { Message = "Raise ticket created successfully", RaiseTicketId = RaiseTicket.id, TicketId = RaiseTicket.RaiseTicketId });
         }
 
 
+        private string GenerateRaiseTicketId()
+        {
+            Random random = new Random();
+            string prefix = "VSKPAKP"; // Fixed prefix
+            string numbers = random.Next(1000, 9999).ToString(); // Random 4-digit number
+            char letter = (char)random.Next('A', 'Z' + 1); // Random uppercase letter
+
+            return $"{prefix}{numbers}{letter}";
+        }
+    
 
 
-        [HttpDelete("{id}")]
+
+    [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBuyProduct(string id)
         {
             var existingaddress = await _cosmosDbService.GetItemAsync(id);
@@ -550,11 +563,152 @@ namespace OtpAuthServices.Controllers
 
 
 
+        [HttpGet("GetNotificationsByExistingTechnicianId")]
+        public async Task<IActionResult> GetNotificationsByExistingTechnicianId(string district, string category, string technicianId)
+        {
+            try
+            {
+                var raiseTickets = await _cosmosDbService.GetNotificationsByExistingTechnicianId(district, category, technicianId);
+
+                Console.WriteLine($"Technician ID: {technicianId}");
+                Console.WriteLine($"Retrieved Tickets Count: {raiseTickets.Count}");
+
+                if (raiseTickets.Count == 0)
+                {
+                    return NotFound(new { message = "No RaiseTickets found matching the criteria.", technicianId, district, category });
+                }
+
+                return Ok(new { tickets = raiseTickets });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+                return StatusCode(500, "An error occurred while retrieving tickets.");
+            }
+        }
+
+
+        [HttpGet("GetNotificationsByNotExistTechnicianId")]
+        public async Task<IActionResult> GetNotificationsByNotExistTechnicianId(string district, string category, string technicianId)
+        {
+            try
+            {
+                Console.WriteLine($"[INFO] Fetching RaiseTickets for Technician ID: {technicianId}, District: {district}, Category: {category}");
+
+                var raiseTickets = await _cosmosDbService.GetRaiseTicketNotificationsByNotExistTechnicianId(district, category, technicianId);
+
+                Console.WriteLine($"[INFO] Retrieved Tickets Count: {raiseTickets.Count}");
+
+                if (raiseTickets == null || raiseTickets.Count == 0)
+                {
+                    return NotFound(new
+                    {
+                        message = "No RaiseTickets found matching the criteria.",
+                        technicianId,
+                        district,
+                        category
+                    });
+                }
+
+                return Ok(new
+                {
+                    message = "RaiseTickets retrieved successfully.",
+                    technicianId,
+                    district,
+                    category,
+                    totalTickets = raiseTickets.Count,
+                    tickets = raiseTickets
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Error retrieving tickets: {ex.Message}");
+
+                return StatusCode(500, new
+                {
+                    message = "An internal server error occurred while retrieving tickets.",
+                    error = ex.Message
+                });
+            }
+        }
+
+
+        [HttpGet("GetNotificationsByExistingDealerId")]
+        public async Task<IActionResult> GetNotificationsByExistingDealerId(string category, string district, string dealerId)
+        {
+            try
+            {
+                var raiseTickets = await _cosmosDbService.GetNotificationsByExistingDealerId(category,  district,  dealerId);
+
+                Console.WriteLine($"Technician ID: {dealerId}");
+                Console.WriteLine($"Retrieved Tickets Count: {raiseTickets.Count}");
+
+                if (raiseTickets.Count == 0)
+                {
+                    return NotFound(new { message = "No RaiseTickets found matching the criteria.", dealerId, district, category });
+                }
+
+                return Ok(new { tickets = raiseTickets });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+                return StatusCode(500, "An error occurred while retrieving tickets.");
+            }
+        }
+
+
+        [HttpGet("GetNotificationsByNotExistDealerId")]
+        public async Task<IActionResult> GetNotificationsByNotExistDeaerId(string category, string district, string dealerId)
+        {
+            try
+            {
+                Console.WriteLine($"[INFO] Fetching RaiseTickets for Technician ID: {dealerId}, District: {district}, Category: {category}");
+
+                var raiseTickets = await _cosmosDbService.GetRaiseTicketNotificationsByNotExistDealerId(category,  district,  dealerId);
+
+                Console.WriteLine($"[INFO] Retrieved Tickets Count: {raiseTickets.Count}");
+
+                if (raiseTickets == null || raiseTickets.Count == 0)
+                {
+                    return NotFound(new
+                    {
+                        message = "No RaiseTickets found matching the criteria.",
+                        dealerId,
+                        district,
+                        category
+                    });
+                }
+
+                return Ok(new
+                {
+                    message = "RaiseTickets retrieved successfully.",
+                    dealerId,
+                    district,
+                    category,
+                    totalTickets = raiseTickets.Count,
+                    tickets = raiseTickets
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Error retrieving tickets: {ex.Message}");
+
+                return StatusCode(500, new
+                {
+                    message = "An internal server error occurred while retrieving tickets.",
+                    error = ex.Message
+                });
+            }
+        }
+
+
+
 
 
 
     }
-   
-    }
+
+}
 
 

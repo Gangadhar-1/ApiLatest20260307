@@ -8,7 +8,8 @@
 
         public string DeliveryNoteId { get; set; }
 
-
+         public string   InvoiceNumber { get; set; }    
+       public string  InvoiceDate { get; set; }     
         public List<string> UploadInvoice { get; set; } = new List<string>();
 
 

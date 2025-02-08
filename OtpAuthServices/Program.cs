@@ -73,6 +73,10 @@ builder.Services.AddSingleton<ICosmosDbService<BuyProduct>>(sp => new CosmosDbSe
 builder.Services.AddSingleton<ICosmosDbService<UpdateDocumentRequest>>(sp => new CosmosDbService<UpdateDocumentRequest>(cosmosClient, databaseName, containerName));
 builder.Services.AddSingleton<ICosmosDbService<UserProfileApproval>>(sp => new CosmosDbService<UserProfileApproval>(cosmosClient, databaseName, containerName));
 
+builder.Services.AddSingleton<ICosmosDbService<Payment>>(sp => new CosmosDbService<Payment>(cosmosClient, databaseName, containerName));
+
+builder.Services.AddSingleton<ICosmosDbService<DeliveryNote>>(sp => new CosmosDbService<DeliveryNote>(cosmosClient, databaseName, containerName));
+
 builder.Services.AddTransient<DataGeneratorService>();
 
 builder.Services.AddSingleton<ICosmosDbService<RaiseTicketTracker>>(sp => new CosmosDbService<RaiseTicketTracker>(cosmosClient, databaseName, containerName));

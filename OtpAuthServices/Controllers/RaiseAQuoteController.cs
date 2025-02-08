@@ -78,22 +78,22 @@ namespace OtpAuthServices.Controllers
 
 
         [HttpGet("GetRaiseAQuoteDetailsByTechnicianId")]
-        public async Task<IActionResult> GetRaiseAQuoteDetailsByid(string raiseAQuotetId, string TechnicianId)
+        public async Task<IActionResult> GetRaiseAQuoteDetailsByid(string raiseTicketId, string TechnicianId)
         {
             try
             {
-                var RaiseTicket = await _cosmosDbService.GetRaiseAQuoteDetailsByTechnicianId(raiseAQuotetId, TechnicianId);
-                if (RaiseTicket.materialQuotation.Count == 0)
-                {
-                    MaterialQuotation quotation = new MaterialQuotation();
-                    quotation.grandtotal = "0";
-                    quotation.deliverycharges = "0";
-                    quotation.gst = "0";
-                    quotation.grandtotal = "0";
-                    quotation.servicecharges = "0";
-                    RaiseTicket.materialQuotation.Add(quotation);
+                var RaiseTicket = await _cosmosDbService.GetRaiseAQuoteDetailsByTechnicianId( raiseTicketId,  TechnicianId);
+                //if (RaiseTicket.materialQuotation.Count == 0)
+                //{
+                //    MaterialQuotation quotation = new MaterialQuotation();
+                //    quotation.grandtotal = "0";
+                //    quotation.deliverycharges = "0";
+                //    quotation.gst = "0";
+                //    quotation.grandtotal = "0";
+                //    quotation.servicecharges = "0";
+                //    RaiseTicket.materialQuotation.Add(quotation);
 
-                }
+                //}
 
                 return Ok(RaiseTicket);
             }
@@ -122,6 +122,27 @@ namespace OtpAuthServices.Controllers
 
             await _cosmosDbService.UpdateItemAsync(raiseAQuote);
             return Ok("RaiseAQuote Updated Successfully");
+        }
+
+
+
+
+        [HttpGet("GetRaiseAQuoteDetailsByQuoteId")]
+        public async Task<IActionResult> GetRaiseAQuoteDetailsByQuoteId(string id)
+        {
+            try
+            {
+                var RaiseAQuoteId = await _cosmosDbService.GetItemAsync(id);
+
+
+                return Ok(RaiseAQuoteId);
+            }
+            catch (Exception ex)
+            {
+                // Log and return 500 Internal Server Error
+                Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+                return StatusCode(500, "An error occurred while retrieving tickets.");
+            }
         }
 
 
