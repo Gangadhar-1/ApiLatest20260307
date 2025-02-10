@@ -415,6 +415,7 @@ namespace OtpAuthServices.Controllers
 
 
 
+
         [HttpGet("GetTechnicianMobileAndEmail")]
         public async Task<ActionResult> GetTechnicianMobileAndEmail(string Category, string District)
         {

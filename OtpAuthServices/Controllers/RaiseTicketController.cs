@@ -700,7 +700,54 @@ namespace OtpAuthServices.Controllers
                     error = ex.Message
                 });
             }
+
         }
+            [HttpGet("GetTechnicianOrders")]
+            public async Task<IActionResult> GetNotificationsByExistingDealerId( string District)
+            {
+                try
+                {
+                    var raiseTickets = await _cosmosDbService.GetTechnicianOrders( District);
+
+                    
+                    Console.WriteLine($"Retrieved Tickets Count: {raiseTickets.Count}");
+
+                    if (raiseTickets.Count == 0)
+                    {
+                        return NotFound(new { message = "No RaiseTickets found matching the criteria.",  District });
+                    }
+
+                    return Ok(new { tickets = raiseTickets });
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+                    return StatusCode(500, "An error occurred while retrieving tickets.");
+                }
+            }
+
+
+
+        [HttpGet("GetTrackTicketsByCustomerId")]
+
+        public async Task<IActionResult> GetTrackTicketsByCustomerId(string customerId)
+        {
+            try
+            {
+                var RaiseTicket = await _cosmosDbService.GetTrackTicketsByCustomerId(customerId);
+
+                // Return 200 OK with tickets
+                return Ok(RaiseTicket);
+            }
+            catch (Exception ex)
+            {
+                // Log and return 500 Internal Server Error
+                Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+                return StatusCode(500, "An error occurred while retrieving tickets.");
+            }
+        }
+
+
     }
 }
 

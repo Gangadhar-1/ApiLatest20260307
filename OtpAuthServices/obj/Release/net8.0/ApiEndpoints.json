@@ -2913,6 +2913,22 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetNotificationsByExistingDealerId",
+    "RelativePath": "api/RaiseTicket/GetTechnicianOrders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "District",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
     "Method": "GetTicket",
     "RelativePath": "api/RaiseTicket/GetTicket/{ticketId}",
     "HttpMethod": "GET",
@@ -3035,6 +3051,22 @@
       },
       {
         "Name": "zipCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetTrackTicketsByCustomerId",
+    "RelativePath": "api/RaiseTicket/GetTrackTicketsByCustomerId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
         "Type": "System.String",
         "IsRequired": false
       }

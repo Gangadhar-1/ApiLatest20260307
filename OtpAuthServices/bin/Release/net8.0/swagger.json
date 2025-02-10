@@ -5,6 +5,150 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Account/AccountGSTUpload": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "accountid",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "ProfileType",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Category",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "ServiceCharge",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "GstCharge",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "DeliveryCharge",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "OtherCharge",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Account/GetGSTAccountDetails/{profileType}/{category}": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profileType",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "category",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MyAccounts"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Account/{id}": {
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/MyAccounts"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/AddMember/AddMemberUpload": {
       "post": {
         "tags": [
@@ -1711,6 +1855,159 @@
         }
       }
     },
+    "/api/Dealer/GetDealerDetailsForInvoice": {
+      "get": {
+        "tags": [
+          "Dealer"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "DealerId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DeliveryNote/CreateDeliveryNote": {
+      "post": {
+        "tags": [
+          "DeliveryNote"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/DeliveryNote"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DeliveryNote/GetDeliveryNoteByDeliveryNoteId": {
+      "get": {
+        "tags": [
+          "DeliveryNote"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DeliveryNote/{id}": {
+      "put": {
+        "tags": [
+          "DeliveryNote"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/DeliveryNote"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DeliveryNote"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DeliveryNote/GetRaiseTicketForDealer": {
+      "get": {
+        "tags": [
+          "DeliveryNote"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "RaiseTicketId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DisplayTechniciansByRaiseTicketId/GetTechnicianDetailsByRaiseTicketId/{raiseTicketId}": {
+      "get": {
+        "tags": [
+          "DisplayTechniciansByRaiseTicketId"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "raiseTicketId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Estimator/EstimatorUpload": {
       "post": {
         "tags": [
@@ -2248,6 +2545,120 @@
         }
       }
     },
+    "/api/Payment/CreatePayment": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Payment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Payment/GetPaymentByPamentId": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Payment/{id}": {
+      "put": {
+        "tags": [
+          "Payment"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Payment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Payment/GetPaymentDetailsByRaiseTicketId": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "RaiseTicketId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Product/ProductUpload": {
       "post": {
         "tags": [
@@ -2509,7 +2920,7 @@
         "parameters": [
           {
             "in": "query",
-            "name": "raiseAQuotetId",
+            "name": "raiseTicketId",
             "type": "string"
           },
           {
@@ -2547,6 +2958,49 @@
             "schema": {
               "$ref": "#/definitions/RaiseAQuote"
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseAQuote/GetRaiseAQuoteDetailsByQuoteId": {
+      "get": {
+        "tags": [
+          "RaiseAQuote"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseAQuote/GetRaiseAQuoteDetailsByTechnicianIdAndRiseTicketId": {
+      "get": {
+        "tags": [
+          "RaiseAQuote"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "TicketId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "TechnicianId",
+            "type": "string"
           }
         ],
         "responses": {
@@ -2633,7 +3087,12 @@
         "parameters": [
           {
             "in": "query",
-            "name": "raiseAQuotetId",
+            "name": "raiseTicketId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "dealerId",
             "type": "string"
           }
         ],
@@ -3062,6 +3521,182 @@
           {
             "in": "query",
             "name": "customerId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetRaiseTicketsByTechnicalAgency": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetPendingActions": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "ZipCode",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetNotificationsByExistingTechnicianId": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "technicianId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetNotificationsByNotExistTechnicianId": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "technicianId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetNotificationsByExistingDealerId": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "dealerId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetNotificationsByNotExistDealerId": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "district",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "dealerId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetTechnicianOrders": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "District",
             "type": "string"
           }
         ],
@@ -3701,6 +4336,49 @@
         }
       }
     },
+    "/api/Technician/GetTechnicianDetailsForInvoice": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "TechnicianId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/GetTechnicianMobileAndEmail": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Category",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "District",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Technician/UpdateIsActive/{technicianId}": {
       "put": {
         "tags": [
@@ -3725,6 +4403,101 @@
             "schema": {
               "type": "boolean"
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/TicketNotifications/CreateTicketNotifications": {
+      "post": {
+        "tags": [
+          "TicketNotifications"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/TicketNotifications"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/TicketNotifications/{id}": {
+      "delete": {
+        "tags": [
+          "TicketNotifications"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "TicketNotifications"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/TicketNotifications"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/TicketNotifications/GetTicketNotificationsById": {
+      "get": {
+        "tags": [
+          "TicketNotifications"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
           }
         ],
         "responses": {
@@ -4106,6 +4879,15 @@
         },
         "userId": {
           "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
         }
       }
     },
@@ -4399,6 +5181,91 @@
       ],
       "type": "integer"
     },
+    "DealerAcceptance": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "dealerRemarks": {
+          "type": "string"
+        }
+      }
+    },
+    "DeliveryNote": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "ticketId": {
+          "type": "string"
+        },
+        "deliveryNoteId": {
+          "type": "string"
+        },
+        "invoiceNumber": {
+          "type": "string"
+        },
+        "invoiceDate": {
+          "type": "string"
+        },
+        "uploadInvoice": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "option1Day": {
+          "type": "string"
+        },
+        "option1Time": {
+          "type": "string"
+        },
+        "option2Day": {
+          "type": "string"
+        },
+        "option2Time": {
+          "type": "string"
+        },
+        "deliveryTime": {
+          "type": "string"
+        },
+        "deliveryInvoiceId": {
+          "type": "string"
+        },
+        "internalStatus": {
+          "type": "string"
+        },
+        "technicianStatus": {
+          "type": "string"
+        },
+        "dealerStatus": {
+          "type": "string"
+        },
+        "technicianAcceptance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TechnicianAcceptance"
+          }
+        },
+        "dealerAcceptance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DealerAcceptance"
+          }
+        },
+        "materialCollection": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MaterialCollection"
+          }
+        },
+        "assignedTo": {
+          "type": "string"
+        }
+      }
+    },
     "Material": {
       "type": "object",
       "properties": {
@@ -4406,6 +5273,23 @@
           "type": "string"
         },
         "quantity": {
+          "type": "string"
+        }
+      }
+    },
+    "MaterialCollection": {
+      "type": "object",
+      "properties": {
+        "material": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "string"
+        },
+        "receivedQuantity": {
+          "type": "string"
+        },
+        "remainingQuantity": {
           "type": "string"
         }
       }
@@ -4459,6 +5343,35 @@
         }
       }
     },
+    "MyAccounts": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "accountid": {
+          "type": "string"
+        },
+        "profileType": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "serviceCharge": {
+          "type": "string"
+        },
+        "gstCharge": {
+          "type": "string"
+        },
+        "deliveryCharge": {
+          "type": "string"
+        },
+        "otherCharge": {
+          "type": "string"
+        }
+      }
+    },
     "OptRequest": {
       "type": "object",
       "properties": {
@@ -4477,6 +5390,50 @@
           "type": "string"
         },
         "otp": {
+          "type": "string"
+        }
+      }
+    },
+    "Payment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "raiseTicketId": {
+          "type": "string"
+        },
+        "paymentId": {
+          "type": "string"
+        },
+        "paymentMode": {
+          "type": "string"
+        },
+        "approvedAmount": {
+          "type": "string"
+        },
+        "paidAmount": {
+          "type": "string"
+        },
+        "balancedAmount": {
+          "type": "string"
+        },
+        "paymentDataTime": {
+          "type": "string"
+        },
+        "technicianAmount": {
+          "type": "string"
+        },
+        "dealerAmont": {
+          "type": "string"
+        },
+        "customerCareAmount": {
+          "type": "string"
+        },
+        "utrTransactionNumber": {
+          "type": "string"
+        },
+        "technicianConfirmationCode": {
           "type": "string"
         }
       }
@@ -4694,6 +5651,12 @@
           "format": "date-time",
           "type": "string"
         },
+        "approvedAmount": {
+          "type": "string"
+        },
+        "customerName": {
+          "type": "string"
+        },
         "address": {
           "type": "string"
         },
@@ -4760,6 +5723,18 @@
           "items": {
             "$ref": "#/definitions/Comment"
           }
+        },
+        "option1Day": {
+          "type": "string"
+        },
+        "option1Time": {
+          "type": "string"
+        },
+        "option2Day": {
+          "type": "string"
+        },
+        "option2Time": {
+          "type": "string"
         }
       }
     },
@@ -4835,6 +5810,61 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "TechnicianAcceptance": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "technicianRemarks": {
+          "type": "string"
+        }
+      }
+    },
+    "TicketNotifications": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "ticketNotificationId": {
+          "type": "string"
+        },
+        "ticketId": {
+          "type": "string"
+        },
+        "mobileNumber": {
+          "type": "string"
+        },
+        "emailId": {
+          "type": "string"
+        },
+        "isSMSDelivered": {
+          "type": "boolean"
+        },
+        "isMobileDelivered": {
+          "type": "boolean"
+        },
+        "smslog": {
+          "type": "string"
+        },
+        "mobileLog": {
+          "type": "string"
+        },
+        "smsDispatchedDate": {
+          "type": "string"
+        },
+        "emailDispatchedDate": {
+          "type": "string"
+        },
+        "technicianId": {
+          "type": "string"
+        },
+        "dealerId": {
+          "type": "string"
         }
       }
     },

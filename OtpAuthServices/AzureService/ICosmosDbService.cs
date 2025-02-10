@@ -222,6 +222,13 @@ string district, string category, string technicianId);
 
         Task<T> GetGSTAccountDetails(string profileType, string category);
 
+        Task<List<T>> GetTechnicianOrders(string District);
+
+
+
+
+        Task<List<T>> GetTrackTicketsByCustomerId(string customerId);
+
 
 
 

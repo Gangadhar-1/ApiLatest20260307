@@ -2084,7 +2084,7 @@ WHERE 1=1";
 
             try
             {
-                var queryDefinition = new QueryDefinition("SELECT * FROM c  where c.RaiseTicketId !=null");
+                var queryDefinition = new QueryDefinition("SELECT * FROM c  where c.RaiseTicketId !=null and c.Address !=null ORDER BY c.Date DESC");
 
                 // Create query iterator
                 var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
@@ -4146,10 +4146,10 @@ string category, string district, string dealerId)
             try
             {
                 var ticketQuery = new QueryDefinition(@"
-            SELECT * FROM c  where c.RaiseTicketId !=null and c.AssignedTo='Dealer/Trader' and 
-c.District=@district and c.Category=@category and c.LowestBidderTechnicainId !=null")
-                    .WithParameter("@district", district)
-                    .WithParameter("@category", category);
+            SELECT * FROM c  where c.RaiseTicketId !=null AND
+c.District=@district  and c.LowestBidderTechnicainId !=null")
+                    .WithParameter("@district", district);
+                   
 
                 var ticketIterator = _container.GetItemQueryIterator<RaiseTicket>(ticketQuery);
 
@@ -4251,6 +4251,38 @@ c.District=@district and c.Category=@category and c.LowestBidderTechnicainId !=n
             return new List<RaiseTicket>();
         }
 
+        public async Task<List<T>> GetTechnicianOrders(string District)
+        {
+            var approvallist = new List<T>();
+            try
+            {
+                var queryDefinition = new QueryDefinition("SELECT * FROM c Where  c.District=@District and c.internalStatus='Customer Approved'")
+                    .WithParameter("@District", District);
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    approvallist.AddRange(response);
+                }
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"Cosmos DB error:{ex.Message}");
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Internal server error: {ex.Message}");
+            }
+
+
+            return approvallist;
+        }
+
+
+
 
 
 
@@ -4299,6 +4331,39 @@ c.District=@district and c.Category=@category and c.LowestBidderTechnicainId !=n
 
 
 
+        public async Task<List<T>> GetTrackTicketsByCustomerId(string customerId)
+        {
+            var trackTicket = new List<T>();
+            try
+            {
+
+                var queryDefinition = new QueryDefinition("SELECT * FROM c where c.RaiseTicketId !=null and c.Address !=null and c.CustomerId=@customerId ORDER BY c.Date DESC ")
+                    .WithParameter("@customerId", customerId);
+
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    trackTicket.AddRange(response);
+                }
+
+            }
+            catch (CosmosException ex)
+            {
+                // Log Cosmos DB specific exceptions
+                Console.WriteLine($"Cosmos DB error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Log general exceptions
+                Console.WriteLine($"Internal server error: {ex.Message}");
+            }
+
+            // Return the list of tickets (empty if exceptions occurred)
+            return trackTicket;
+        }
 
 
 
