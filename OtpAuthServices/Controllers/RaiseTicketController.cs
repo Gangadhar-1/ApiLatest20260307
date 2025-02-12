@@ -146,7 +146,7 @@ namespace OtpAuthServices.Controllers
 
         [HttpGet("GetTicketsNotifications")]
         public async Task<IActionResult> GetTrackTicketDetails()
-        {
+        { 
             try
             {
                 var RaiseTicket = await _cosmosDbService.GetTrackTicketDetailsAsync();

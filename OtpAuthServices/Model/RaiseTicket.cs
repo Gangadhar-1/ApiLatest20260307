@@ -28,6 +28,10 @@ namespace OtpAuthServices.Model
 
         public string State { get; set; }
 
+
+        public List<string> TechnicianList { get; set; } = new List<string>();
+        public  List<string>  DealerList { get; set; }  =new List<string>();        
+
         public string LowestBidderTechnicainId { get; set; }
         public string LowestBidderDealerId { get; set; }
 
