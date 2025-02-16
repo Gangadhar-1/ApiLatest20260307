@@ -181,6 +181,27 @@ namespace OtpAuthServices.Controllers
             }
         }
 
+
+        [HttpGet("GetTicketsNotificationsForTechnicianForSMS")]
+        public async Task<IActionResult> GetTicketsNotificationsForTechnicianForSMS()
+        {
+            try
+            {
+                var RaiseTicket = await _cosmosDbService.GetRaiseTicketsNotificationsForTechnicianForSMS();
+
+                // Return 200 OK with tickets
+                return Ok(RaiseTicket);
+            }
+            catch (Exception ex)
+            {
+                // Log and return 500 Internal Server Error
+                Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+                return StatusCode(500, "An error occurred while retrieving tickets.");
+            }
+        }
+
+
+
         [HttpGet("GetRaiseTicketsForDealers")]
         public async Task<IActionResult> GetRaiseTicketsForDealers()
         {
@@ -445,14 +466,14 @@ namespace OtpAuthServices.Controllers
             }
 
             var existingProduct = await _cosmosDbService.GetItemAsync(id);
-            if (existingProduct == null)
+            if (existingProduct == null )
             {
                 existingProduct.RaiseTicketId = raiseTicket.RaiseTicketId;
                 existingProduct.Attachments = raiseTicket.Attachments;
 
 
             }
-
+            existingProduct.LowestBidderTechnicainId.Replace("/",string.Empty); 
             await _cosmosDbService.UpdateItemAsync(raiseTicket);
             return Ok($"RaiseTicket Data Updated Successfully. At with respectiveId {id}.");
 

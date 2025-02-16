@@ -3296,6 +3296,18 @@
         }
       }
     },
+    "/api/RaiseTicket/GetTicketsNotificationsForTechnicianForSMS": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/RaiseTicket/GetRaiseTicketsForDealers": {
       "get": {
         "tags": [
@@ -3697,6 +3709,25 @@
           {
             "in": "query",
             "name": "District",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetTrackTicketsByCustomerId": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "customerId",
             "type": "string"
           }
         ],
@@ -5686,6 +5717,18 @@
         },
         "state": {
           "type": "string"
+        },
+        "technicianList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dealerList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "lowestBidderTechnicainId": {
           "type": "string"

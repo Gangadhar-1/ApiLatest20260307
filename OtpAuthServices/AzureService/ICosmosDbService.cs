@@ -229,6 +229,8 @@ string district, string category, string technicianId);
 
         Task<List<T>> GetTrackTicketsByCustomerId(string customerId);
 
+        Task<List<T>> GetRaiseTicketsNotificationsForTechnicianForSMS();
+
 
 
 

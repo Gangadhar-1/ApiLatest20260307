@@ -2986,6 +2986,16 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetTicketsNotificationsForTechnicianForSMS",
+    "RelativePath": "api/RaiseTicket/GetTicketsNotificationsForTechnicianForSMS",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
     "Method": "GetTotalCountOfRaiseTicket",
     "RelativePath": "api/RaiseTicket/GetTotalCountOfRaiseTicket",
     "HttpMethod": "GET",
