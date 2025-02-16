@@ -438,6 +438,26 @@ namespace OtpAuthServices.Controllers
         }
 
 
+        [HttpGet("GetDealerMobileAndEmail")]
+        public async Task<ActionResult> GetDealerMobileAndEmail(string Category, string District)
+        {
+            try
+            {
+                var technicianMobileAndEmails = await _cosmosDbService.GetDealerMobileAndEmail(Category, District);
+
+                if (technicianMobileAndEmails == null || !technicianMobileAndEmails.Any())
+                {
+                    return NotFound("No data found.");
+                }
+
+                return Ok(technicianMobileAndEmails);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, "Unexpected error occurred.");
+            }
+        }
 
     }
 }

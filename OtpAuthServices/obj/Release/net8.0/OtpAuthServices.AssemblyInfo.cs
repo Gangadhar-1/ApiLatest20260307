@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OtpAuthServices")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+032118d3bc28813979d070b892525c6dc25e3f74")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2866e881fb049a995d30d5049f277394eefe7b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("OtpAuthServices")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OtpAuthServices")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

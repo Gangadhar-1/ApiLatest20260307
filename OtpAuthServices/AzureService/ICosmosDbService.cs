@@ -231,9 +231,9 @@ string district, string category, string technicianId);
 
         Task<List<T>> GetRaiseTicketsNotificationsForTechnicianForSMS();
 
+        Task<List<T>> GetDealerMobileAndEmail(string Category, string District);
 
-
-
+         Task<List<T>> GetRaiseTicketsForDealerForSMS();
     }
 
 

@@ -2183,6 +2183,42 @@ ORDER BY c.Date DESC
             return supportTicket;
         }
 
+
+
+          public async Task<List<T>> GetRaiseTicketsForDealerForSMS()
+        {
+            var supportTicket = new List<T>();
+
+            try
+            {
+                var queryDefinition = new QueryDefinition("SELECT * FROM c  where c.RaiseTicketId !=null and c.AssignedTo ='Dealer/Trader'");
+
+                // Create query iterator
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                // Iterate through query results
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    supportTicket.AddRange(response); // Add current batch of items
+                }
+            }
+            catch (CosmosException ex)
+            {
+                // Log Cosmos DB specific exceptions
+                Console.WriteLine($"Cosmos DB error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Log general exceptions
+                Console.WriteLine($"Internal server error: {ex.Message}");
+            }
+
+            // Return the list of tickets (empty if exceptions occurred)
+            return supportTicket;
+        }
+
+      
         public async Task<List<T>> GetRaiseTicketsNotificationsForTechnician()
         {
             var raiseTicketNotification = new List<T>();
@@ -4054,7 +4090,43 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
                     }
 
 
-                    public async Task<List<T>> GetRaiseAQuoteDetailsByTechnicianIdAndRiseTicketId(string TicketId, string TechnicianId)
+        public async Task<List<T>> GetDealerMobileAndEmail(string Category, string District)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(Category))
+                {
+                    throw new ArgumentException(nameof(Category), "Category cannot be null or Empty.");
+                }
+
+                var queryDefinition = new QueryDefinition("SELECT c.EmailAddress, c.PhoneNumber FROM c WHERE c.DealerId != null AND c.Address != null AND c.Category = @Category AND c.District = @District")
+                    .WithParameter("@Category", Category)
+                    .WithParameter("@District", District);
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+                var results = new List<T>(); // Store all results
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    results.AddRange(response);
+                }
+
+                return results;
+            }
+            catch (CosmosException ex)
+            {
+                return new List<T>(); // Return empty list in case of exception
+            }
+            catch (Exception ex)
+            {
+                return new List<T>();
+            }
+        }
+
+
+
+        public async Task<List<T>> GetRaiseAQuoteDetailsByTechnicianIdAndRiseTicketId(string TicketId, string TechnicianId)
                     {
                         try
                         {
