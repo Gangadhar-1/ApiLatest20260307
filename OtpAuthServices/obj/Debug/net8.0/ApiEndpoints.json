@@ -1511,6 +1511,22 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.DealerController",
+    "Method": "GetDealerMobileAndEmail",
+    "RelativePath": "api/Dealer/GetDealerMobileAndEmail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "District",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.DealerController",
     "Method": "UpdateDealerStatus",
     "RelativePath": "api/Dealer/Status/{DealerId}",
     "HttpMethod": "PUT",
@@ -2903,6 +2919,26 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetRaiseTicketsForDealersForSMS",
+    "RelativePath": "api/RaiseTicket/GetRaiseTicketsForDealersForSMS",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetRaiseTicketsForLowestDealersForSMS",
+    "RelativePath": "api/RaiseTicket/GetRaiseTicketsForLowestDealersForSMS",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
     "Method": "GetRecentNotifications",
     "RelativePath": "api/RaiseTicket/GetRecentNotifications",
     "HttpMethod": "GET",
@@ -2976,8 +3012,28 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetTicketsNotificationsLowestForTechnicianForSMS",
+    "RelativePath": "api/RaiseTicket/GetTicketsNotificationsForLowestTechnicianForSMS",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
     "Method": "GetTicketsNotificationsForTechnician",
     "RelativePath": "api/RaiseTicket/GetTicketsNotificationsForTechnician",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetTicketsNotificationsForTechnicianForSMS",
+    "RelativePath": "api/RaiseTicket/GetTicketsNotificationsForTechnicianForSMS",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

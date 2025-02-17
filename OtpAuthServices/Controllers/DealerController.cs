@@ -439,11 +439,11 @@ namespace OtpAuthServices.Controllers
 
 
         [HttpGet("GetDealerMobileAndEmail")]
-        public async Task<ActionResult> GetDealerMobileAndEmail(string Category, string District)
+        public async Task<ActionResult> GetDealerMobileAndEmail( string District)
         {
             try
             {
-                var technicianMobileAndEmails = await _cosmosDbService.GetDealerMobileAndEmail(Category, District);
+                var technicianMobileAndEmails = await _cosmosDbService.GetDealerMobileAndEmail( District);
 
                 if (technicianMobileAndEmails == null || !technicianMobileAndEmails.Any())
                 {

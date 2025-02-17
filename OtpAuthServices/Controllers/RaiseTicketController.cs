@@ -201,6 +201,25 @@ namespace OtpAuthServices.Controllers
         }
 
 
+        [HttpGet("GetTicketsNotificationsForLowestTechnicianSMS")]
+        public async Task<IActionResult> GetTicketsNotificationsLowestForTechnicianSMS()
+        {
+            try
+            {
+                var RaiseTicket = await _cosmosDbService.GetRaiseTicketsNotificationsForLowestTechnicianForSMS();
+
+                // Return 200 OK with tickets
+                return Ok(RaiseTicket);
+            }
+            catch (Exception ex)
+            {
+                // Log and return 500 Internal Server Error
+                Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+                return StatusCode(500, "An error occurred while retrieving tickets.");
+            }
+        }
+
+
 
         [HttpGet("GetRaiseTicketsForDealers")]
         public async Task<IActionResult> GetRaiseTicketsForDealers()
@@ -240,6 +259,29 @@ namespace OtpAuthServices.Controllers
             }
         }
 
+
+
+
+
+
+
+        [HttpGet("GetRaiseTicketsOfLowestDealersForSMS")]
+        public async Task<IActionResult> GetRaiseTicketsForLowestDealersForSMS()
+        {
+            try
+            {
+                var RaiseRaiseTickets = await _cosmosDbService.GetRaiseTicketsForDealerForSMS();
+
+                // Return 200 OK with tickets
+                return Ok(RaiseRaiseTickets);
+            }
+            catch (Exception ex)
+            {
+                // Log and return 500 Internal Server Error
+                Console.WriteLine($"Error retrieving tickets: {ex.Message}");
+                return StatusCode(500, "An error occurred while retrieving tickets.");
+            }
+        }
         [HttpGet("GetRaiseTicketsForCustomer")]
         public async Task<IActionResult> GetRaiseTicketsForCustomer()
         {

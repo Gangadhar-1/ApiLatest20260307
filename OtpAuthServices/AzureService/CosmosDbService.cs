@@ -2218,7 +2218,38 @@ ORDER BY c.Date DESC
             return supportTicket;
         }
 
-      
+        public async Task<List<T>> GetRaiseTicketsForLowestDealerForSMS()
+        {
+            var supportTicket = new List<T>();
+
+            try
+            {
+                var queryDefinition = new QueryDefinition("select * from c where c.RaiseTicketId !=null and   c.LowestBidderDealerId !=null");
+
+                // Create query iterator
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                // Iterate through query results
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    supportTicket.AddRange(response); // Add current batch of items
+                }
+            }
+            catch (CosmosException ex)
+            {
+                // Log Cosmos DB specific exceptions
+                Console.WriteLine($"Cosmos DB error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Log general exceptions
+                Console.WriteLine($"Internal server error: {ex.Message}");
+            }
+
+            // Return the list of tickets (empty if exceptions occurred)
+            return supportTicket;
+        }
         public async Task<List<T>> GetRaiseTicketsNotificationsForTechnician()
         {
             var raiseTicketNotification = new List<T>();
@@ -2289,6 +2320,44 @@ ORDER BY c.Date DESC
             return raiseTicketNotification;
         }
 
+
+
+
+
+
+
+        public async Task<List<T>> GetRaiseTicketsNotificationsForLowestTechnicianForSMS()
+        {
+            var raiseTicketNotification = new List<T>();
+
+            try
+            {
+                var queryDefinition = new QueryDefinition("select TOP 1  *  from c where c.RaiseTicketId !=null and   c.LowestBidderTechnicainId !=''order by c.Date desc");
+
+                // Create query iterator
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                // Iterate through query results
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    raiseTicketNotification.AddRange(response); // Add current batch of items
+                }
+            }
+            catch (CosmosException ex)
+            {
+                // Log Cosmos DB specific exceptions
+                Console.WriteLine($"Cosmos DB error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Log general exceptions
+                Console.WriteLine($"Internal server error: {ex.Message}");
+            }
+
+            // Return the list of tickets (empty if exceptions occurred)
+            return raiseTicketNotification;
+        }
 
         public async Task<List<T>> GetRaiseTicketsForCustomer()
         {
@@ -4090,17 +4159,17 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
                     }
 
 
-        public async Task<List<T>> GetDealerMobileAndEmail(string Category, string District)
+        public async Task<List<T>> GetDealerMobileAndEmail( string District)
         {
             try
             {
-                if (string.IsNullOrEmpty(Category))
+                if (string.IsNullOrEmpty(District))
                 {
-                    throw new ArgumentException(nameof(Category), "Category cannot be null or Empty.");
+                    throw new ArgumentException(nameof(District), "CatDistrictegory cannot be null or Empty.");
                 }
 
-                var queryDefinition = new QueryDefinition("SELECT c.EmailAddress, c.PhoneNumber FROM c WHERE c.DealerId != null AND c.Address != null AND c.Category = @Category AND c.District = @District")
-                    .WithParameter("@Category", Category)
+                var queryDefinition = new QueryDefinition("SELECT c.EmailAddress, c.PhoneNumber FROM c WHERE c.DealerId != null AND c.Address != null AND c.District = @District")
+                    
                     .WithParameter("@District", District);
 
                 var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);

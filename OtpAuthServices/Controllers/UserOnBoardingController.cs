@@ -34,6 +34,36 @@ namespace OtpAuthServices.Controllers
             return Ok(new { Message = "User data uploaded successfully", UserId = userOnBoarding.UserId });
         }
 
+
+
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUserOnBoarding(string id, [FromBody] UserOnBoarding userOnBoarding)
+        {
+            if (userOnBoarding == null || userOnBoarding.id != id)
+            {
+                return BadRequest("Product information is incorrect.");
+            }
+
+            var existingProduct = await _cosmosDbService.GetItemAsync(id);
+            if (existingProduct == null)
+            {
+                existingProduct.id = userOnBoarding.id;
+
+
+            }
+            existingProduct.id.Replace("/", string.Empty);
+            await _cosmosDbService.UpdateItemAsync(userOnBoarding);
+            return Ok($"RaiseTicket Data Updated Successfully. At with respectiveId {id}.");
+
+
+
+
+        }
+
+
+
         [HttpGet]
         [Route("VerifyUserProfile")]
         public async Task<IActionResult> GetUser(string value)

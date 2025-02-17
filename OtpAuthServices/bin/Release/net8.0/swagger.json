@@ -1874,6 +1874,25 @@
         }
       }
     },
+    "/api/Dealer/GetDealerMobileAndEmail": {
+      "get": {
+        "tags": [
+          "Dealer"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "District",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/DeliveryNote/CreateDeliveryNote": {
       "post": {
         "tags": [
@@ -3309,6 +3328,18 @@
       }
     },
     "/api/RaiseTicket/GetRaiseTicketsForDealers": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetRaiseTicketsForDealersForSMS": {
       "get": {
         "tags": [
           "RaiseTicket"

@@ -1511,6 +1511,22 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.DealerController",
+    "Method": "GetDealerMobileAndEmail",
+    "RelativePath": "api/Dealer/GetDealerMobileAndEmail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "District",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.DealerController",
     "Method": "UpdateDealerStatus",
     "RelativePath": "api/Dealer/Status/{DealerId}",
     "HttpMethod": "PUT",
@@ -2903,6 +2919,26 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetRaiseTicketsForDealersForSMS",
+    "RelativePath": "api/RaiseTicket/GetRaiseTicketsForDealersForSMS",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetRaiseTicketsForLowestDealersForSMS",
+    "RelativePath": "api/RaiseTicket/GetRaiseTicketsOfLowestDealersForSMS",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
     "Method": "GetRecentNotifications",
     "RelativePath": "api/RaiseTicket/GetRecentNotifications",
     "HttpMethod": "GET",
@@ -2968,6 +3004,16 @@
     "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
     "Method": "GetTrackTicketDetails",
     "RelativePath": "api/RaiseTicket/GetTicketsNotifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetTicketsNotificationsLowestForTechnicianSMS",
+    "RelativePath": "api/RaiseTicket/GetTicketsNotificationsForLowestTechnicianSMS",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -3770,6 +3816,27 @@
       {
         "Name": "request",
         "Type": "OtpAuthServices.Model.UpdateDocumentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UserOnBoardingController",
+    "Method": "UpdateUserOnBoarding",
+    "RelativePath": "api/UserOnBoarding/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userOnBoarding",
+        "Type": "OtpAuthServices.Model.UserOnBoarding",
         "IsRequired": true
       }
     ],
