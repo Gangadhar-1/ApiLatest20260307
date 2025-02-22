@@ -2930,7 +2930,7 @@
   {
     "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
     "Method": "GetRaiseTicketsForLowestDealersForSMS",
-    "RelativePath": "api/RaiseTicket/GetRaiseTicketsForLowestDealersForSMS",
+    "RelativePath": "api/RaiseTicket/GetRaiseTicketsOfLowestDealersForSMS",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -3012,8 +3012,8 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
-    "Method": "GetTicketsNotificationsLowestForTechnicianForSMS",
-    "RelativePath": "api/RaiseTicket/GetTicketsNotificationsForLowestTechnicianForSMS",
+    "Method": "GetTicketsNotificationsLowestForTechnicianSMS",
+    "RelativePath": "api/RaiseTicket/GetTicketsNotificationsForLowestTechnicianSMS",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -3816,6 +3816,27 @@
       {
         "Name": "request",
         "Type": "OtpAuthServices.Model.UpdateDocumentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UserOnBoardingController",
+    "Method": "UpdateUserOnBoarding",
+    "RelativePath": "api/UserOnBoarding/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userOnBoarding",
+        "Type": "OtpAuthServices.Model.UserOnBoarding",
         "IsRequired": true
       }
     ],

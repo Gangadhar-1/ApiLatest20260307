@@ -77,6 +77,7 @@ builder.Services.AddSingleton<ICosmosDbService<MyAccounts>>(sp => new CosmosDbSe
 builder.Services.AddSingleton<ICosmosDbService<Payment>>(sp => new CosmosDbService<Payment>(cosmosClient, databaseName, containerName));
 
 builder.Services.AddSingleton<ICosmosDbService<DeliveryNote>>(sp => new CosmosDbService<DeliveryNote>(cosmosClient, databaseName, containerName));
+builder.Services.AddSingleton<ICosmosDbService<RaiseTicketExtention>>(sp => new CosmosDbService<RaiseTicketExtention>(cosmosClient, databaseName, containerName));
 
 builder.Services.AddTransient<DataGeneratorService>();
 

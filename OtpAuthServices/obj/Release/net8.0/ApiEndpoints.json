@@ -3130,6 +3130,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketExtentionController",
+    "Method": "CreateTicket",
+    "RelativePath": "api/RaiseTicketExtention/CreateRaiseTicketExtension",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "RaiseTicketExtention",
+        "Type": "OtpAuthServices.Model.RaiseTicketExtention",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.RaiseTicketTrackerController",
     "Method": "GetRaiseTicketCount",
     "RelativePath": "api/RaiseTicketTracker/GetRaiseTicketCount",

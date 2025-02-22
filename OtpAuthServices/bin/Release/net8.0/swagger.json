@@ -3327,6 +3327,18 @@
         }
       }
     },
+    "/api/RaiseTicket/GetTicketsNotificationsForLowestTechnicianSMS": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/RaiseTicket/GetRaiseTicketsForDealers": {
       "get": {
         "tags": [
@@ -3340,6 +3352,18 @@
       }
     },
     "/api/RaiseTicket/GetRaiseTicketsForDealersForSMS": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RaiseTicket/GetRaiseTicketsOfLowestDealersForSMS": {
       "get": {
         "tags": [
           "RaiseTicket"
@@ -4649,6 +4673,38 @@
             "in": "formData",
             "name": "ProfileType",
             "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserOnBoarding/{id}": {
+      "put": {
+        "tags": [
+          "UserOnBoarding"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserOnBoarding"
+            }
           }
         ],
         "responses": {
@@ -6008,6 +6064,39 @@
           "type": "string"
         },
         "comments": {
+          "type": "string"
+        }
+      }
+    },
+    "UserOnBoarding": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "userPassword": {
+          "type": "string"
+        },
+        "mobileNo": {
+          "type": "string"
+        },
+        "emailId": {
+          "type": "string"
+        },
+        "isMobileNumberValidate": {
+          "type": "boolean"
+        },
+        "isEmailValidate": {
+          "type": "boolean"
+        },
+        "profileType": {
           "type": "string"
         }
       }

@@ -98,7 +98,7 @@ namespace OtpAuthServices.Controllers
             try
             {
                 // Call the Cosmos DB service to get a ticket
-                var ticket = await _cosmosDbService.GetRaiseTicketsAsync(customerId);
+                var ticket = await _cosmosDbService.GetTrackTicketsByCustomerId(customerId);
 
                 // Check if a ticket was found
                 if (ticket == null)

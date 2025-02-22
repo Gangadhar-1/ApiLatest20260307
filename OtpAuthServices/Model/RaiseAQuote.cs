@@ -46,7 +46,7 @@
         public string fixedGST { get; set; }
 
         public  List<MaterialQuotation> materialQuotation { get; set; }
-        public List<AddRemark> AddrRmarks { get; set; }
+        public List<AddRemark> AddRemarks { get; set; }
 
         public List<Materials> Materials { get; set; }   
 

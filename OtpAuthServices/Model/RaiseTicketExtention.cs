@@ -5,9 +5,10 @@ using static OtpAuthServices.Model.Comment;
 namespace OtpAuthServices.Model
 {
 
-    public class RaiseTicket
+    public class RaiseTicketExtention
     {
         public string RaiseTicketId { get; set; }
+        public string RaiseTicketIdVideoRef { get; set; }
         public DateTime Date { get; set; }
 
 
@@ -31,7 +32,7 @@ namespace OtpAuthServices.Model
         public string Rating { get; set; }
 
         public List<string> TechnicianList { get; set; } = new List<string>();
-        public  List<string>  DealerList { get; set; }  =new List<string>();        
+        public List<string> DealerList { get; set; } = new List<string>();
 
         public string LowestBidderTechnicainId { get; set; }
         public string LowestBidderDealerId { get; set; }
@@ -45,9 +46,9 @@ namespace OtpAuthServices.Model
         public string ZipCode { get; set; }
         public string RequestType { get; set; }
         public List<string> Attachments { get; set; } = new List<string>();
-        public List<Material> Materials { get; set; }
+        public List<Materialss> Materials { get; set; }
 
-        public List<Comment> comments { get; set; }
+        public List<Comments> comments { get; set; }
 
         public string Option1Day { get; set; }
         public string Option1Time { get; set; }
@@ -57,13 +58,13 @@ namespace OtpAuthServices.Model
     }
 
 
-    public class Material
+    public class Materialss
     {
         public string material { get; set; }
         public string Quantity { get; set; }
     }
 
-    public class Comment
+    public class Comments
     {
         public DateTime UpdatedDate { get; set; }
         public string CommentText

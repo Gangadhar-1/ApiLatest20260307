@@ -593,7 +593,7 @@ WHERE 1=1";
             try
             {
                 // Define query with parameter
-                var queryDefinition = new QueryDefinition("SELECT * FROM c WHERE c.CustomerId = @customerId")
+                var queryDefinition = new QueryDefinition("1")
                     .WithParameter("@customerId", customerId);
 
                 var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
@@ -1277,6 +1277,9 @@ WHERE 1=1";
         }
 
 
+
+
+                 
 
         public async Task<List<T>> GetDealerDetailsByUserId(string userId)
 
@@ -3947,7 +3950,7 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
                                 throw new ArgumentException(nameof(TechnicianId), "TechnicianId cannot be null or Empty.");
                             }
 
-                            var queryDefinition = new QueryDefinition("SELECT * FROM c where c.TechnicianId !=null  and c.NumberOfTechnicians !=null  and c.TechnicianId=@TechnicianId")
+                            var queryDefinition = new QueryDefinition("SELECT * FROM c where c.TechnicianId !=null  and c.NumberOfTechnicians !=null  and c.UserId=@TechnicianId")
                                 .WithParameter("@TechnicianId", TechnicianId);
                             var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
 
@@ -3982,7 +3985,7 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
                                 throw new ArgumentException(nameof(DealerId), "DealerId cannot be null or Empty.");
                             }
 
-                            var queryDefinition = new QueryDefinition("  SELECT * FROM c where c.DealerId !=null  and c.DealerFirmName !=null  and c.OwnershipName !=null and c.DealerId=@DealerId")
+                            var queryDefinition = new QueryDefinition("  SELECT * FROM c where c.DealerId !=null  and c.DealerFirmName !=null  and c.OwnershipName !=null and c.UserId=@DealerId")
 
 
 
@@ -4718,7 +4721,7 @@ string district, string category, string technicianId)
             try
             {
 
-                var queryDefinition = new QueryDefinition("SELECT * FROM c where c.RaiseTicketId !=null and c.Address !=null and c.CustomerId=@customerId ORDER BY c.Date DESC ")
+                var queryDefinition = new QueryDefinition("SELECT * FROM c where c.RaiseTicketId !=null and c.Address !=null and c.internalStatus!='Closed'  and c.CustomerId=@customerId ORDER BY c.Date DESC ")
                     .WithParameter("@customerId", customerId);
 
 

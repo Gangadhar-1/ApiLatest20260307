@@ -11,6 +11,8 @@
         
         public DateTime RaiseAQuoteDate { get; set; }
         public string RaiseAQuoteByDealerId { get; set; }
+        
+        public string TotalAmount { get; set; } 
         //public string Subject { get; set; }
 
         //public string Status { get; set; }
