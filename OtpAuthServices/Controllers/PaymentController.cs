@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using OtpAuthServices.AzureService;
 using OtpAuthServices.Model;
+using System.Net;
+using System.Text;
 
 namespace OtpAuthServices.Controllers
 {
@@ -27,6 +29,11 @@ namespace OtpAuthServices.Controllers
             try
             {
                 string dynmaicTechrrotp = GenerateRandomOtp();
+
+
+
+               
+
                 payment.id = Guid.NewGuid().ToString();
                 payment.PaymentId = Guid.NewGuid().ToString();
                 //payment.PaymentDataTime = DateTime.UtcNow;
@@ -77,7 +84,132 @@ namespace OtpAuthServices.Controllers
             return Ok(ticket);
         }
 
+        [HttpGet("sendLowestBidderTechnicianNotifications")]
+        public async Task<IActionResult> sendLowestBidderTechnicianNotifications(string ticketId, string ConfirmationCode, string technicianPhoneNumber)
+        {
+            if (string.IsNullOrEmpty(ticketId))
+            {
+                return BadRequest("ticketId  cannot be null or empty.");
+            }
 
+            if (string.IsNullOrEmpty(ConfirmationCode))
+            {
+                return BadRequest("ConfirmationCode cannot be null or empty.");
+            }
+
+            try
+            {
+                //string dynmaicTechrrotp = GenerateRandomOtp();
+
+
+                var appendedTicketId = "REFIDHM-"+ticketId;
+                string result;
+                string apiKey = "NTgzNDZjNzY3MjQ5NDI0YTMxNTE0ZjRlNjQ2MjY0NDU=";
+                //string numbers = request.SenderValue;
+                //string dynamicOtp = GenerateRandomOtp();
+                string message = $"Dear Technician Congrats!!, Ticket {appendedTicketId} accepted by customer. Confirmation OTP {ConfirmationCode}. To track the ticket status please visit https://handymanserviceproviders.comThanksHandy Man Service Providers";
+                string sender = "LSSPHM";
+
+                // URL encode the message
+                string encodedMessage = WebUtility.UrlEncode(message);
+
+                string postData = $"apikey={apiKey}&numbers={technicianPhoneNumber}&message={encodedMessage}&sender={sender}";
+
+                // Create the HTTP request
+                HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create("https://api.textlocal.in/send/");
+                objRequest.Method = "POST";
+                objRequest.ContentType = "application/x-www-form-urlencoded";
+                objRequest.ContentLength = Encoding.UTF8.GetByteCount(postData);
+
+
+                // Write the post data to the request stream
+                using (StreamWriter writer = new StreamWriter(objRequest.GetRequestStream()))
+                {
+                    writer.Write(postData);
+                }
+
+                // Get the response from the server
+                HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();
+                using (StreamReader reader = new StreamReader(objResponse.GetResponseStream()))
+                {
+                    result = reader.ReadToEnd();
+                }
+                //_memoryCache.Set(request.SenderValue, dynmaicotp, TimeSpan.FromMinutes(3));
+
+                return Ok(new { Message = "OTP SMS sent successfully." });
+
+            }
+            catch
+            {
+                return BadRequest("sms not sent");
+
+            }
+        }
+
+
+
+        [HttpGet("sendLowestBidderDealerNotifications")]
+        public async Task<IActionResult> sendLowestBidderDealerNotifications(string ticketId, string ConfirmationCode, string technicianPhoneNumber)
+        {
+            if (string.IsNullOrEmpty(ticketId))
+            {
+                return BadRequest("ticketId  cannot be null or empty.");
+            }
+
+            if (string.IsNullOrEmpty(ConfirmationCode))
+            {
+                return BadRequest("ConfirmationCode cannot be null or empty.");
+            }
+
+            try
+            {
+                //string dynmaicTechrrotp = GenerateRandomOtp();
+
+
+                var appendeTicketId= "REFIDHM-"+ticketId;
+
+                string result;
+                string apiKey = "NTgzNDZjNzY3MjQ5NDI0YTMxNTE0ZjRlNjQ2MjY0NDU=";
+                //string numbers = request.SenderValue;
+                //string dynamicOtp = GenerateRandomOtp();
+                string message = $"Dear Trader/Deale Congrats!!, Ticket {appendeTicketId} materials quote accepted by customer. Confirmation OTP {ConfirmationCode}. To track the ticket status please visit https://handymanserviceproviders.com Thanks Handy Man Service Providers";
+                string sender = "LSSPHM";
+
+                // URL encode the message
+                string encodedMessage = WebUtility.UrlEncode(message);
+
+                string postData = $"apikey={apiKey}&numbers={technicianPhoneNumber}&message={encodedMessage}&sender={sender}";
+
+                // Create the HTTP request
+                HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create("https://api.textlocal.in/send/");
+                objRequest.Method = "POST";
+                objRequest.ContentType = "application/x-www-form-urlencoded";
+                objRequest.ContentLength = Encoding.UTF8.GetByteCount(postData);
+
+
+                // Write the post data to the request stream
+                using (StreamWriter writer = new StreamWriter(objRequest.GetRequestStream()))
+                {
+                    writer.Write(postData);
+                }
+
+                // Get the response from the server
+                HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();
+                using (StreamReader reader = new StreamReader(objResponse.GetResponseStream()))
+                {
+                    result = reader.ReadToEnd();
+                }
+                //_memoryCache.Set(request.SenderValue, dynmaicotp, TimeSpan.FromMinutes(3));
+
+                return Ok(new { Message = "OTP SMS sent successfully." });
+
+            }
+            catch
+            {
+                return BadRequest("sms not sent");
+
+            }
+        }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePayment(string id, [FromBody] Payment payment)

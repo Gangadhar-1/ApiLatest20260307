@@ -3793,6 +3793,32 @@
         }
       }
     },
+    "/api/RaiseTicketExtention/CreateRaiseTicketExtension": {
+      "post": {
+        "tags": [
+          "RaiseTicketExtention"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RaiseTicketExtention"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/RaiseTicketTracker/GetRaiseTicketCount": {
       "get": {
         "tags": [
@@ -5187,6 +5213,18 @@
         }
       }
     },
+    "Comments": {
+      "type": "object",
+      "properties": {
+        "updatedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "commentText": {
+          "type": "string"
+        }
+      }
+    },
     "Customer": {
       "type": "object",
       "properties": {
@@ -5461,6 +5499,17 @@
         }
       }
     },
+    "Materialss": {
+      "type": "object",
+      "properties": {
+        "material": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "string"
+        }
+      }
+    },
     "MyAccounts": {
       "type": "object",
       "properties": {
@@ -5700,7 +5749,7 @@
             "$ref": "#/definitions/MaterialQuotation"
           }
         },
-        "addrRmarks": {
+        "addRemarks": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/AddRemark"
@@ -5737,6 +5786,9 @@
           "type": "string"
         },
         "raiseAQuoteByDealerId": {
+          "type": "string"
+        },
+        "totalAmount": {
           "type": "string"
         },
         "materialQuotation": {
@@ -5805,6 +5857,9 @@
         "state": {
           "type": "string"
         },
+        "rating": {
+          "type": "string"
+        },
         "technicianList": {
           "type": "array",
           "items": {
@@ -5852,6 +5907,121 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Comment"
+          }
+        },
+        "option1Day": {
+          "type": "string"
+        },
+        "option1Time": {
+          "type": "string"
+        },
+        "option2Day": {
+          "type": "string"
+        },
+        "option2Time": {
+          "type": "string"
+        }
+      }
+    },
+    "RaiseTicketExtention": {
+      "type": "object",
+      "properties": {
+        "raiseTicketId": {
+          "type": "string"
+        },
+        "raiseTicketIdVideoRef": {
+          "type": "string"
+        },
+        "date": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "approvedAmount": {
+          "type": "string"
+        },
+        "customerName": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "assignedTo": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "internalStatus": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "string"
+        },
+        "technicianList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dealerList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lowestBidderTechnicainId": {
+          "type": "string"
+        },
+        "lowestBidderDealerId": {
+          "type": "string"
+        },
+        "isMaterialType": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "district": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "requestType": {
+          "type": "string"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "materials": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Materialss"
+          }
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Comments"
           }
         },
         "option1Day": {

@@ -2222,6 +2222,58 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.PaymentController",
+    "Method": "sendLowestBidderDealerNotifications",
+    "RelativePath": "api/Payment/sendLowestBidderDealerNotifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ConfirmationCode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "technicianPhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.PaymentController",
+    "Method": "sendLowestBidderTechnicianNotifications",
+    "RelativePath": "api/Payment/sendLowestBidderTechnicianNotifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ConfirmationCode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "technicianPhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.ProductController",
     "Method": "GetProducts",
     "RelativePath": "api/Product",
@@ -3125,6 +3177,22 @@
         "Name": "customerId",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketExtentionController",
+    "Method": "CreateTicket",
+    "RelativePath": "api/RaiseTicketExtention/CreateRaiseTicketExtension",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "RaiseTicketExtention",
+        "Type": "OtpAuthServices.Model.RaiseTicketExtention",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
