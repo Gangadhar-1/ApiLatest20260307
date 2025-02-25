@@ -20,6 +20,8 @@ namespace OtpAuthServices.Model
         public string Category { get; set; }
         public string AssignedTo { get; set; }
 
+        public string RateQuotedBy { get; set; }   
+
         public string id { get; set; }
         public string status { get; set; }
 

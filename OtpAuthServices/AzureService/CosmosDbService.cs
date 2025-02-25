@@ -2121,14 +2121,18 @@ WHERE 1=1";
             try
             {
                 var queryDefinition = new QueryDefinition(@"
-          SELECT * FROM c  
+                 SELECT * FROM c  
 WHERE c.RaiseTicketId !=null
 AND c.Address !=null
 AND ( 
-    (ARRAY_LENGTH(c.TechnicianList) = 0 AND ARRAY_LENGTH(c.DealerList) = 0) 
+    (ARRAY_LENGTH(c.TechnicianList) = 0 AND ARRAY_LENGTH(c.DealerList) = 0 )) 
     OR 
-    (ARRAY_LENGTH(c.TechnicianList) > 0 AND ARRAY_LENGTH(c.DealerList) > 0)
-)
+    (ARRAY_LENGTH(c.TechnicianList) > 0 AND ARRAY_LENGTH(c.DealerList) = 0) 
+        OR 
+        (ARRAY_LENGTH(c.TechnicianList) = 0 AND ARRAY_LENGTH(c.DealerList) > 0)
+        OR
+    (ARRAY_LENGTH(c.TechnicianList) > 0 AND ARRAY_LENGTH(c.DealerList) > 0  )
+
 ORDER BY c.Date DESC
 
 ");

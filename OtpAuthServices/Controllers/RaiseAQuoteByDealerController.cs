@@ -127,8 +127,17 @@ namespace OtpAuthServices.Controllers
 
                     if (results == null || results.Count == 0)
                     {
-                        return NotFound($"No records found for RaiseAQuoteDealerId: {raiseAQuotetDealerId}");
-                    }
+                    RaiseAQuoteByDealer raiseAQuoteByDealer = new RaiseAQuoteByDealer();
+
+                        raiseAQuoteByDealer.DealerId = "Customer Care";
+
+                    return Ok(raiseAQuoteByDealer);
+                }
+
+                
+
+
+
 
                     return Ok(results);
                 }
