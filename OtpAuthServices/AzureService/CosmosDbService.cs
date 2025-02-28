@@ -1878,6 +1878,43 @@ WHERE 1=1";
         }
 
 
+        public async Task<List<T>> GetBookTechnicianAddress(string userId)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(userId))
+                {
+                    throw new ArgumentNullException(nameof(userId), "UserId cannot be null or empty.");
+                }
+
+                // Define the query with a parameter for UserId
+                var queryDefinition = new QueryDefinition(
+                    "\r\nSELECT c.id,c.AddressId,c.IsPrimaryAddress,c.Address,c.State,c.District,c.ZipCode, c.TechnicianFullName ,  c.UserId   from c WHERE c.UserId = @userId and c.ZipCode !=null ")
+                    .WithParameter("@userId", userId);
+
+                // Create a query iterator
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                var addresses = new List<T>();
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    addresses.AddRange(response); // Add all items from the current response
+                }
+
+                return addresses; // Return the list of addresses
+            }
+            catch (CosmosException ex)
+            {
+                return new List<T>(); // Return an empty list on Cosmos DB-specific errors
+            }
+            catch (Exception ex)
+            {
+                return new List<T>(); // Return an empty list on unexpected errors
+            }
+        }
+
 
 
 

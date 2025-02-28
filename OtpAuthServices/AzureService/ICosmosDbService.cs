@@ -238,6 +238,9 @@ string district, string category, string technicianId);
 
 
         Task<List<T>> GetRaiseTicketsNotificationsForLowestTechnicianForSMS();
+
+
+        Task<List<T>> GetBookTechnicianAddress(string userId);
     }
 
 
