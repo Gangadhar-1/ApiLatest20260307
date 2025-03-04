@@ -86,6 +86,8 @@ builder.Services.AddSingleton<ICosmosDbService<RaiseTicketExtention>>(sp => new 
 
 builder.Services.AddSingleton<ICosmosDbService<BookTechnician>>(sp => new CosmosDbService<BookTechnician>(cosmosClient, databaseName, containerName));
 
+builder.Services.AddSingleton<ICosmosDbService<UploadJobDescriptionBookTechnician>>(sp => new CosmosDbService<UploadJobDescriptionBookTechnician>(cosmosClient, databaseName, containerName));
+
 builder.Services.AddTransient<DataGeneratorService>();
 
 builder.Services.AddSingleton<ICosmosDbService<RaiseTicketTracker>>(sp => new CosmosDbService<RaiseTicketTracker>(cosmosClient, databaseName, containerName));

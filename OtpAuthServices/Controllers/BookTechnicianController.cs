@@ -45,14 +45,14 @@ namespace OtpAuthServices.Controllers
 
             // Insert the support ticket into Cosmos DB
             await _cosmosDbService.AddItemAsync(BookTechnician);
-            return Ok(new { Message = "Raise ticket created successfully", RaiseTicketId = BookTechnician.id, TicketId = BookTechnician.BookTechnicianId });
+            return Ok(new { Message = "BookTechnician created successfully", RaiseTicketId = BookTechnician.id, BookTechnicianId = BookTechnician.BookTechnicianId });
         }
 
 
         private string GenerateRaiseTicketId()
         {
             Random random = new Random();
-            string prefix = "VSKPAKP"; // Fixed prefix
+            string prefix = "BTKP"; // Fixed prefix
             string numbers = random.Next(1000, 9999).ToString(); // Random 4-digit number
             char letter = (char)random.Next('A', 'Z' + 1); // Random uppercase letter
 
@@ -92,33 +92,108 @@ namespace OtpAuthServices.Controllers
         }
 
 
+        [HttpGet("GetBookTechnicianListForAdmin")]
+        public async Task<IActionResult> GetBookTechnicianListForAdmin()
+        {
+            var bookTechnicians = await _cosmosDbService.GetBookTechnicianListForAdmin<BookTechnician>();
+
+            if (bookTechnicians == null || !bookTechnicians.Any())
+            {
+                return NotFound("No Book Technicians found.");
+            }
+
+            return Ok(bookTechnicians);
+        }
+
+
+
+
+        //    [HttpPut("{id}")]
+        //    public async Task<IActionResult> UpdateBookTechnician(string id, [FromBody] BookTechnician BookTechnician)
+        //    {
+        //        if (BookTechnician == null || BookTechnician.id != id)
+        //        {
+        //            return BadRequest("Product information is incorrect.");
+        //        }
+
+        //        var existingProduct = await _cosmosDbService.GetItemAsync(id);
+        //        if (existingProduct == null)
+        //        {
+        //            existingProduct.BookTechnicianId = BookTechnician.BookTechnicianId;
+
+
+
+        //        }
+        //        //existingProduct.BookTechnicianId.Replace("/", string.Empty);
+        //        await _cosmosDbService.UpdateItemAsync(BookTechnician);
+        //        return Ok($"BookTechnician Data Updated Successfully. At with respectiveId {id}.");
+
+
+
+
+        //    }
+
+
+        //}
+
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBookTechnician(string id, [FromBody] BookTechnician BookTechnician)
         {
             if (BookTechnician == null || BookTechnician.id != id)
             {
-                return BadRequest("Product information is incorrect.");
+                return BadRequest("BookTechnician information is incorrect.");
             }
 
-            var existingProduct = await _cosmosDbService.GetItemAsync(id);
-            if (existingProduct == null)
+            var existingBookTechnician = await _cosmosDbService.GetItemAsync(id);
+            if (existingBookTechnician == null)
             {
-                existingProduct.BookTechnicianId = BookTechnician.BookTechnicianId;
-                
-
-
+                return NotFound("BookTechnician not found.");
             }
-            //existingProduct.BookTechnicianId.Replace("/", string.Empty);
-            await _cosmosDbService.UpdateItemAsync(BookTechnician);
-            return Ok($"BookTechnician Data Updated Successfully. At with respectiveId {id}.");
 
+            // Allow TechnicianConfirmationCode to be set only once
+            if (string.IsNullOrEmpty(existingBookTechnician.TechnicianConfirmationCode))
+            {
+                existingBookTechnician.TechnicianConfirmationCode = GenerateRandomOtp(); // Set only if null/empty
+            }
+            else
+            {
+                Console.WriteLine("TechnicianConfirmationCode update ignored. Using existing value.");
+            }
 
+            // Other fields can still be updated
+            existingBookTechnician.BookTechnicianId = BookTechnician.BookTechnicianId;
+            existingBookTechnician.PaymentMode = BookTechnician.PaymentMode; 
 
+            existingBookTechnician.UTRTransactionNumber= BookTechnician.UTRTransactionNumber;
 
+            existingBookTechnician.status =BookTechnician.status;   
+            existingBookTechnician.AssignedTo = BookTechnician.AssignedTo;  
+            await _cosmosDbService.UpdateItemAsync(existingBookTechnician);
+
+            return Ok(new
+            {
+                Message = "BookTechnician updated successfully",
+                PaymentId = existingBookTechnician.id,
+                TechnicianConfirmationCode = existingBookTechnician.TechnicianConfirmationCode // Always return the correct value
+            });
         }
 
 
-    }
-}
 
+
+        private string GenerateRandomOtp()
+        {
+            using (var rng = System.Security.Cryptography.RandomNumberGenerator.Create())
+            {
+                var bytes = new byte[4];
+                rng.GetBytes(bytes);
+                int randomNumber = BitConverter.ToInt32(bytes, 0);
+                return (Math.Abs(randomNumber % 900000) + 100000).ToString("D6");
+            }
+        }
+
+    }
+
+}

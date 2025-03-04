@@ -503,6 +503,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.BookTechnicianController",
+    "Method": "GetBookTechnicianListForAdmin",
+    "RelativePath": "api/BookTechnician/GetBookTechnicianListForAdmin",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.BookTechnicianAddressController",
     "Method": "UploadAddress",
     "RelativePath": "api/BookTechnicianAddress/AddressUpload",
@@ -4067,6 +4077,101 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadJobDescriptionBookTechnicianController",
+    "Method": "DeleteUploadJobDescriptionBookTechnician",
+    "RelativePath": "api/UploadJobDescriptionBookTechnician/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadJobDescriptionBookTechnicianController",
+    "Method": "UpdateUploadJobDescriptionBookTechnician",
+    "RelativePath": "api/UploadJobDescriptionBookTechnician/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "UploadJobDescriptionBookTechnician",
+        "Type": "OtpAuthServices.Model.UploadJobDescriptionBookTechnician",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadJobDescriptionBookTechnicianController",
+    "Method": "CreateTicket",
+    "RelativePath": "api/UploadJobDescriptionBookTechnician/CreateUploadJobDescriptionBookTechnician",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UploadJobDescriptionBookTechnician",
+        "Type": "OtpAuthServices.Model.UploadJobDescriptionBookTechnician",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadJobDescriptionBookTechnicianController",
+    "Method": "GetSelctedJobsByCategory",
+    "RelativePath": "api/UploadJobDescriptionBookTechnician/GetSelctedJobsByCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Category",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadJobDescriptionBookTechnicianController",
+    "Method": "GetTicket",
+    "RelativePath": "api/UploadJobDescriptionBookTechnician/GetTicket/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadJobDescriptionBookTechnicianController",
+    "Method": "GetUploadJobDescriptionDetails",
+    "RelativePath": "api/UploadJobDescriptionBookTechnician/GetUploadJobDescriptionDetails",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -1,6 +1,6 @@
 ﻿namespace OtpAuthServices.Model
 {
-    public class BookTechnicianPayment
+    public class BookTechnicianPayment 
     {
     
         public string id { get; set; }

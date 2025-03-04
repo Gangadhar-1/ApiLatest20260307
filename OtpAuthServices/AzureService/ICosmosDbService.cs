@@ -241,6 +241,11 @@ string district, string category, string technicianId);
 
 
         Task<List<T>> GetBookTechnicianAddress(string userId);
+
+        Task<List<T>> GetSelctedJobsByCategory(string Category);
+
+        Task<List<T>> GetUploadJobDescriptionDetails<T>();
+        Task<List<T>> GetBookTechnicianListForAdmin<T>();
     }
 
 

@@ -17,6 +17,7 @@
 
 
         public string ZipCode { get; set; }
+        public  string MobileNumber { get; set; }        
 
 
         public string UserId { get; set; }
