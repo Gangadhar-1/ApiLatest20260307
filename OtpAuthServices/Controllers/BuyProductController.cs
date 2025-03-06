@@ -3,6 +3,7 @@ using OtpAuthServices.AzureService;
 using OtpAuthServices.Model;
 using System;
 using System.Collections.Generic;
+using System.Formats.Asn1;
 
 namespace OtpAuthServices.Controllers
 {
@@ -33,9 +34,12 @@ namespace OtpAuthServices.Controllers
 
             try
             {
-                buyProduct.BuyProductId = Guid.NewGuid().ToString();
+
+                var ticketId = GenerateRaiseTicketId();
                 buyProduct.id = Guid.NewGuid().ToString();
                 buyProduct.status = "Open";
+
+                buyProduct.BuyProductId = ticketId;
                 await _cosmosDbService.AddItemAsync(buyProduct);  // Add item to Cosmos DB
 
 
@@ -43,7 +47,8 @@ namespace OtpAuthServices.Controllers
                 return Ok(new
                 {
                     Message = "BuyProduct data uploaded successfully",
-                    BuyProductId = buyProduct.BuyProductId.ToString()  // Return as string in the response
+                    BuyProductId = buyProduct.id.ToString(),
+                    BuyProductTicketId = buyProduct.BuyProductId // Return as string in the response
                 });
             }
             catch (Exception ex)
@@ -53,23 +58,77 @@ namespace OtpAuthServices.Controllers
             }
         }
 
+
+        private string GenerateRaiseTicketId()
+        {
+            Random random = new Random();
+            string prefix = "BPRF"; // Fixed prefix
+            string numbers = random.Next(1000, 9999).ToString(); // Random 4-digit number
+            char letter = (char)random.Next('A', 'Z' + 1); // Random uppercase letter
+
+            return $"{prefix}{numbers}{letter}";
+        }
+
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBuyProduct(string id, [FromBody] BuyProduct buyProduct)
         {
             if (buyProduct == null || buyProduct.id != id)
             {
-                return BadRequest("BuyProduct information is incorrect.");
+                return BadRequest("BookTechnician information is incorrect.");
             }
 
-            var existingaddress = await _cosmosDbService.GetItemAsync(id);
-            if (existingaddress == null)
+            var existingbuyProduct = await _cosmosDbService.GetItemAsync(id);
+            if (existingbuyProduct == null)
             {
-                return NotFound();
+                return NotFound("BookTechnician not found.");
             }
 
-            await _cosmosDbService.UpdateItemAsync(buyProduct);
-            return Ok("BuyProduct data Updated successfully.");
+            // Allow TechnicianConfirmationCode to be set only once
+            if (string.IsNullOrEmpty(existingbuyProduct.TechnicianConfirmationCode))
+            {
+                existingbuyProduct.TechnicianConfirmationCode = GenerateRandomOtp(); // Set only if null/empty
+            }
+            else
+            {
+                Console.WriteLine("TechnicianConfirmationCode update ignored. Using existing value.");
+            }
+
+            // Other fields can still be updated
+            existingbuyProduct.BuyProductId = buyProduct.BuyProductId;
+            existingbuyProduct.PaymentMode = buyProduct.PaymentMode;
+
+            existingbuyProduct.UTRTransactionNumber = buyProduct.UTRTransactionNumber;
+
+            existingbuyProduct.status = buyProduct.status;
+            existingbuyProduct.AssignedTo = buyProduct.AssignedTo;
+
+            existingbuyProduct.DeliveryCharges=buyProduct.DeliveryCharges;
+
+            existingbuyProduct.ServiceCharges = buyProduct.ServiceCharges;      
+
+            existingbuyProduct.TotalPaymentAmount = buyProduct.TotalPaymentAmount;  
+            await _cosmosDbService.UpdateItemAsync(existingbuyProduct);
+
+            return Ok(new
+            {
+                Message = "BookTechnician updated successfully",
+                PaymentId = existingbuyProduct.id,
+                TechnicianConfirmationCode = existingbuyProduct.TechnicianConfirmationCode // Always return the correct value
+            });
         }
+        private string GenerateRandomOtp()
+        {
+            using (var rng = System.Security.Cryptography.RandomNumberGenerator.Create())
+            {
+                var bytes = new byte[4];
+                rng.GetBytes(bytes);
+                int randomNumber = BitConverter.ToInt32(bytes, 0);
+                return (Math.Abs(randomNumber % 900000) + 100000).ToString("D6");
+            }
+        }
+
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBuyProduct(string id)
@@ -83,6 +142,29 @@ namespace OtpAuthServices.Controllers
             await _cosmosDbService.DeleteItemAsync(id);
             return   Ok("Successfully  deleted  BuyProduct  Item. ");
         }
+
+
+
+
+        [HttpGet("GetBuyProductDetailsById/{id}")]
+        public async Task<IActionResult> GetBuyProductDetailsById(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest("BuyProductId cannot be null or empty.");
+            }
+
+            var buyProduct = await _cosmosDbService.GetItemAsync(id);
+            if (buyProduct == null)
+            {
+                return NotFound($"BuyProductId with ID {id} not found.");
+            }
+
+            return Ok(buyProduct);
+        }
+
+
+
 
         [HttpGet("GetBuyProductDetailsByBuyProductId/{BuyProductId}")]
         public async Task<ActionResult<List<AddressModel>>> GetBuyProductDetails(string BuyProductId)

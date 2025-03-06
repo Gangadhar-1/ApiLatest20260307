@@ -396,12 +396,12 @@ namespace OtpAuthServices.Controllers
                 }
                 else
                 {
-                    return Ok("Invalid OTP.");
+                    return NotFound("Invalid OTP.");
                 }
             }
             else
             {
-                return Ok("OTP expired or not found.");
+                return NotFound("OTP expired or not found.");
             }
         }
 
@@ -438,12 +438,12 @@ namespace OtpAuthServices.Controllers
                 }
                 else
                 {
-                    return Ok("Invalid OTP.");
+                    return NotFound("Invalid OTP.");
                 }
             }
             else
             {
-                return Ok("OTP expired or not found.");
+                return NotFound("OTP expired or not found.");
             }
         }
 

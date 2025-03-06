@@ -574,6 +574,263 @@
         }
       }
     },
+    "/api/BookTechnician/CreateBookTechnician": {
+      "post": {
+        "tags": [
+          "BookTechnician"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/BookTechnician"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BookTechnician/{id}": {
+      "delete": {
+        "tags": [
+          "BookTechnician"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "BookTechnician"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/BookTechnician"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BookTechnician/GetBookTechnician/{id}": {
+      "get": {
+        "tags": [
+          "BookTechnician"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BookTechnician/GetBookTechnicianListForAdmin": {
+      "get": {
+        "tags": [
+          "BookTechnician"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BookTechnicianAddress/AddressUpload": {
+      "post": {
+        "tags": [
+          "BookTechnicianAddress"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/BookTechnicianAddress"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BookTechnicianAddress/GetBookTechnicianAddressById/{userId}": {
+      "get": {
+        "tags": [
+          "BookTechnicianAddress"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/BookTechnicianAddress"
+            }
+          }
+        }
+      }
+    },
+    "/api/BookTechnicianPayment/CreateBookTechnicianPayment": {
+      "post": {
+        "tags": [
+          "BookTechnicianPayment"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/BookTechnicianPayment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BookTechnicianPayment/GetBookTechnicianPaymentById": {
+      "get": {
+        "tags": [
+          "BookTechnicianPayment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BookTechnicianPayment/{id}": {
+      "put": {
+        "tags": [
+          "BookTechnicianPayment"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/BookTechnicianPayment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "BookTechnicianPayment"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Builder/BuilderUpload": {
       "post": {
         "tags": [
@@ -2599,6 +2856,64 @@
           {
             "in": "query",
             "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Payment/sendLowestBidderTechnicianNotifications": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ticketId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "ConfirmationCode",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "technicianPhoneNumber",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Payment/sendLowestBidderDealerNotifications": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ticketId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "ConfirmationCode",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "technicianPhoneNumber",
             "type": "string"
           }
         ],
@@ -4645,6 +4960,133 @@
         }
       }
     },
+    "/api/UploadJobDescriptionBookTechnician/CreateUploadJobDescriptionBookTechnician": {
+      "post": {
+        "tags": [
+          "UploadJobDescriptionBookTechnician"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UploadJobDescriptionBookTechnician"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadJobDescriptionBookTechnician/{id}": {
+      "delete": {
+        "tags": [
+          "UploadJobDescriptionBookTechnician"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "UploadJobDescriptionBookTechnician"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UploadJobDescriptionBookTechnician"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadJobDescriptionBookTechnician/GetTicket/{id}": {
+      "get": {
+        "tags": [
+          "UploadJobDescriptionBookTechnician"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadJobDescriptionBookTechnician/GetSelctedJobsByCategory": {
+      "get": {
+        "tags": [
+          "UploadJobDescriptionBookTechnician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Category",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadJobDescriptionBookTechnician/GetUploadJobDescriptionDetails": {
+      "get": {
+        "tags": [
+          "UploadJobDescriptionBookTechnician"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/UserOnBoarding/UserUpload": {
       "post": {
         "tags": [
@@ -5021,6 +5463,9 @@
         "zipCode": {
           "type": "string"
         },
+        "mobileNumber": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         },
@@ -5031,6 +5476,158 @@
           "type": "string"
         },
         "fullName": {
+          "type": "string"
+        }
+      }
+    },
+    "BookTechnician": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "bookTechnicianId": {
+          "type": "string"
+        },
+        "date": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "customerName": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "assignedTo": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "statusCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "district": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "remarks": {
+          "type": "string"
+        },
+        "rate": {
+          "type": "string"
+        },
+        "discount": {
+          "type": "string"
+        },
+        "moreInfo": {
+          "type": "string"
+        },
+        "afterDiscount": {
+          "type": "string"
+        },
+        "jobDescription": {
+          "type": "string"
+        },
+        "paymentMode": {
+          "type": "string"
+        },
+        "approvedAmount": {
+          "type": "string"
+        },
+        "utrTransactionNumber": {
+          "type": "string"
+        },
+        "technicianConfirmationCode": {
+          "type": "string"
+        }
+      }
+    },
+    "BookTechnicianAddress": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "profileType": {
+          "type": "string"
+        },
+        "bookTechnicianAddressId": {
+          "type": "string"
+        },
+        "isPrimaryAddress": {
+          "type": "boolean"
+        },
+        "address": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "technicianFullName": {
+          "type": "string"
+        }
+      }
+    },
+    "BookTechnicianPayment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "bookTechnicianId": {
+          "type": "string"
+        },
+        "paymentId": {
+          "type": "string"
+        },
+        "paymentMode": {
+          "type": "string"
+        },
+        "approvedAmount": {
+          "type": "string"
+        },
+        "paidAmount": {
+          "type": "string"
+        },
+        "balancedAmount": {
+          "type": "string"
+        },
+        "paymentDataTime": {
+          "type": "string"
+        },
+        "technicianAmount": {
+          "type": "string"
+        },
+        "utrTransactionNumber": {
+          "type": "string"
+        },
+        "technicianConfirmationCode": {
           "type": "string"
         }
       }
@@ -5842,6 +6439,9 @@
         "assignedTo": {
           "type": "string"
         },
+        "rateQuotedBy": {
+          "type": "string"
+        },
         "id": {
           "type": "string"
         },
@@ -6034,6 +6634,29 @@
           "type": "string"
         },
         "option2Time": {
+          "type": "string"
+        }
+      }
+    },
+    "SelectedJob": {
+      "type": "object",
+      "properties": {
+        "jobDescription": {
+          "type": "string"
+        },
+        "rate": {
+          "type": "string"
+        },
+        "discount": {
+          "type": "string"
+        },
+        "afterDiscount": {
+          "type": "string"
+        },
+        "remarks": {
+          "type": "string"
+        },
+        "moreInfo": {
           "type": "string"
         }
       }
@@ -6235,6 +6858,30 @@
         },
         "comments": {
           "type": "string"
+        }
+      }
+    },
+    "UploadJobDescriptionBookTechnician": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "uploadBookTechnicianId": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "selectedJobs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SelectedJob"
+          }
         }
       }
     },
