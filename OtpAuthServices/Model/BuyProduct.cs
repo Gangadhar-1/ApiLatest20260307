@@ -13,6 +13,8 @@ namespace OtpAuthServices.Model
         [StringLength(250, ErrorMessage = "Address is too long.")]
         public string Address { get; set; }
 
+        public string Date { get; set; }    
+
         [Required]
         public string Category         { get; set; }
         public string  DeliveryDate { get; set; }   
