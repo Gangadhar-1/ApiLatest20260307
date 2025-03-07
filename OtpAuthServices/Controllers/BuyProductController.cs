@@ -108,6 +108,12 @@ namespace OtpAuthServices.Controllers
             existingbuyProduct.ServiceCharges = buyProduct.ServiceCharges;      
 
             existingbuyProduct.TotalPaymentAmount = buyProduct.TotalPaymentAmount;  
+
+            existingbuyProduct.DeliveryDate = buyProduct.DeliveryDate;      
+
+            existingbuyProduct.TechnicianDetils=buyProduct.TechnicianDetils;        
+
+            existingbuyProduct.InvoiceDetails = buyProduct.InvoiceDetails;      
             await _cosmosDbService.UpdateItemAsync(existingbuyProduct);
 
             return Ok(new

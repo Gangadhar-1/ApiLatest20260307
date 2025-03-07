@@ -15,7 +15,13 @@ namespace OtpAuthServices.Model
 
         [Required]
         public string Category         { get; set; }
+        public string  DeliveryDate { get; set; }   
 
+
+        public string TechnicianDetils { get; set; }        
+
+
+        public string InvoiceDetails { get; set; }          
 
 
        public string AssignedTo { get; set; }   
