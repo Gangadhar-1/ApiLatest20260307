@@ -170,6 +170,21 @@ namespace OtpAuthServices.Controllers
         }
 
 
+        [HttpGet("GetBuyProductDetailsForAdmin")]
+        public async Task<IActionResult> GetBuyProductDetails()
+        {
+           
+
+            var buyProduct = await _cosmosDbService.GetBuyProductDetailsForAdmin<BuyProduct>();
+            if (buyProduct == null)
+            {
+                return NotFound($"BuyProductId   not found.");
+            }
+
+            return Ok(buyProduct);
+        }
+
+
 
 
         [HttpGet("GetBuyProductDetailsByBuyProductId/{BuyProductId}")]

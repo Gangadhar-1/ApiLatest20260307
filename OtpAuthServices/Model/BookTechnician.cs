@@ -18,10 +18,6 @@
 
         public string Category { get; set; }
       
-
-
-
-
         public string status { get; set; }
 
 

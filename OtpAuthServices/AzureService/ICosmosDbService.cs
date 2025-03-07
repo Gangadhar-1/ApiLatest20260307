@@ -246,7 +246,12 @@ string district, string category, string technicianId);
 
         Task<List<T>> GetUploadJobDescriptionDetails<T>();
         Task<List<T>> GetBookTechnicianListForAdmin<T>();
+
+
+        Task<List<T>> GetBuyProductDetailsForAdmin<T>();
     }
+
+
 
 
 

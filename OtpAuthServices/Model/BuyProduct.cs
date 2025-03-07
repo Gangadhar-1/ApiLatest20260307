@@ -21,6 +21,8 @@ namespace OtpAuthServices.Model
         public string TechnicianDetils { get; set; }        
 
 
+        public string ProductView { get; set; } 
+
         public string InvoiceDetails { get; set; }          
 
 
