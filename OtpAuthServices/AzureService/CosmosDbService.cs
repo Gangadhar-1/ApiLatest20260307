@@ -817,7 +817,7 @@ WHERE 1=1";
                 foreach (var field in fieldsToCheck)
                 {
                     // Dynamically construct the query for each field and State
-                    string query = $"SELECT VALUE COUNT(1) FROM c WHERE c.{field} != null AND c.State = @State";
+                    string query = $"SELECT VALUE COUNT(1) FROM c WHERE c.{field} != null AND c.StateId = @State";
 
                     // Define the query with the State parameter
                     var queryDefinition = new QueryDefinition(query)
@@ -860,7 +860,7 @@ WHERE 1=1";
                 foreach (var field in fieldsToCheck)
                 {
                     // Dynamically construct the query for each field and State
-                    string query = $"SELECT VALUE COUNT(1) FROM c WHERE c.{field} != null AND c.State = @State  AND c.District=@district";
+                    string query = $"SELECT VALUE COUNT(1) FROM c WHERE c.{field} != null AND c.StateId = @State  AND c.DistrictId=@district";
 
                     // Define the query with the State parameter
                     var queryDefinition = new QueryDefinition(query)
@@ -3108,7 +3108,7 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
 
 
 
-        public async Task<List<TechnicianDTO>> GetTechnicianDirectoryDetails(
+        public async Task<List<Technician>> GetTechnicianDirectoryDetails(
       string searchQuery = null,
       string State = null,
       string District = null,
@@ -3187,8 +3187,8 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
                     queryDefinition = queryDefinition.WithParameter("@searchQuery", searchQuery);
 
                 // Execute query
-                var queryIterator = _container.GetItemQueryIterator<TechnicianDTO>(queryDefinition);
-                var results = new List<TechnicianDTO>();
+                var queryIterator = _container.GetItemQueryIterator<Technician>(queryDefinition);
+                var results = new List<Technician>();
 
                 // Read the results
                 while (queryIterator.HasMoreResults)
@@ -3203,7 +3203,7 @@ WHERE 1=1"; // Allows appending dynamic conditions easily
             {
                 // Log errors
                 Console.WriteLine($"Error: {ex.Message}");
-                return new List<TechnicianDTO>();
+                return new List<Technician>();
             }
         }
 
@@ -4937,6 +4937,74 @@ string district, string category, string technicianId)
                 Console.WriteLine($"Unexpected Error: {ex.Message}");
                 return new List<T>();
             }
+
         }
+
+            public async Task<List<T>> GetAllTicketsList<T>(string userId, string type)
+        {
+            try
+            {
+                string queryString = "";
+
+                if (type == "raiseTicket")
+                {
+                    queryString = @"
+                SELECT * FROM c  
+                WHERE c.RaiseTicketId !=null 
+                AND c.Address !=null
+                AND c.CustomerId = @userId 
+                AND (
+                    (ARRAY_LENGTH(c.TechnicianList) = 0 AND ARRAY_LENGTH(c.DealerList) = 0) 
+                    OR (ARRAY_LENGTH(c.TechnicianList) > 0 AND ARRAY_LENGTH(c.DealerList) = 0) 
+                    OR (ARRAY_LENGTH(c.TechnicianList) = 0 AND ARRAY_LENGTH(c.DealerList) > 0) 
+                    OR (ARRAY_LENGTH(c.TechnicianList) > 0 AND ARRAY_LENGTH(c.DealerList) > 0)
+                )
+                ORDER BY c.Date DESC";
+                }
+                else if (type == "buyProduct")
+                {
+                    queryString = @"
+               SELECT * FROM c  
+WHERE c.BuyProductId !=null 
+AND c.ProductName !=null 
+AND c.UTRTransactionNumber !=null  AND c.CustomerId = @userId";
+                }
+                else if (type == "bookTechnician")
+                {
+                    queryString = @"
+                SELECT * FROM c  
+                WHERE c.BookTechnicianId !=null  
+                AND c.Category !=null    AND c.CustomerId = @userId";
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid type provided");
+                }
+
+                var queryDefinition = new QueryDefinition(queryString).WithParameter("@userId", userId);
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                var results = new List<T>();
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    results.AddRange(response);
+                }
+
+                return results;
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"Cosmos DB Error: {ex.Message}");
+                return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected Error: {ex.Message}");
+                return new List<T>();
+            }
+        }
+
     }
-    }
+}

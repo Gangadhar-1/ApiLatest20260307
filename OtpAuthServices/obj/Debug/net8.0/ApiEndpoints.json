@@ -928,16 +928,6 @@
   {
     "ContainingType": "OtpAuthServices.Controllers.BuyProductController",
     "Method": "GetBuyProductDetails",
-    "RelativePath": "api/BuyProduct/GetBuyProductDetails",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OtpAuthServices.Controllers.BuyProductController",
-    "Method": "GetBuyProductDetails",
     "RelativePath": "api/BuyProduct/GetBuyProductDetailsByBuyProductId/{BuyProductId}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -975,6 +965,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.BuyProductController",
+    "Method": "GetBuyProductDetails",
+    "RelativePath": "api/BuyProduct/GetBuyProductDetailsForAdmin",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -2831,6 +2831,27 @@
         "Name": "updatedTicket",
         "Type": "OtpAuthServices.Model.RaiseTicket",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetAllTicketsList",
+    "RelativePath": "api/RaiseTicket/GetAllTicketsList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

@@ -829,9 +829,43 @@ namespace OtpAuthServices.Controllers
             }
         }
 
+        [HttpGet("GetAllTicketsList")]
+        public async Task<IActionResult> GetAllTicketsList(string userId, string type)
+        {
+           
+                try
+                {
+                    object result;
 
+                    if (type == "raiseTicket")
+                    {
+                        result = await _cosmosDbService.GetAllTicketsList<RaiseTicket>(userId, type);
+                    }
+                    else if (type == "buyProduct")
+                    {
+                        result = await _cosmosDbService.GetAllTicketsList<BuyProduct>(userId, type);
+                    }
+                    else if (type == "bookTechnician")
+                    {
+                        result = await _cosmosDbService.GetAllTicketsList<BookTechnician>(userId, type);
+                    }
+                    else
+                    {
+                        return BadRequest("Invalid type provided.");
+                    }
+
+                    return Ok(result);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error retrieving data: {ex.Message}");
+                    return StatusCode(500, "An error occurred while retrieving data.");
+                }
+            }
+
+
+        }
     }
-}
 
 
 

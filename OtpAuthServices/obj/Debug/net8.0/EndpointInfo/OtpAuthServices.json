@@ -1458,7 +1458,7 @@
         }
       }
     },
-    "/api/BuyProduct/GetBuyProductDetails": {
+    "/api/BuyProduct/GetBuyProductDetailsForAdmin": {
       "get": {
         "tags": [
           "BuyProduct"
@@ -4800,6 +4800,34 @@
         }
       }
     },
+    "/api/RaiseTicket/GetAllTicketsList": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/RaiseTicketExtention/CreateRaiseTicketExtension": {
       "post": {
         "tags": [
@@ -6699,6 +6727,10 @@
             "maxLength": 250,
             "minLength": 0,
             "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "nullable": true
           },
           "category": {
             "minLength": 1,

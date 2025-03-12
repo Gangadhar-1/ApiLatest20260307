@@ -45,7 +45,7 @@ namespace OtpAuthServices.AzureService
         Task<List<T>> GetTechnicianDetailsByUserId(string userId);
       Task<List <T>> GetBuilderDetailsByUserId (string userId);
 
-        Task<List<TechnicianDTO>> GetTechnicianDirectoryDetails(
+        Task<List<Technician>> GetTechnicianDirectoryDetails(
       string searchQuery = null,
       string State = null,
       string District = null,
@@ -249,6 +249,8 @@ string district, string category, string technicianId);
 
 
         Task<List<T>> GetBuyProductDetailsForAdmin<T>();
+
+        Task<List<T>> GetAllTicketsList<T>(string userId, string type);
     }
 
 
