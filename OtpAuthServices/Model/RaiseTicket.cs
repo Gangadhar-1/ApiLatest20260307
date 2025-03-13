@@ -13,6 +13,8 @@ namespace OtpAuthServices.Model
 
         public string ApprovedAmount { get; set; }
         public string CustomerName { get; set; }
+
+        public string CustomerEmail { get; set; }
         public string Address { get; set; }
         public string Subject { get; set; }
 

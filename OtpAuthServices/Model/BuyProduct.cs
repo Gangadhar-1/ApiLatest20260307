@@ -72,8 +72,9 @@ namespace OtpAuthServices.Model
         public string  CustomerId { get; set; } 
 
 
-        public string CustomerName { get; set; }     
+        public string CustomerName { get; set; }
 
+       public string  CustomerEmail { get; set; }
         public string CustomerPhoneNumber { get; set; }
 
         public string PaymentMode { get; set; }
