@@ -513,117 +513,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "OtpAuthServices.Controllers.BookTechnicianAddressController",
-    "Method": "UploadAddress",
-    "RelativePath": "api/BookTechnicianAddress/AddressUpload",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "BookTechnicianAddress",
-        "Type": "OtpAuthServices.Model.BookTechnicianAddress",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OtpAuthServices.Controllers.BookTechnicianAddressController",
-    "Method": "GetBookTechnicianAddressById",
-    "RelativePath": "api/BookTechnicianAddress/GetBookTechnicianAddressById/{userId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "OtpAuthServices.Model.BookTechnicianAddress",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "OtpAuthServices.Controllers.BookTechnicianPaymentController",
-    "Method": "UpdatePayment",
-    "RelativePath": "api/BookTechnicianPayment/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "BookTechnicianPayment",
-        "Type": "OtpAuthServices.Model.BookTechnicianPayment",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OtpAuthServices.Controllers.BookTechnicianPaymentController",
-    "Method": "DeletePayment",
-    "RelativePath": "api/BookTechnicianPayment/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OtpAuthServices.Controllers.BookTechnicianPaymentController",
-    "Method": "CreateTicket",
-    "RelativePath": "api/BookTechnicianPayment/CreateBookTechnicianPayment",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "BookTechnicianPayment",
-        "Type": "OtpAuthServices.Model.BookTechnicianPayment",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OtpAuthServices.Controllers.BookTechnicianPaymentController",
-    "Method": "GetPaymentByPamentId",
-    "RelativePath": "api/BookTechnicianPayment/GetBookTechnicianPaymentById",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "OtpAuthServices.Controllers.BuilderController",
     "Method": "GetBuilderById",
     "RelativePath": "api/Builder/{builderId}",
@@ -1076,6 +965,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.BuyProductController",
+    "Method": "GetBuyProductDetails",
+    "RelativePath": "api/BuyProduct/GetBuyProductDetailsForAdmin",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -2932,6 +2831,27 @@
         "Name": "updatedTicket",
         "Type": "OtpAuthServices.Model.RaiseTicket",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "GetAllTicketsList",
+    "RelativePath": "api/RaiseTicket/GetAllTicketsList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

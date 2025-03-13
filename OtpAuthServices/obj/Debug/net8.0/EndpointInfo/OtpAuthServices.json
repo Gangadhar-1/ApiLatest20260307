@@ -6466,6 +6466,10 @@
             "type": "string",
             "nullable": true
           },
+          "emailAddress": {
+            "type": "string",
+            "nullable": true
+          },
           "userId": {
             "type": "string",
             "nullable": true
@@ -6501,6 +6505,10 @@
             "format": "date-time"
           },
           "customerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerEmail": {
             "type": "string",
             "nullable": true
           },
