@@ -94,13 +94,12 @@
           }
         }
       },
-      "Microsoft.Azure.Cosmos/3.45.0": {
+      "Microsoft.Azure.Cosmos/3.47.2": {
         "type": "package",
         "dependencies": {
           "Azure.Core": "1.44.1",
           "Microsoft.Bcl.AsyncInterfaces": "6.0.0",
           "Microsoft.Bcl.HashCode": "1.1.0",
-          "Newtonsoft.Json": "10.0.2",
           "System.Buffers": "4.5.1",
           "System.Collections.Immutable": "1.7.0",
           "System.Configuration.ConfigurationManager": "6.0.0",
@@ -130,7 +129,7 @@
           "lib/netstandard2.0/Microsoft.Azure.Cosmos.Serialization.HybridRow.dll": {}
         },
         "build": {
-          "build/netstandard2.0/Microsoft.Azure.Cosmos.targets": {}
+          "buildTransitive/netstandard2.0/Microsoft.Azure.Cosmos.targets": {}
         },
         "runtimeTargets": {
           "runtimes/win-x64/native/Cosmos.CRTCompat.dll": {
@@ -2865,10 +2864,10 @@
         "lib/netstandard2.0/Bogus.xml"
       ]
     },
-    "Microsoft.Azure.Cosmos/3.45.0": {
-      "sha512": "7qWxpkuNP0eJZxo/QwDJj9waIyn4vXSNeSjUbnN6riyZqAkuU4vOSPxjMYR76t5M83x0BncmG4hkjUDDZsZl9g==",
+    "Microsoft.Azure.Cosmos/3.47.2": {
+      "sha512": "lRHh/lifbcJnHsUjCYJEzD8DuVrl9/bZSvvOJD0minP16Waj20DImVrillZGvXuY8opDgFvFtQMc7W7Pln1oGA==",
       "type": "package",
-      "path": "microsoft.azure.cosmos/3.45.0",
+      "path": "microsoft.azure.cosmos/3.47.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2876,12 +2875,13 @@
         "LICENSE",
         "ThirdPartyNotice.txt",
         "build/netstandard2.0/Microsoft.Azure.Cosmos.targets",
+        "buildTransitive/netstandard2.0/Microsoft.Azure.Cosmos.targets",
         "lib/netstandard2.0/Microsoft.Azure.Cosmos.Client.dll",
         "lib/netstandard2.0/Microsoft.Azure.Cosmos.Client.xml",
         "lib/netstandard2.0/Microsoft.Azure.Cosmos.Core.dll",
         "lib/netstandard2.0/Microsoft.Azure.Cosmos.Direct.dll",
         "lib/netstandard2.0/Microsoft.Azure.Cosmos.Serialization.HybridRow.dll",
-        "microsoft.azure.cosmos.3.45.0.nupkg.sha512",
+        "microsoft.azure.cosmos.3.47.2.nupkg.sha512",
         "microsoft.azure.cosmos.nuspec",
         "runtimes/win-x64/native/Cosmos.CRTCompat.dll",
         "runtimes/win-x64/native/Microsoft.Azure.Cosmos.ServiceInterop.dll",
@@ -8736,7 +8736,7 @@
     "net8.0": [
       "Azure.Storage.Blobs >= 12.22.1",
       "Bogus >= 35.6.1",
-      "Microsoft.Azure.Cosmos >= 3.45.0",
+      "Microsoft.Azure.Cosmos >= 3.47.2",
       "Microsoft.Azure.DocumentDB.Core >= 2.22.0",
       "Microsoft.Data.SqlClient >= 5.2.2",
       "Microsoft.Extensions.Caching.Memory >= 8.0.0",
@@ -8745,23 +8745,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Users\\Admin\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\APILatest2025-03-14\\OtpAuthServices\\OtpAuthServices.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\APILatest2025-03-14\\OtpAuthServices\\OtpAuthServices.csproj",
       "projectName": "OtpAuthServices",
-      "projectPath": "C:\\Users\\User\\source\\repos\\APILatest2025-03-14\\OtpAuthServices\\OtpAuthServices.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Source\\Repos\\APILatest2025-03-14\\OtpAuthServices\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\source\\repos\\APILatest2025-03-14\\OtpAuthServices\\OtpAuthServices.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Source\\Repos\\APILatest2025-03-14\\OtpAuthServices\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -8788,7 +8788,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -8804,7 +8805,7 @@
           },
           "Microsoft.Azure.Cosmos": {
             "target": "Package",
-            "version": "[3.45.0, )"
+            "version": "[3.47.2, )"
           },
           "Microsoft.Azure.DocumentDB.Core": {
             "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -8847,7 +8848,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
