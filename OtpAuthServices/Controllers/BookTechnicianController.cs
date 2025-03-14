@@ -152,6 +152,58 @@ namespace OtpAuthServices.Controllers
 
 
 
+
+        [HttpPost]
+        [Route("bookTechnicianEdit")]
+        public async Task<IActionResult> bookTechnicianEdit(string id, string OrederId = null, string OrderDate = null,  string PaidAmount=null,string TransactionStatus =null,
+            string TransactionType =null,string  InvoiceId =null,string  InvoiceURL =null)
+        {
+            
+            if (id == null)
+            {
+                return BadRequest($"BookTechnician information is incorrect or {id} mismatch.");
+            }
+
+            BookTechnician existingBookTechnician= null;
+            try
+            {
+                existingBookTechnician = await _cosmosDbService.GetItemAsync(id); 
+
+                if (existingBookTechnician == null)
+                {
+                    return NotFound($"Customer with ID {id} not found.");
+                }
+            }
+            catch (CosmosException ex)
+            {
+                return StatusCode(500, $"Error retrieving data from Cosmos DB: {ex.Message}");
+            }
+
+            existingBookTechnician.OrederId = OrederId;
+
+            existingBookTechnician.OrderDate = OrderDate;
+            existingBookTechnician.PaidAmount = PaidAmount;
+            existingBookTechnician.TransactionStatus = TransactionStatus;
+            existingBookTechnician.TransactionType = TransactionType;
+            existingBookTechnician.InvoiceId = InvoiceId;
+            existingBookTechnician.InvoiceURL = InvoiceURL; 
+            
+            
+            try
+            {
+                await _cosmosDbService.UpdateItemAsync(existingBookTechnician);
+
+                return Ok(existingBookTechnician);  
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while updating BookTechnician data.");
+            }
+        }
+
+
+
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBookTechnician(string id, [FromBody] BookTechnician BookTechnician)
         {
