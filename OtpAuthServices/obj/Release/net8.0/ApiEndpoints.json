@@ -978,6 +978,57 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.BuyProductController",
+    "Method": "buyProductEdit",
+    "RelativePath": "api/BuyProduct/buyProductEdit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrederId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderDate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PaidAmount",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TransactionStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TransactionType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InvoiceId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InvoiceURL",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.BuyProductController",
     "Method": "UploadAddress",
     "RelativePath": "api/BuyProduct/BuyProductUpload",
     "HttpMethod": "POST",
@@ -3384,6 +3435,57 @@
     "Parameters": [
       {
         "Name": "customerId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "RaiseTicketEdit",
+    "RelativePath": "api/RaiseTicket/RaiseTicketEdit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrederId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderDate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PaidAmount",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TransactionStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TransactionType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InvoiceId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InvoiceURL",
         "Type": "System.String",
         "IsRequired": false
       }

@@ -890,7 +890,7 @@ namespace OtpAuthServices.Controllers
                 return StatusCode(500, $"Error retrieving data from Cosmos DB: {ex.Message}");
             }
 
-            existingRaiseTicket.OrederId = OrederId;
+            existingRaiseTicket.OrderId = OrederId;
 
             existingRaiseTicket.OrderDate = OrderDate;
             existingRaiseTicket.PaidAmount = PaidAmount;
