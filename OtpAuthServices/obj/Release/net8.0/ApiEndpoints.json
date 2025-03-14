@@ -504,8 +504,24 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.BookTechnicianController",
+    "Method": "GetBookTechnicianDetailsForUserList",
+    "RelativePath": "api/BookTechnician/GetBookTechnicianDetailsForUserList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.BookTechnicianController",
     "Method": "GetBookTechnicianListForAdmin",
-    "RelativePath": "api/BookTechnician/GetBookTechnicianListForAdmin",
+    "RelativePath": "api/BookTechnician/GetBookTechnicianForAdminList",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -970,7 +986,7 @@
   {
     "ContainingType": "OtpAuthServices.Controllers.BuyProductController",
     "Method": "GetBuyProductDetails",
-    "RelativePath": "api/BuyProduct/GetBuyProductDetailsForAdmin",
+    "RelativePath": "api/BuyProduct/GetBuyProductDetailsForAdminList",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

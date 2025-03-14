@@ -682,155 +682,6 @@
         }
       }
     },
-    "/api/BookTechnicianAddress/AddressUpload": {
-      "post": {
-        "tags": [
-          "BookTechnicianAddress"
-        ],
-        "consumes": [
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "schema": {
-              "$ref": "#/definitions/BookTechnicianAddress"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/BookTechnicianAddress/GetBookTechnicianAddressById/{userId}": {
-      "get": {
-        "tags": [
-          "BookTechnicianAddress"
-        ],
-        "produces": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": "#/definitions/BookTechnicianAddress"
-            }
-          }
-        }
-      }
-    },
-    "/api/BookTechnicianPayment/CreateBookTechnicianPayment": {
-      "post": {
-        "tags": [
-          "BookTechnicianPayment"
-        ],
-        "consumes": [
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "schema": {
-              "$ref": "#/definitions/BookTechnicianPayment"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/BookTechnicianPayment/GetBookTechnicianPaymentById": {
-      "get": {
-        "tags": [
-          "BookTechnicianPayment"
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "id",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/BookTechnicianPayment/{id}": {
-      "put": {
-        "tags": [
-          "BookTechnicianPayment"
-        ],
-        "consumes": [
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "schema": {
-              "$ref": "#/definitions/BookTechnicianPayment"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "BookTechnicianPayment"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
     "/api/Builder/BuilderUpload": {
       "post": {
         "tags": [
@@ -1316,6 +1167,38 @@
             "required": true,
             "type": "string"
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/GetBuyProductDetailsById/{id}": {
+      "get": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/GetBuyProductDetailsForAdmin": {
+      "get": {
+        "tags": [
+          "BuyProduct"
         ],
         "responses": {
           "200": {
@@ -4108,6 +3991,30 @@
         }
       }
     },
+    "/api/RaiseTicket/GetAllTicketsList": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/RaiseTicketExtention/CreateRaiseTicketExtension": {
       "post": {
         "tags": [
@@ -5466,6 +5373,9 @@
         "mobileNumber": {
           "type": "string"
         },
+        "emailAddress": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         },
@@ -5494,6 +5404,9 @@
           "type": "string"
         },
         "customerName": {
+          "type": "string"
+        },
+        "customerEmail": {
           "type": "string"
         },
         "address": {
@@ -5549,79 +5462,6 @@
           "type": "string"
         },
         "approvedAmount": {
-          "type": "string"
-        },
-        "utrTransactionNumber": {
-          "type": "string"
-        },
-        "technicianConfirmationCode": {
-          "type": "string"
-        }
-      }
-    },
-    "BookTechnicianAddress": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "profileType": {
-          "type": "string"
-        },
-        "bookTechnicianAddressId": {
-          "type": "string"
-        },
-        "isPrimaryAddress": {
-          "type": "boolean"
-        },
-        "address": {
-          "type": "string"
-        },
-        "state": {
-          "type": "string"
-        },
-        "district": {
-          "type": "string"
-        },
-        "zipCode": {
-          "type": "string"
-        },
-        "userId": {
-          "type": "string"
-        },
-        "technicianFullName": {
-          "type": "string"
-        }
-      }
-    },
-    "BookTechnicianPayment": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "bookTechnicianId": {
-          "type": "string"
-        },
-        "paymentId": {
-          "type": "string"
-        },
-        "paymentMode": {
-          "type": "string"
-        },
-        "approvedAmount": {
-          "type": "string"
-        },
-        "paidAmount": {
-          "type": "string"
-        },
-        "balancedAmount": {
-          "type": "string"
-        },
-        "paymentDataTime": {
-          "type": "string"
-        },
-        "technicianAmount": {
           "type": "string"
         },
         "utrTransactionNumber": {
@@ -5732,8 +5572,7 @@
         "category",
         "district",
         "productName",
-        "state",
-        "zipCode"
+        "state"
       ],
       "type": "object",
       "properties": {
@@ -5748,8 +5587,26 @@
           "minLength": 0,
           "type": "string"
         },
+        "date": {
+          "type": "string"
+        },
         "category": {
           "minLength": 1,
+          "type": "string"
+        },
+        "deliveryDate": {
+          "type": "string"
+        },
+        "technicianDetils": {
+          "type": "string"
+        },
+        "productView": {
+          "type": "string"
+        },
+        "invoiceDetails": {
+          "type": "string"
+        },
+        "assignedTo": {
           "type": "string"
         },
         "status": {
@@ -5768,13 +5625,22 @@
         "color": {
           "type": "string"
         },
-        "otherThanProduct": {
+        "rate": {
+          "type": "string"
+        },
+        "discount": {
+          "type": "string"
+        },
+        "afterDiscountPrice": {
+          "type": "string"
+        },
+        "selectedColors": {
+          "type": "string"
+        },
+        "totalAmount": {
           "type": "string"
         },
         "requiredQuantity": {
-          "type": "string"
-        },
-        "units": {
           "type": "string"
         },
         "addressType": {
@@ -5789,11 +5655,36 @@
           "type": "string"
         },
         "zipCode": {
-          "minLength": 1,
-          "pattern": "^[0-9]{6}$",
           "type": "string"
         },
         "customerId": {
+          "type": "string"
+        },
+        "customerName": {
+          "type": "string"
+        },
+        "customerEmail": {
+          "type": "string"
+        },
+        "customerPhoneNumber": {
+          "type": "string"
+        },
+        "paymentMode": {
+          "type": "string"
+        },
+        "utrTransactionNumber": {
+          "type": "string"
+        },
+        "technicianConfirmationCode": {
+          "type": "string"
+        },
+        "deliveryCharges": {
+          "type": "string"
+        },
+        "serviceCharges": {
+          "type": "string"
+        },
+        "totalPaymentAmount": {
           "type": "string"
         }
       }
@@ -6422,6 +6313,9 @@
           "type": "string"
         },
         "customerName": {
+          "type": "string"
+        },
+        "customerEmail": {
           "type": "string"
         },
         "address": {

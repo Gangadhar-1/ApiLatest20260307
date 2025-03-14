@@ -251,6 +251,8 @@ string district, string category, string technicianId);
         Task<List<T>> GetBuyProductDetailsForAdmin<T>();
 
         Task<List<T>> GetAllTicketsList<T>(string userId, string type);
+
+        Task<List<T>> GetBookTechnicianDetailsForUserList<T>(string UserId);
     }
 
 

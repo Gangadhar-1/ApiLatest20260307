@@ -170,7 +170,7 @@ namespace OtpAuthServices.Controllers
         }
 
 
-        [HttpGet("GetBuyProductDetailsForAdmin")]
+        [HttpGet("GetBuyProductDetailsForAdminList")]
         public async Task<IActionResult> GetBuyProductDetails()
         {
            
@@ -183,6 +183,11 @@ namespace OtpAuthServices.Controllers
 
             return Ok(buyProduct);
         }
+
+
+
+
+        
 
 
 

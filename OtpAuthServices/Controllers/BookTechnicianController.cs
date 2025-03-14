@@ -92,7 +92,7 @@ namespace OtpAuthServices.Controllers
         }
 
 
-        [HttpGet("GetBookTechnicianListForAdmin")]
+        [HttpGet("GetBookTechnicianForAdminList")]
         public async Task<IActionResult> GetBookTechnicianListForAdmin()
         {
             var bookTechnicians = await _cosmosDbService.GetBookTechnicianListForAdmin<BookTechnician>();
@@ -105,6 +105,20 @@ namespace OtpAuthServices.Controllers
             return Ok(bookTechnicians);
         }
 
+
+        [HttpGet("GetBookTechnicianDetailsForUserList")]
+        public async Task<IActionResult> GetBookTechnicianDetailsForUserList(string userId)
+        {
+
+
+            var buyProduct = await _cosmosDbService.GetBookTechnicianDetailsForUserList<BookTechnician>(userId);
+            if (buyProduct == null)
+            {
+                return NotFound($"BuyProductId   not found.");
+            }
+
+            return Ok(buyProduct);
+        }
 
 
 
