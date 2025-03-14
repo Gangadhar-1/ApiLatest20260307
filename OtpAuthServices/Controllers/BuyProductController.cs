@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Cosmos;
 using OtpAuthServices.AzureService;
 using OtpAuthServices.Model;
 using System;
@@ -175,7 +176,7 @@ namespace OtpAuthServices.Controllers
         {
            
 
-            var buyProduct = await _cosmosDbService.GetBuyProductDetailsForAdmin<BuyProduct>();
+            var buyProduct = await _cosmosDbService.GetBuyProductDetailsForAdminList<BuyProduct>();
             if (buyProduct == null)
             {
                 return NotFound($"BuyProductId   not found.");
@@ -186,8 +187,21 @@ namespace OtpAuthServices.Controllers
 
 
 
+        [HttpGet("GetBuyProductDetailsForUserList")]
+        public async Task<IActionResult> GetBuyProductDetailsForUserList(string userId)
+        {
 
-        
+
+            var buyProduct = await _cosmosDbService.GetBuyProductDetailsForUserList<BuyProduct>(userId);
+            if (buyProduct == null)
+            {
+                return NotFound($"BuyProductId   not found.");
+            }
+
+            return Ok(buyProduct);
+        }
+
+
 
 
 
@@ -323,6 +337,54 @@ namespace OtpAuthServices.Controllers
             {
                 Console.WriteLine($"Error: {ex.Message}");
                 return StatusCode(500, "Unexpected error occurred.");
+            }
+        }
+
+        [HttpPost]
+        [Route("buyProductEdit")]
+        public async Task<IActionResult> buyProductEdit(string id, string OrederId = null, string OrderDate = null, string PaidAmount = null, string TransactionStatus = null,
+            string TransactionType = null, string InvoiceId = null, string InvoiceURL = null)
+        {
+
+            if (id == null)
+            {
+                return BadRequest($"BuyProduct information is incorrect or {id} mismatch.");
+            }
+
+            BuyProduct existingBuyProduct = null;
+            try
+            {
+                existingBuyProduct = await _cosmosDbService.GetItemAsync(id);
+
+                if (existingBuyProduct == null)
+                {
+                    return NotFound($"BuyProduct with ID {id} not found.");
+                }
+            }
+            catch (CosmosException ex)
+            {
+                return StatusCode(500, $"Error retrieving data from Cosmos DB: {ex.Message}");
+            }
+
+            existingBuyProduct.OrederId = OrederId;
+
+            existingBuyProduct.OrderDate = OrderDate;
+            existingBuyProduct.PaidAmount = PaidAmount;
+            existingBuyProduct.TransactionStatus = TransactionStatus;
+            existingBuyProduct.TransactionType = TransactionType;
+            existingBuyProduct.InvoiceId = InvoiceId;
+            existingBuyProduct.InvoiceURL = InvoiceURL;
+
+
+            try
+            {
+                await _cosmosDbService.UpdateItemAsync(existingBuyProduct);
+
+                return Ok(existingBuyProduct);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while updating BuyProduct data.");
             }
         }
 

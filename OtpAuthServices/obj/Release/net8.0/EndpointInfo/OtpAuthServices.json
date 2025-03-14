@@ -1561,6 +1561,27 @@
         }
       }
     },
+    "/api/BuyProduct/GetBuyProductDetailsForUserList": {
+      "get": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/BuyProduct/GetBuyProductDetailsByBuyProductId/{BuyProductId}": {
       "get": {
         "tags": [

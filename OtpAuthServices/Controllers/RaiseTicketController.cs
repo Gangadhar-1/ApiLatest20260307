@@ -864,7 +864,55 @@ namespace OtpAuthServices.Controllers
             }
 
 
+        [HttpPost]
+        [Route("RaiseTicketEdit")]
+        public async Task<IActionResult> RaiseTicketEdit(string id, string OrederId = null, string OrderDate = null, string PaidAmount = null, string TransactionStatus = null,
+            string TransactionType = null, string InvoiceId = null, string InvoiceURL = null)
+        {
+
+            if (id == null)
+            {
+                return BadRequest($"RaiseTicket information is incorrect or {id} mismatch.");
+            }
+
+            RaiseTicket existingRaiseTicket = null;
+            try
+            {
+                existingRaiseTicket = await _cosmosDbService.GetItemAsync(id);
+
+                if (existingRaiseTicket == null)
+                {
+                    return NotFound($"RaiseTicket with ID {id} not found.");
+                }
+            }
+            catch (CosmosException ex)
+            {
+                return StatusCode(500, $"Error retrieving data from Cosmos DB: {ex.Message}");
+            }
+
+            existingRaiseTicket.OrederId = OrederId;
+
+            existingRaiseTicket.OrderDate = OrderDate;
+            existingRaiseTicket.PaidAmount = PaidAmount;
+            existingRaiseTicket.TransactionStatus = TransactionStatus;
+            existingRaiseTicket.TransactionType = TransactionType;
+            existingRaiseTicket.InvoiceId = InvoiceId;
+            existingRaiseTicket.InvoiceURL = InvoiceURL;
+
+
+            try
+            {
+                await _cosmosDbService.UpdateItemAsync(existingRaiseTicket);
+
+                return Ok(existingRaiseTicket);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while updating RaiseTicket data.");
+            }
         }
+
+    }
     }
 
 

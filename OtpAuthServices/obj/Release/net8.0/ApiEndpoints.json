@@ -1046,6 +1046,22 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.BuyProductController",
+    "Method": "GetBuyProductDetailsForUserList",
+    "RelativePath": "api/BuyProduct/GetBuyProductDetailsForUserList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.BuyProductController",
     "Method": "GetTotalCountOfBuyProducts",
     "RelativePath": "api/BuyProduct/GetTotalCountOfBuyProducts",
     "HttpMethod": "GET",

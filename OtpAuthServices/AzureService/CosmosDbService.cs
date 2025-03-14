@@ -4905,6 +4905,45 @@ string district, string category, string technicianId)
 
 
 
+
+        public async Task<List<T>> GetBuyProductDetailsForAdminList<T>()
+        {
+            try
+            {
+                // Corrected query with IS NOT NULL
+                var queryDefinition = new QueryDefinition(
+                    "SELECT * FROM c where c.BuyProductId  !=null and c.TotalPaymentAmount !=null  and c.CustomerId !=null "
+                );
+
+                // Create a query iterator
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                var results = new List<T>();
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    results.AddRange(response);
+                }
+
+                return results;
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"Cosmos DB Error: {ex.Message}");
+                return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected Error: {ex.Message}");
+                return new List<T>();
+            }
+
+
+        }
+
+
+
         public async Task<List<T>> GetBookTechnicianDetailsForUserList<T>(string UserId)
         {
             try
@@ -4941,6 +4980,46 @@ string district, string category, string technicianId)
 
         }
 
+
+
+
+
+
+        public async Task<List<T>> GetBuyProductDetailsForUserList<T>(string UserId)
+        {
+            try
+            {
+                // Corrected query with IS NOT NULL
+                var queryDefinition = new QueryDefinition(
+                    "SELECT * FROM c where c.BuyProductId  !=null and c.TotalPaymentAmount !=null  and c.CustomerId=@userId "
+                ).WithParameter("@userId", UserId);
+
+                // Create a query iterator
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                var results = new List<T>();
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    results.AddRange(response);
+                }
+
+                return results;
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"Cosmos DB Error: {ex.Message}");
+                return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected Error: {ex.Message}");
+                return new List<T>();
+            }
+
+
+        }
 
 
         public async Task<List<T>> GetBuyProductDetailsForAdmin<T>()
