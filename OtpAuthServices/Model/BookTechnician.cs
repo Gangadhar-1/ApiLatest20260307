@@ -56,7 +56,7 @@
         public string TechnicianConfirmationCode { get; set; }
 
 
-        public string OrederId { get; set; }
+        public string OrderId { get; set; }
 
         public string OrderDate { get; set; }
 

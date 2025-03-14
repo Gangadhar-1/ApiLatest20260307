@@ -472,6 +472,57 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.BookTechnicianController",
+    "Method": "bookTechnicianEdit",
+    "RelativePath": "api/BookTechnician/bookTechnicianEdit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrederId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderDate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PaidAmount",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TransactionStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TransactionType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InvoiceId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InvoiceURL",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.BookTechnicianController",
     "Method": "CreateTicket",
     "RelativePath": "api/BookTechnician/CreateBookTechnician",
     "HttpMethod": "POST",
@@ -504,8 +555,24 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.BookTechnicianController",
+    "Method": "GetBookTechnicianDetailsForUserList",
+    "RelativePath": "api/BookTechnician/GetBookTechnicianDetailsForUserList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.BookTechnicianController",
     "Method": "GetBookTechnicianListForAdmin",
-    "RelativePath": "api/BookTechnician/GetBookTechnicianListForAdmin",
+    "RelativePath": "api/BookTechnician/GetBookTechnicianForAdminList",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -911,6 +978,57 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.BuyProductController",
+    "Method": "buyProductEdit",
+    "RelativePath": "api/BuyProduct/buyProductEdit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrederId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderDate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PaidAmount",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TransactionStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TransactionType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InvoiceId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InvoiceURL",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.BuyProductController",
     "Method": "UploadAddress",
     "RelativePath": "api/BuyProduct/BuyProductUpload",
     "HttpMethod": "POST",
@@ -970,11 +1088,27 @@
   {
     "ContainingType": "OtpAuthServices.Controllers.BuyProductController",
     "Method": "GetBuyProductDetails",
-    "RelativePath": "api/BuyProduct/GetBuyProductDetailsForAdmin",
+    "RelativePath": "api/BuyProduct/GetBuyProductDetailsForAdminList",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.BuyProductController",
+    "Method": "GetBuyProductDetailsForUserList",
+    "RelativePath": "api/BuyProduct/GetBuyProductDetailsForUserList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -3301,6 +3435,57 @@
     "Parameters": [
       {
         "Name": "customerId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "RaiseTicketEdit",
+    "RelativePath": "api/RaiseTicket/RaiseTicketEdit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrederId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderDate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PaidAmount",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TransactionStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TransactionType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InvoiceId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InvoiceURL",
         "Type": "System.String",
         "IsRequired": false
       }

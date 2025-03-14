@@ -63,8 +63,7 @@ namespace OtpAuthServices.Model
 
 
 
-
-        public string OrederId { get; set; }
+        public string OrderId { get; set; }
 
         public string OrderDate { get; set; }
 
