@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "mRNZp2yg06KbnfP0OiotD7kx0eb2Hrbis95s/8oSjiw=",
+  "Hash": "ia6X0JF2jCb3qiz4pffw0DCx7X7JnlNC3RThsT4O9WI=",
   "Source": "OtpAuthServices",
   "BasePath": "_content/OtpAuthServices",
   "Mode": "Default",
   "ManifestType": "Publish",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

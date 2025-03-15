@@ -868,64 +868,25 @@
         "tags": [
           "BookTechnician"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OrederId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OrderDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "PaidAmount",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TransactionStatus",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TransactionType",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "InvoiceId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "InvoiceURL",
-            "in": "query",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Success"
@@ -1719,6 +1680,37 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/buyProductEdit": {
+      "post": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Success"
@@ -4940,6 +4932,76 @@
         }
       }
     },
+    "/api/RaiseTicket/RaiseTicketEdit": {
+      "post": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrederId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PaidAmount",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TransactionStatus",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TransactionType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "InvoiceId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "InvoiceURL",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/RaiseTicketExtention/CreateRaiseTicketExtension": {
       "post": {
         "tags": [
@@ -6704,7 +6766,7 @@
             "type": "string",
             "nullable": true
           },
-          "orederId": {
+          "orderId": {
             "type": "string",
             "nullable": true
           },
@@ -7001,6 +7063,34 @@
             "nullable": true
           },
           "totalPaymentAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "paidAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceURL": {
             "type": "string",
             "nullable": true
           }
@@ -7514,6 +7604,44 @@
         },
         "additionalProperties": false
       },
+      "PaymentRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "orederId": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "paidAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceURL": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Product": {
         "required": [
           "catalogue",
@@ -7905,6 +8033,34 @@
             "nullable": true
           },
           "option2Time": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "paidAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceURL": {
             "type": "string",
             "nullable": true
           }

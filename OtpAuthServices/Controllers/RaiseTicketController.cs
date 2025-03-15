@@ -866,23 +866,22 @@ namespace OtpAuthServices.Controllers
 
         [HttpPost]
         [Route("RaiseTicketEdit")]
-        public async Task<IActionResult> RaiseTicketEdit(string id, string OrederId = null, string OrderDate = null, string PaidAmount = null, string TransactionStatus = null,
-            string TransactionType = null, string InvoiceId = null, string InvoiceURL = null)
+        public async Task<IActionResult> RaiseTicketEdit(PaymentRequest payment)
         {
 
-            if (id == null)
+            if (payment.id == null)
             {
-                return BadRequest($"RaiseTicket information is incorrect or {id} mismatch.");
+                return BadRequest($"RaiseTicket information is incorrect or {payment.id} mismatch.");
             }
 
             RaiseTicket existingRaiseTicket = null;
             try
             {
-                existingRaiseTicket = await _cosmosDbService.GetItemAsync(id);
+                existingRaiseTicket = await _cosmosDbService.GetItemAsync(payment.id);
 
                 if (existingRaiseTicket == null)
                 {
-                    return NotFound($"RaiseTicket with ID {id} not found.");
+                    return NotFound($"RaiseTicket with ID {payment.id} not found.");
                 }
             }
             catch (CosmosException ex)
@@ -890,14 +889,14 @@ namespace OtpAuthServices.Controllers
                 return StatusCode(500, $"Error retrieving data from Cosmos DB: {ex.Message}");
             }
 
-            existingRaiseTicket.OrderId = OrederId;
+            existingRaiseTicket.OrderId = payment.OrederId;
 
-            existingRaiseTicket.OrderDate = OrderDate;
-            existingRaiseTicket.PaidAmount = PaidAmount;
-            existingRaiseTicket.TransactionStatus = TransactionStatus;
-            existingRaiseTicket.TransactionType = TransactionType;
-            existingRaiseTicket.InvoiceId = InvoiceId;
-            existingRaiseTicket.InvoiceURL = InvoiceURL;
+            existingRaiseTicket.OrderDate = payment.OrderDate;
+            existingRaiseTicket.PaidAmount = payment.PaidAmount;
+            existingRaiseTicket.TransactionStatus = payment.TransactionStatus;
+            existingRaiseTicket.TransactionType = payment.TransactionType;
+            existingRaiseTicket.InvoiceId = payment.InvoiceId;
+            existingRaiseTicket.InvoiceURL = payment.InvoiceURL;
 
 
             try

@@ -155,23 +155,22 @@ namespace OtpAuthServices.Controllers
 
         [HttpPost]
         [Route("bookTechnicianEdit")]
-        public async Task<IActionResult> bookTechnicianEdit(string id, string OrederId = null, string OrderDate = null,  string PaidAmount=null,string TransactionStatus =null,
-            string TransactionType =null,string  InvoiceId =null,string  InvoiceURL =null)
+        public async Task<IActionResult> bookTechnicianEdit(PaymentRequest payment)
         {
             
-            if (id == null)
+            if (payment.id == null)
             {
-                return BadRequest($"BookTechnician information is incorrect or {id} mismatch.");
+                return BadRequest($"BookTechnician information is incorrect or {payment.id} mismatch.");
             }
 
             BookTechnician existingBookTechnician= null;
             try
             {
-                existingBookTechnician = await _cosmosDbService.GetItemAsync(id); 
+                existingBookTechnician = await _cosmosDbService.GetItemAsync(payment.id); 
 
                 if (existingBookTechnician == null)
                 {
-                    return NotFound($"Customer with ID {id} not found.");
+                    return NotFound($"BookTechnician with ID {payment.id} not found.");
                 }
             }
             catch (CosmosException ex)
@@ -179,16 +178,16 @@ namespace OtpAuthServices.Controllers
                 return StatusCode(500, $"Error retrieving data from Cosmos DB: {ex.Message}");
             }
 
-            existingBookTechnician.OrderId = OrederId;
+            existingBookTechnician.OrderId =payment.OrederId;
 
-            existingBookTechnician.OrderDate = OrderDate;
-            existingBookTechnician.PaidAmount = PaidAmount;
-            existingBookTechnician.TransactionStatus = TransactionStatus;
-            existingBookTechnician.TransactionType = TransactionType;
-            existingBookTechnician.InvoiceId = InvoiceId;
-            existingBookTechnician.InvoiceURL = InvoiceURL; 
-            
-            
+            existingBookTechnician.OrderDate = payment.OrderDate;
+            existingBookTechnician.PaidAmount = payment.PaidAmount;
+            existingBookTechnician.TransactionStatus = payment.TransactionStatus;
+            existingBookTechnician.TransactionType= payment. TransactionType;
+            existingBookTechnician.InvoiceId = payment.InvoiceId;
+            existingBookTechnician.InvoiceURL = payment.InvoiceURL;
+
+
             try
             {
                 await _cosmosDbService.UpdateItemAsync(existingBookTechnician);

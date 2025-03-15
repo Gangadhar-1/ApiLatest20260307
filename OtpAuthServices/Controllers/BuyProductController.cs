@@ -342,23 +342,22 @@ namespace OtpAuthServices.Controllers
 
         [HttpPost]
         [Route("buyProductEdit")]
-        public async Task<IActionResult> buyProductEdit(string id, string OrederId = null, string OrderDate = null, string PaidAmount = null, string TransactionStatus = null,
-            string TransactionType = null, string InvoiceId = null, string InvoiceURL = null)
+        public async Task<IActionResult> buyProductEdit(PaymentRequest payment)
         {
 
-            if (id == null)
+            if (payment == null)
             {
-                return BadRequest($"BuyProduct information is incorrect or {id} mismatch.");
+                return BadRequest($"BuyProduct information is incorrect or {payment.id} mismatch.");
             }
 
             BuyProduct existingBuyProduct = null;
             try
             {
-                existingBuyProduct = await _cosmosDbService.GetItemAsync(id);
+                existingBuyProduct = await _cosmosDbService.GetItemAsync(payment.id);
 
                 if (existingBuyProduct == null)
                 {
-                    return NotFound($"BuyProduct with ID {id} not found.");
+                    return NotFound($"BuyProduct with ID {payment.id} not found.");
                 }
             }
             catch (CosmosException ex)
@@ -366,14 +365,14 @@ namespace OtpAuthServices.Controllers
                 return StatusCode(500, $"Error retrieving data from Cosmos DB: {ex.Message}");
             }
 
-            existingBuyProduct.OrderId = OrederId;
+            existingBuyProduct.OrderId = payment. OrederId;
 
-            existingBuyProduct.OrderDate = OrderDate;
-            existingBuyProduct.PaidAmount = PaidAmount;
-            existingBuyProduct.TransactionStatus = TransactionStatus;
-            existingBuyProduct.TransactionType = TransactionType;
-            existingBuyProduct.InvoiceId = InvoiceId;
-            existingBuyProduct.InvoiceURL = InvoiceURL;
+            existingBuyProduct.OrderDate = payment.OrderDate;
+            existingBuyProduct.PaidAmount = payment.PaidAmount;
+            existingBuyProduct.TransactionStatus = payment.TransactionStatus;
+            existingBuyProduct.TransactionType = payment.TransactionType;
+            existingBuyProduct.InvoiceId = payment.InvoiceId;
+            existingBuyProduct.InvoiceURL = payment.InvoiceURL;
 
 
             try

@@ -670,10 +670,83 @@
         }
       }
     },
-    "/api/BookTechnician/GetBookTechnicianListForAdmin": {
+    "/api/BookTechnician/GetBookTechnicianForAdminList": {
       "get": {
         "tags": [
           "BookTechnician"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BookTechnician/GetBookTechnicianDetailsForUserList": {
+      "get": {
+        "tags": [
+          "BookTechnician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BookTechnician/bookTechnicianEdit": {
+      "post": {
+        "tags": [
+          "BookTechnician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "OrederId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "OrderDate",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "PaidAmount",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "TransactionStatus",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "TransactionType",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "InvoiceId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "InvoiceURL",
+            "type": "string"
+          }
         ],
         "responses": {
           "200": {
@@ -1195,10 +1268,29 @@
         }
       }
     },
-    "/api/BuyProduct/GetBuyProductDetailsForAdmin": {
+    "/api/BuyProduct/GetBuyProductDetailsForAdminList": {
       "get": {
         "tags": [
           "BuyProduct"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/GetBuyProductDetailsForUserList": {
+      "get": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
         ],
         "responses": {
           "200": {
@@ -1312,6 +1404,60 @@
           {
             "in": "query",
             "name": "zipCode",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/buyProductEdit": {
+      "post": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "OrederId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "OrderDate",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "PaidAmount",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "TransactionStatus",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "TransactionType",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "InvoiceId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "InvoiceURL",
             "type": "string"
           }
         ],
@@ -4015,6 +4161,60 @@
         }
       }
     },
+    "/api/RaiseTicket/RaiseTicketEdit": {
+      "post": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "OrederId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "OrderDate",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "PaidAmount",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "TransactionStatus",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "TransactionType",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "InvoiceId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "InvoiceURL",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/RaiseTicketExtention/CreateRaiseTicketExtension": {
       "post": {
         "tags": [
@@ -5469,6 +5669,27 @@
         },
         "technicianConfirmationCode": {
           "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "orderDate": {
+          "type": "string"
+        },
+        "paidAmount": {
+          "type": "string"
+        },
+        "transactionStatus": {
+          "type": "string"
+        },
+        "transactionType": {
+          "type": "string"
+        },
+        "invoiceId": {
+          "type": "string"
+        },
+        "invoiceURL": {
+          "type": "string"
         }
       }
     },
@@ -5685,6 +5906,27 @@
           "type": "string"
         },
         "totalPaymentAmount": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "orderDate": {
+          "type": "string"
+        },
+        "paidAmount": {
+          "type": "string"
+        },
+        "transactionStatus": {
+          "type": "string"
+        },
+        "transactionType": {
+          "type": "string"
+        },
+        "invoiceId": {
+          "type": "string"
+        },
+        "invoiceURL": {
           "type": "string"
         }
       }
@@ -6413,6 +6655,27 @@
           "type": "string"
         },
         "option2Time": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "orderDate": {
+          "type": "string"
+        },
+        "paidAmount": {
+          "type": "string"
+        },
+        "transactionStatus": {
+          "type": "string"
+        },
+        "transactionType": {
+          "type": "string"
+        },
+        "invoiceId": {
+          "type": "string"
+        },
+        "invoiceURL": {
           "type": "string"
         }
       }
