@@ -4183,7 +4183,7 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
                     .WithParameter("@District", District);
 
                 var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
-                var results = new List<T>(); // Store all results
+                var results = new List<T>(); 
 
                 while (queryIterator.HasMoreResults)
                 {
@@ -4195,13 +4195,88 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
             }
             catch (CosmosException ex)
             {
-                return new List<T>(); // Return empty list in case of exception
+                return new List<T>(); 
             }
             catch (Exception ex)
             {
                 return new List<T>();
             }
         }
+
+
+        public async Task<List<T>> GetTechnicianPincodesByCategory(string category)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(category))
+                {
+                    throw new ArgumentException(nameof(category),"Category cannot be null or Empty.");
+                }
+
+                var queryDefinition = new QueryDefinition("select distinct c.ZipCode from  c where c.TechnicianId !=null and c.TechnicianFullName  !=null and c.Category=@category").WithParameter("@category", category);
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                var results = new List<T>();
+
+                while(queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+
+                    results.AddRange(response);
+                }
+
+                return results;
+            }
+            catch(CosmosException ex)
+            {
+                return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                return new List<T>();
+            }
+
+
+        }
+
+
+        public async Task<List<T>> GetTechniciannamesByPincode(string pincode)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(pincode))
+                {
+                    throw new ArgumentException(nameof(pincode), "pincode cannot be null or Empty.");
+                }
+
+                var queryDefinition = new QueryDefinition("select c.TechnicianFullName from  c where c.TechnicianId !=null and c.TechnicianFullName !=null and c.ZipCode=@pincode").WithParameter("@pincode", pincode);
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                var results = new List<T>();
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+
+                    results.AddRange(response);
+                }
+
+                return results;
+            }
+            catch (CosmosException ex)
+            {
+                return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                return new List<T>();
+            }
+
+
+        }
+
 
 
         public async Task<List<T>> GetDealerMobileAndEmail(string District)

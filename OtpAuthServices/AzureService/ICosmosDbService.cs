@@ -256,6 +256,10 @@ string district, string category, string technicianId);
 
         Task<List<T>> GetBuyProductDetailsForAdminList<T>();
         Task<List<T>> GetBuyProductDetailsForUserList<T>(string UserId);
+
+        Task<List<T>> GetTechnicianPincodesByCategory(string category);
+
+        Task<List<T>> GetTechniciannamesByPincode(string pincode);
     }
 
 

@@ -276,16 +276,16 @@ namespace OtpAuthServices.Controllers
 
 
         [HttpGet("TechnicianDirectoryDetails")]
-        public async Task<IActionResult> TechnicianDirectoryDetails(string searchQuery = null, string State = null, string District = null, string ZipCode=null,string Status = null)
+        public async Task<IActionResult> TechnicianDirectoryDetails(string searchQuery = null, string State = null, string District = null, string ZipCode = null, string Status = null)
         {
             try
             {
                 Console.WriteLine($"Inputs - SearchQuery: {searchQuery}, State: {State}, District: {District}, ZipCode:{ZipCode} , Status:{Status}");
-                var data = await _cosmosDbService.GetTechnicianDirectoryDetails(searchQuery, State, District,ZipCode,Status);
+                var data = await _cosmosDbService.GetTechnicianDirectoryDetails(searchQuery, State, District, ZipCode, Status);
 
                 if (data == null || !data.Any())
                 {
-                //    return NotFound("No data found.");
+                    //    return NotFound("No data found.");
                     return Ok(new { message = "Data not found." });
                 }
 
@@ -391,7 +391,7 @@ namespace OtpAuthServices.Controllers
         }
 
 
- [HttpGet("GetTechnicianDetailsForInvoice")]
+        [HttpGet("GetTechnicianDetailsForInvoice")]
         public async Task<ActionResult> GetTechnicianDetailsForInvoice(string TechnicianId)
         {
             try
@@ -437,6 +437,56 @@ namespace OtpAuthServices.Controllers
             }
         }
 
+        [HttpGet("GetTechnicianPincodesBycategory")]
+        public async Task<IActionResult> GetTechnicianPincodesBycategory(string Category)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(Category))
+                {
+                    throw new ArgumentException(nameof(Category), "Category cannot be null or Empty.");
+                }
+
+                var techniciapincode = await _cosmosDbService.GetTechnicianPincodesByCategory(Category);
+                if (techniciapincode == null || !techniciapincode.Any())
+                {
+                    return NotFound("No Pincode Found");
+                }
+                return Ok(techniciapincode);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error:{ex.Message}");
+                return StatusCode(500, "Unexpected error occured.");
+            }
+        }
+
+
+        [HttpGet("GetTechniciannamesByPincode")]
+
+        public async Task<IActionResult> GetTechniciannamesByPincode(string pincode)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(pincode))
+                {
+                    throw new ArgumentException(nameof(pincode), "pincode cannot be null or Empty.");
+                }
+
+                var techniciapincode = await _cosmosDbService.GetTechniciannamesByPincode(pincode);
+                if (techniciapincode == null || !techniciapincode.Any())
+                {
+                    return NotFound("No Pincode Found");
+                }
+                return Ok(techniciapincode);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error:{ex.Message}");
+                return StatusCode(500, "Unexpected error occured.");
+            }
+        
+        }
 
         [HttpPut("UpdateIsActive/{technicianId}")]
         public async Task<IActionResult> UpdateIsActive(Guid technicianId, [FromBody] bool isActive)

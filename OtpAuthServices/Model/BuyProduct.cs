@@ -9,13 +9,12 @@ namespace OtpAuthServices.Model
         public  string  id    { get; set; }
          
         public  string  BuyProductId { get; set; }
-        [Required]
-        [StringLength(250, ErrorMessage = "Address is too long.")]
+      
         public string Address { get; set; }
 
         public string Date { get; set; }    
 
-        [Required]
+        
         public string Category         { get; set; }
         public string  DeliveryDate { get; set; }   
 
@@ -25,12 +24,14 @@ namespace OtpAuthServices.Model
 
         public string ProductView { get; set; } 
 
-        public string InvoiceDetails { get; set; }          
+        public string InvoiceDetails { get; set; }
+
+        public List<string> UploadInvoice { get; set; } = new List<string>();
 
 
        public string AssignedTo { get; set; }   
         public string status { get; set; }    
-        [Required]
+        
         public string ProductName      { get; set; }
 
         public string ProductCatalogue  { get; set; }
@@ -85,6 +86,7 @@ namespace OtpAuthServices.Model
 
         public string TechnicianConfirmationCode { get; set; }
 
+        public string WarrentyPeriod { get; set; }
 
 
 

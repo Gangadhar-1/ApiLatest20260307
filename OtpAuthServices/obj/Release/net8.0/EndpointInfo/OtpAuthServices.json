@@ -4937,64 +4937,25 @@
         "tags": [
           "RaiseTicket"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OrederId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OrderDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "PaidAmount",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TransactionStatus",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TransactionType",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "InvoiceId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "InvoiceURL",
-            "in": "query",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Success"
@@ -5823,6 +5784,48 @@
           },
           {
             "name": "District",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/GetTechnicianPincodesBycategory": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "name": "Category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/GetTechniciannamesByPincode": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "name": "pincode",
             "in": "query",
             "schema": {
               "type": "string"
@@ -6917,10 +6920,7 @@
       },
       "BuyProduct": {
         "required": [
-          "address",
-          "category",
           "district",
-          "productName",
           "state"
         ],
         "type": "object",
@@ -6934,17 +6934,16 @@
             "nullable": true
           },
           "address": {
-            "maxLength": 250,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "date": {
             "type": "string",
             "nullable": true
           },
           "category": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "deliveryDate": {
             "type": "string",
@@ -6962,6 +6961,13 @@
             "type": "string",
             "nullable": true
           },
+          "uploadInvoice": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
           "assignedTo": {
             "type": "string",
             "nullable": true
@@ -6971,8 +6977,8 @@
             "nullable": true
           },
           "productName": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "productCatalogue": {
             "type": "string",
@@ -7051,6 +7057,10 @@
             "nullable": true
           },
           "technicianConfirmationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "warrentyPeriod": {
             "type": "string",
             "nullable": true
           },
