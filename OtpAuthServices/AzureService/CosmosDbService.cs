@@ -5169,7 +5169,7 @@ AND c.UTRTransactionNumber !=null  AND c.CustomerId = @userId";
                     queryString = @"
                 SELECT * FROM c  
                 WHERE c.BookTechnicianId !=null  
-                AND c.Category !=null    AND c.CustomerId = @userId";
+                AND c.Category !=null and c.status !='Draft'   AND c.CustomerId = @userId  order by  c.date  desc  ";
                 }
                 else
                 {

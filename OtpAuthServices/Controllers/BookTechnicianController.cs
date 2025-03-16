@@ -39,7 +39,7 @@ namespace OtpAuthServices.Controllers
 
 
             BookTechnician.id = Guid.NewGuid().ToString();
-            BookTechnician.status = "Open";
+            //BookTechnician.status = "Draft";
             BookTechnician.Date = DateTime.UtcNow;
             BookTechnician.BookTechnicianId = ticketId;
 

@@ -479,44 +479,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OrederId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OrderDate",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PaidAmount",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "TransactionStatus",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "TransactionType",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "InvoiceId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "InvoiceURL",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "payment",
+        "Type": "OtpAuthServices.Model.PaymentRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -985,44 +950,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OrederId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OrderDate",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PaidAmount",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "TransactionStatus",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "TransactionType",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "InvoiceId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "InvoiceURL",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "payment",
+        "Type": "OtpAuthServices.Model.PaymentRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -3450,44 +3380,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OrederId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OrderDate",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PaidAmount",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "TransactionStatus",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "TransactionType",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "InvoiceId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "InvoiceURL",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "payment",
+        "Type": "OtpAuthServices.Model.PaymentRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -3848,6 +3743,38 @@
       },
       {
         "Name": "District",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.TechnicianController",
+    "Method": "GetTechniciannamesByPincode",
+    "RelativePath": "api/Technician/GetTechniciannamesByPincode",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pincode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.TechnicianController",
+    "Method": "GetTechnicianPincodesBycategory",
+    "RelativePath": "api/Technician/GetTechnicianPincodesBycategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Category",
         "Type": "System.String",
         "IsRequired": false
       }
