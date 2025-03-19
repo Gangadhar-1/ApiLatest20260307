@@ -124,9 +124,16 @@ namespace OtpAuthServices.Controllers
                     profileData.FullName = user.TechnicianFullName;
                     profileData.MobileNumber = user.PhoneNumber;
 
+                    //profileData.cate= user.Category;
 
                     // Extract Email and MobileNumber safely
                     profileData.Email = user.EmailAddress;
+
+                    profileData.Category = user.Category;
+
+                    profileData.District = user.District;      
+
+
 
                     // string capitalizedProfileType = char.ToUpper(profileType[0]) + profileType.Substring(1);
 

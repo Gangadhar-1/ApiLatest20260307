@@ -36,9 +36,10 @@ namespace OtpAuthServices.Controllers
             try
             {
 
+
                 var ticketId = GenerateRaiseTicketId();
                 buyProduct.id = Guid.NewGuid().ToString();
-                buyProduct.status = "Open";
+                //buyProduct.status = "Open";
 
                 buyProduct.BuyProductId = ticketId;
                 await _cosmosDbService.AddItemAsync(buyProduct);  // Add item to Cosmos DB
@@ -112,7 +113,12 @@ namespace OtpAuthServices.Controllers
 
             existingbuyProduct.DeliveryDate = buyProduct.DeliveryDate;      
 
-            existingbuyProduct.TechnicianDetils=buyProduct.TechnicianDetils;        
+            existingbuyProduct.TechnicianDetils=buyProduct.TechnicianDetils;
+
+            existingbuyProduct.WarrentyPeriod = buyProduct.WarrentyPeriod;
+
+
+            existingbuyProduct.UploadInvoice = buyProduct.UploadInvoice;
 
             existingbuyProduct.InvoiceDetails = buyProduct.InvoiceDetails;      
             await _cosmosDbService.UpdateItemAsync(existingbuyProduct);

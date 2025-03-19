@@ -5162,7 +5162,7 @@ string district, string category, string technicianId)
                SELECT * FROM c  
 WHERE c.BuyProductId !=null 
 AND c.ProductName !=null 
-AND c.UTRTransactionNumber !=null  AND c.CustomerId = @userId";
+AND c.UTRTransactionNumber !=null  and c.status !='Draft'  AND c.CustomerId = @userId order by  c.date  desc  ";
                 }
                 else if (type == "bookTechnician")
                 {

@@ -9,7 +9,7 @@ public class Technician
 
     public string id { get; set; }
     public required string TechnicianFullName { get; set; }
-    public required string PANNumber { get; set; }
+    public  string ? PANNumber { get; set; }
     public int  NumberOfTechnicians  { get; set; }  
     public required string AadharNumber { get; set; }
     public required string Address { get; set; }
@@ -24,8 +24,8 @@ public class Technician
     public required string PhoneNumber { get; set; }
     public string AlternativePhoneNumber { get; set; } = string.Empty;
     public required string PhoneVerificationCode { get; set; }
-    public required string EmailAddress { get; set; }
-    public required string EmailVerificationCode { get; set; }
+    public  string ? EmailAddress { get; set; }
+    public  string ? EmailVerificationCode { get; set; }
     public required string Category { get; set; }
     //public string Status { get; set; }
     //public  string TechnicianPhotoUrl { get; set; }

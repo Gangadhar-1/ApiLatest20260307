@@ -21,5 +21,10 @@
         public string Status { get; set; }
 
 
+        public string Category { get; set; }    
+
+        public string District { get; set; }
+
+
     }
 }

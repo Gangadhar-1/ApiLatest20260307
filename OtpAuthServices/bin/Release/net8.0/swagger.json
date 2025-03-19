@@ -706,46 +706,18 @@
         "tags": [
           "BookTechnician"
         ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
         "parameters": [
           {
-            "in": "query",
-            "name": "id",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "OrederId",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "OrderDate",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "PaidAmount",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "TransactionStatus",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "TransactionType",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "InvoiceId",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "InvoiceURL",
-            "type": "string"
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/PaymentRequest"
+            }
           }
         ],
         "responses": {
@@ -1419,46 +1391,18 @@
         "tags": [
           "BuyProduct"
         ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
         "parameters": [
           {
-            "in": "query",
-            "name": "id",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "OrederId",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "OrderDate",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "PaidAmount",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "TransactionStatus",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "TransactionType",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "InvoiceId",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "InvoiceURL",
-            "type": "string"
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/PaymentRequest"
+            }
           }
         ],
         "responses": {
@@ -4166,46 +4110,18 @@
         "tags": [
           "RaiseTicket"
         ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
         "parameters": [
           {
-            "in": "query",
-            "name": "id",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "OrederId",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "OrderDate",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "PaidAmount",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "TransactionStatus",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "TransactionType",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "InvoiceId",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "InvoiceURL",
-            "type": "string"
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/PaymentRequest"
+            }
           }
         ],
         "responses": {
@@ -4903,6 +4819,44 @@
           {
             "in": "query",
             "name": "District",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/GetTechnicianPincodesBycategory": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Category",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/GetTechniciannamesByPincode": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pincode",
             "type": "string"
           }
         ],
@@ -5789,10 +5743,7 @@
     },
     "BuyProduct": {
       "required": [
-        "address",
-        "category",
         "district",
-        "productName",
         "state"
       ],
       "type": "object",
@@ -5804,15 +5755,12 @@
           "type": "string"
         },
         "address": {
-          "maxLength": 250,
-          "minLength": 0,
           "type": "string"
         },
         "date": {
           "type": "string"
         },
         "category": {
-          "minLength": 1,
           "type": "string"
         },
         "deliveryDate": {
@@ -5827,6 +5775,12 @@
         "invoiceDetails": {
           "type": "string"
         },
+        "uploadInvoice": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "assignedTo": {
           "type": "string"
         },
@@ -5834,7 +5788,6 @@
           "type": "string"
         },
         "productName": {
-          "minLength": 1,
           "type": "string"
         },
         "productCatalogue": {
@@ -5897,6 +5850,9 @@
           "type": "string"
         },
         "technicianConfirmationCode": {
+          "type": "string"
+        },
+        "warrentyPeriod": {
           "type": "string"
         },
         "deliveryCharges": {
@@ -6335,6 +6291,35 @@
         }
       }
     },
+    "PaymentRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "orederId": {
+          "type": "string"
+        },
+        "orderDate": {
+          "type": "string"
+        },
+        "paidAmount": {
+          "type": "string"
+        },
+        "transactionStatus": {
+          "type": "string"
+        },
+        "transactionType": {
+          "type": "string"
+        },
+        "invoiceId": {
+          "type": "string"
+        },
+        "invoiceURL": {
+          "type": "string"
+        }
+      }
+    },
     "Product": {
       "required": [
         "catalogue",
@@ -6558,6 +6543,9 @@
           "type": "string"
         },
         "customerEmail": {
+          "type": "string"
+        },
+        "customerPhoneNumber": {
           "type": "string"
         },
         "address": {

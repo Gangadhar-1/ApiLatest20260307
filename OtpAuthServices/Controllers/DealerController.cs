@@ -117,6 +117,10 @@ namespace OtpAuthServices.Controllers
                     profileData.FullName = user.DealerFirmName;
                     profileData.MobileNumber = user.PhoneNumber;
 
+                    profileData.Category = user.Category;
+
+                    profileData.District = user.District;
+
 
                     // Extract Email and MobileNumber safely
                     profileData.Email = user.EmailAddress;
