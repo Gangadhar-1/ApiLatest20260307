@@ -20,6 +20,8 @@ namespace OtpAuthServices.Models
             public string id { get; set; } // Auto-generated unique identifier
              public string  ProductId { get; set; }
 
+        public  DateTime Date { get; set; }
+
             [Required(ErrorMessage = "Category is required.")]
             public string Category { get; set; }
 

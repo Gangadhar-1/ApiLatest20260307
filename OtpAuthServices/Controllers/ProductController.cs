@@ -73,6 +73,8 @@ namespace OtpAuthServices.Controllers
                 product.id = Guid.NewGuid().ToString();
                 product.ProductStatus  = "Pending Approval";
                 product.ProductOwnedBy = "Admin";
+
+                product.Date = DateTime.Now;
                 await _cosmosDbService.AddItemAsync(product);  
 
 
