@@ -1129,6 +1129,59 @@ WHERE 1=1";
 
 
 
+        public async Task<List<T>> GetAllProductList()
+        {
+            try
+            {
+
+                //if (string.IsNullOrEmpty(ProductOwnedBy))
+                //{
+                //    throw new ArgumentNullException(nameof(ProductOwnedBy), "ProductOwnedBy Cannot be null or Empty");
+                //}
+
+
+
+
+
+
+                var queryDefinition = new QueryDefinition(
+
+                    "select * from c where  c.ProductOwnedBy !=null and c.ProductStatus='Approved'  and c.Warranty !=null order by c.Date desc");
+
+
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                var product = new List<T>();
+
+                while (queryIterator.HasMoreResults)
+                {
+
+                    var response = await queryIterator.ReadNextAsync();
+                    product.AddRange(response);
+                }
+
+
+
+
+
+                return product;
+            }
+
+            catch (CosmosException ex)
+            {
+                return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                return new List<T>();
+            }
+        }
+
+
+
+
+
 
         public async Task<List<T>> GetCustomersDetailsByStatey(
     string state,

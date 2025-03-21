@@ -260,6 +260,11 @@ string district, string category, string technicianId);
         Task<List<T>> GetTechnicianPincodesByCategory(string category);
 
         Task<List<T>> GetTechniciannamesByPincode(string pincode);
+
+
+
+
+        Task<List<T>> GetAllProductList();
     }
 
 

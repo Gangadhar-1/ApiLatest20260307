@@ -172,6 +172,31 @@ namespace OtpAuthServices.Controllers
         }
 
 
+        [HttpGet("GetAllProductList")]
+
+
+        public async Task<ActionResult<List<AddressModel>>> GetAllProductList()
+        {
+
+            try
+            {
+
+                var Product = await _cosmosDbService.GetAllProductList();
+
+                if (Product == null || Product.Count == 0)
+                {
+                    return NotFound($"No products   Found.");
+                }
+
+                return Ok(Product);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching addresses by ProfileType and UserId.");
+                return StatusCode(500, "An error occurred while retrieving the addresses. Please try again.");
+            }
+        }
+
 
         [HttpGet("GetProductsByCategory")]
 
