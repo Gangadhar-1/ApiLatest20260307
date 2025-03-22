@@ -2533,6 +2533,26 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.ProductController",
+    "Method": "GetAllProductList",
+    "RelativePath": "api/Product/GetAllProductList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[OtpAuthServices.Model.AddressModel, OtpAuthServices, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ProductController",
     "Method": "GetProductList",
     "RelativePath": "api/Product/GetProductList",
     "HttpMethod": "GET",

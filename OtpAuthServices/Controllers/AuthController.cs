@@ -73,10 +73,11 @@ namespace OtpAuthServices.Controllers
 
 
 
+
         [HttpPost("sendotp")]
         public async Task<IActionResult> SendOtp([FromBody] OptRequest request)
         {
-          
+
 
             string dynmaicotp = GenerateRandomOtp();
 

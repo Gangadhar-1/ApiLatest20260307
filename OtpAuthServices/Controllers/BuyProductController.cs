@@ -382,7 +382,7 @@ namespace OtpAuthServices.Controllers
                 existingBuyProduct.InvoiceId = payment.InvoiceId;
                 existingBuyProduct.InvoiceURL = payment.InvoiceURL;
                 existingBuyProduct.status = "Open";
-                existingBuyProduct.UTRTransactionNumber = payment.OrederId.ToString();
+                existingBuyProduct.UTRTransactionNumber = payment.UTRNumber;
 
             }
             else

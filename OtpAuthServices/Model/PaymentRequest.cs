@@ -15,6 +15,8 @@
 
         public string TransactionType { get; set; }
 
+        public string UTRNumber { get; set; }   
+
         public string InvoiceId { get; set; }
 
 
