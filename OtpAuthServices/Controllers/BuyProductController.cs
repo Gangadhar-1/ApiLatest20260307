@@ -370,16 +370,27 @@ namespace OtpAuthServices.Controllers
             {
                 return StatusCode(500, $"Error retrieving data from Cosmos DB: {ex.Message}");
             }
+            if (payment.OrederId != null)
+            {
 
-            existingBuyProduct.OrderId = payment. OrederId;
+                existingBuyProduct.OrderId = payment.OrederId;
 
-            existingBuyProduct.OrderDate = payment.OrderDate;
-            existingBuyProduct.PaidAmount = payment.PaidAmount;
-            existingBuyProduct.TransactionStatus = payment.TransactionStatus;
-            existingBuyProduct.TransactionType = payment.TransactionType;
-            existingBuyProduct.InvoiceId = payment.InvoiceId;
-            existingBuyProduct.InvoiceURL = payment.InvoiceURL;
+                existingBuyProduct.OrderDate = payment.OrderDate;
+                existingBuyProduct.PaidAmount = payment.PaidAmount;
+                existingBuyProduct.TransactionStatus = payment.TransactionStatus;
+                existingBuyProduct.TransactionType = payment.TransactionType;
+                existingBuyProduct.InvoiceId = payment.InvoiceId;
+                existingBuyProduct.InvoiceURL = payment.InvoiceURL;
+                existingBuyProduct.status = "Open";
+                existingBuyProduct.UTRTransactionNumber = payment.OrederId.ToString();
 
+            }
+            else
+            {
+                existingBuyProduct.status = "Open";
+                existingBuyProduct.UTRTransactionNumber = "";
+                existingBuyProduct.PaymentMode = "Payment Transaction Failed!";
+            }
 
             try
             {

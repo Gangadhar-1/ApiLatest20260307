@@ -3132,6 +3132,29 @@
         }
       }
     },
+    "/api/Product/GetAllProductList": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AddressModel"
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Product/GetProductsByCategory": {
       "get": {
         "tags": [
@@ -6335,6 +6358,10 @@
           "type": "string"
         },
         "productId": {
+          "type": "string"
+        },
+        "date": {
+          "format": "date-time",
           "type": "string"
         },
         "category": {
