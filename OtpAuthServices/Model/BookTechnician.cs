@@ -9,9 +9,6 @@
         public string BookTechnicianId { get; set; }
 
         public DateTime Date { get; set; }
-
-
-      
         public string CustomerName { get; set; }
 
         public string CustomerEmail { get; set; }
@@ -25,17 +22,17 @@
 
         public string AssignedTo { get; set; }
 
-       // public string TechnicianCategory { get; set; }      
+        // public string TechnicianCategory { get; set; }      
 
-       // public string TechnicianPincode { get; set; }       
+        // public string TechnicianPincode { get; set; }       
 
-       // public string TechnicianFullName { get; set; }    
+        // public string TechnicianFullName { get; set; }    
         
-       // public string TechnicianAddress { get; set; }   
+        // public string TechnicianAddress { get; set; }   
 
-       // public string TechnicianPhotoId { get; set; }
+        // public string TechnicianPhotoId { get; set; }
 
-       //public string TechnicianPhoneNumber  { get; set; }        
+        //public string TechnicianPhoneNumber  { get; set; }        
         public string CustomerId { get; set; }
 
         public string State { get; set; }

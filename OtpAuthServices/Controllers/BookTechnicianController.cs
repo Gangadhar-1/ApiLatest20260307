@@ -122,51 +122,19 @@ namespace OtpAuthServices.Controllers
 
 
 
-        //    [HttpPut("{id}")]
-        //    public async Task<IActionResult> UpdateBookTechnician(string id, [FromBody] BookTechnician BookTechnician)
-        //    {
-        //        if (BookTechnician == null || BookTechnician.id != id)
-        //        {
-        //            return BadRequest("Product information is incorrect.");
-        //        }
-
-        //        var existingProduct = await _cosmosDbService.GetItemAsync(id);
-        //        if (existingProduct == null)
-        //        {
-        //            existingProduct.BookTechnicianId = BookTechnician.BookTechnicianId;
-
-
-
-        //        }
-        //        //existingProduct.BookTechnicianId.Replace("/", string.Empty);
-        //        await _cosmosDbService.UpdateItemAsync(BookTechnician);
-        //        return Ok($"BookTechnician Data Updated Successfully. At with respectiveId {id}.");
-
-
-
-
-        //    }
-
-
-        //}
-
-
-
-
         [HttpPost]
         [Route("bookTechnicianEdit")]
-        public async Task<IActionResult> bookTechnicianEdit(PaymentRequest payment)
+        public async Task<IActionResult> BookTechnicianEdit(PaymentRequest payment)
         {
-            
-            if (payment.id == null)
+            if (payment == null || string.IsNullOrEmpty(payment.id))
             {
-                return BadRequest($"BookTechnician information is incorrect or {payment.id} mismatch.");
+                return BadRequest("BookTechnician information is incorrect or ID mismatch.");
             }
 
-            BookTechnician existingBookTechnician= null;
+            BookTechnician existingBookTechnician = null;
             try
             {
-                existingBookTechnician = await _cosmosDbService.GetItemAsync(payment.id); 
+                existingBookTechnician = await _cosmosDbService.GetItemAsync(payment.id);
 
                 if (existingBookTechnician == null)
                 {
@@ -178,25 +146,37 @@ namespace OtpAuthServices.Controllers
                 return StatusCode(500, $"Error retrieving data from Cosmos DB: {ex.Message}");
             }
 
-            existingBookTechnician.OrderId =payment.OrederId;
-
-            existingBookTechnician.OrderDate = payment.OrderDate;
-            existingBookTechnician.PaidAmount = payment.PaidAmount;
-            existingBookTechnician.TransactionStatus = payment.TransactionStatus;
-            existingBookTechnician.TransactionType= payment. TransactionType;
-            existingBookTechnician.InvoiceId = payment.InvoiceId;
-            existingBookTechnician.InvoiceURL = payment.InvoiceURL;
-
-
             try
             {
-                await _cosmosDbService.UpdateItemAsync(existingBookTechnician);
+                if (payment.OrederId !=null)
+                {
+                    existingBookTechnician.OrderId = payment.OrederId; 
+                    existingBookTechnician.OrderDate = payment.OrderDate;
+                    existingBookTechnician.PaidAmount = payment.PaidAmount;
+                    existingBookTechnician.TransactionStatus = payment.TransactionStatus;
+                    existingBookTechnician.TransactionType = payment.TransactionType;
+                    existingBookTechnician.InvoiceId = payment.InvoiceId;
+                    existingBookTechnician.status = "Open";
+                    existingBookTechnician.InvoiceURL = payment.InvoiceURL;
+                    existingBookTechnician.UTRTransactionNumber = payment.UTRNumber;
+                }
+                else
+                {
+                    existingBookTechnician.status = "Open";
+                    existingBookTechnician.UTRTransactionNumber = string.Empty;
+                    existingBookTechnician.PaymentMode = "Payment Transaction Failed!";
+                }
 
-                return Ok(existingBookTechnician);  
+                await _cosmosDbService.UpdateItemAsync(existingBookTechnician);
+                return Ok(existingBookTechnician);
+            }
+            catch (CosmosException ex)
+            {
+                return StatusCode(500, $"An error occurred while updating BookTechnician data: {ex.Message}");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while updating BookTechnician data.");
+                return StatusCode(500, "An unexpected error occurred while updating BookTechnician data.");
             }
         }
 

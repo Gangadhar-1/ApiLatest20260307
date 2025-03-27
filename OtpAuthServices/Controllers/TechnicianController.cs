@@ -74,7 +74,7 @@ namespace OtpAuthServices.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTechnicianDetails(string id, [FromForm] Technician technician)
+        public async Task<IActionResult> UpdateTechnicianDetails(string id, [FromBody] Technician technician)
         {
             if (technician == null || technician.id != id)
             {

@@ -6335,6 +6335,9 @@
         "transactionType": {
           "type": "string"
         },
+        "utrNumber": {
+          "type": "string"
+        },
         "invoiceId": {
           "type": "string"
         },
