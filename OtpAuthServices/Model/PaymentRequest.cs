@@ -1,6 +1,7 @@
 ﻿namespace OtpAuthServices.Model
 {
-    public class PaymentRequest
+    public class 
+        PaymentRequest
     {
 
 

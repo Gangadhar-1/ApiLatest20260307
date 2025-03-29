@@ -472,7 +472,7 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.BookTechnicianController",
-    "Method": "bookTechnicianEdit",
+    "Method": "BookTechnicianEdit",
     "RelativePath": "api/BookTechnician/bookTechnicianEdit",
     "HttpMethod": "POST",
     "IsController": true,
@@ -3563,129 +3563,9 @@
         "IsRequired": true
       },
       {
-        "Name": "TechnicianId",
-        "Type": "System.Guid",
-        "IsRequired": false
-      },
-      {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "TechnicianFullName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PANNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "NumberOfTechnicians",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "AadharNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Address",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "State",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "StateId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "District",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "DistrictId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "ZipCode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PhoneNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "AlternativePhoneNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PhoneVerificationCode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "EmailAddress",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "EmailVerificationCode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Category",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "TechnicianPhotoId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "UserId",
-        "Type": "System.Guid",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsApproved",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsRejected",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsPending",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "Status",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsActive",
-        "Type": "System.Boolean",
-        "IsRequired": false
+        "Name": "technician",
+        "Type": "OtpAuthServices.Model.Technician",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
