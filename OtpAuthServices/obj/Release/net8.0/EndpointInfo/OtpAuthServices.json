@@ -7896,6 +7896,14 @@
             "type": "string",
             "nullable": true
           },
+          "paymentMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "utrTransactionNumber": {
+            "type": "string",
+            "nullable": true
+          },
           "isMaterialType": {
             "type": "integer",
             "format": "int32"

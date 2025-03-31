@@ -895,6 +895,7 @@ namespace OtpAuthServices.Controllers
                 existingRaiseTicket.OrderId = payment.OrederId;
 
                 existingRaiseTicket.OrderDate = payment.OrderDate;
+                    existingRaiseTicket.UTRTransactionNumber = payment.UTRNumber;
                 existingRaiseTicket.PaidAmount = payment.PaidAmount;
                 existingRaiseTicket.TransactionStatus = payment.TransactionStatus;
                 existingRaiseTicket.TransactionType = payment.TransactionType;
