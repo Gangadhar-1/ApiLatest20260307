@@ -42,7 +42,9 @@ namespace OtpAuthServices.Model
         public string LowestBidderDealerId { get; set; }
 
 
+        public string PaymentMode { get; set; }
 
+        public string UTRTransactionNumber { get; set; }
 
         public int IsMaterialType { get; set; }
 
@@ -58,11 +60,6 @@ namespace OtpAuthServices.Model
         public string Option1Time { get; set; }
         public string Option2Day { get; set; }
         public string Option2Time { get; set; }
-
-
-
-
-
 
         public string OrderId { get; set; }
 

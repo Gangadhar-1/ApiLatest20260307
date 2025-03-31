@@ -830,11 +830,63 @@
         }
       }
     },
-    "/api/BookTechnician/GetBookTechnicianListForAdmin": {
+    "/api/BookTechnician/GetBookTechnicianForAdminList": {
       "get": {
         "tags": [
           "BookTechnician"
         ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BookTechnician/GetBookTechnicianDetailsForUserList": {
+      "get": {
+        "tags": [
+          "BookTechnician"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BookTechnician/bookTechnicianEdit": {
+      "post": {
+        "tags": [
+          "BookTechnician"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Success"
@@ -1458,10 +1510,31 @@
         }
       }
     },
-    "/api/BuyProduct/GetBuyProductDetailsForAdmin": {
+    "/api/BuyProduct/GetBuyProductDetailsForAdminList": {
       "get": {
         "tags": [
           "BuyProduct"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/GetBuyProductDetailsForUserList": {
+      "get": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -1607,6 +1680,37 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BuyProduct/buyProductEdit": {
+      "post": {
+        "tags": [
+          "BuyProduct"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Success"
@@ -3690,6 +3794,44 @@
         }
       }
     },
+    "/api/Product/GetAllProductList": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AddressModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AddressModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AddressModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Product/GetProductsByCategory": {
       "get": {
         "tags": [
@@ -4828,6 +4970,37 @@
         }
       }
     },
+    "/api/RaiseTicket/RaiseTicketEdit": {
+      "post": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/RaiseTicketExtention/CreateRaiseTicketExtension": {
       "post": {
         "tags": [
@@ -5244,166 +5417,19 @@
         ],
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "TechnicianId": {
-                    "type": "string",
-                    "format": "uuid"
-                  },
-                  "id": {
-                    "type": "string"
-                  },
-                  "TechnicianFullName": {
-                    "type": "string"
-                  },
-                  "PANNumber": {
-                    "type": "string"
-                  },
-                  "NumberOfTechnicians": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "AadharNumber": {
-                    "type": "string"
-                  },
-                  "Address": {
-                    "type": "string"
-                  },
-                  "State": {
-                    "type": "string"
-                  },
-                  "StateId": {
-                    "type": "string"
-                  },
-                  "District": {
-                    "type": "string"
-                  },
-                  "DistrictId": {
-                    "type": "string"
-                  },
-                  "ZipCode": {
-                    "type": "string"
-                  },
-                  "PhoneNumber": {
-                    "type": "string"
-                  },
-                  "AlternativePhoneNumber": {
-                    "type": "string"
-                  },
-                  "PhoneVerificationCode": {
-                    "type": "string"
-                  },
-                  "EmailAddress": {
-                    "type": "string"
-                  },
-                  "EmailVerificationCode": {
-                    "type": "string"
-                  },
-                  "Category": {
-                    "type": "string"
-                  },
-                  "TechnicianPhotoId": {
-                    "type": "string"
-                  },
-                  "UserId": {
-                    "type": "string",
-                    "format": "uuid"
-                  },
-                  "IsApproved": {
-                    "type": "boolean"
-                  },
-                  "IsRejected": {
-                    "type": "boolean"
-                  },
-                  "IsPending": {
-                    "type": "boolean"
-                  },
-                  "Status": {
-                    "type": "string"
-                  },
-                  "IsActive": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "encoding": {
-                "TechnicianId": {
-                  "style": "form"
-                },
-                "id": {
-                  "style": "form"
-                },
-                "TechnicianFullName": {
-                  "style": "form"
-                },
-                "PANNumber": {
-                  "style": "form"
-                },
-                "NumberOfTechnicians": {
-                  "style": "form"
-                },
-                "AadharNumber": {
-                  "style": "form"
-                },
-                "Address": {
-                  "style": "form"
-                },
-                "State": {
-                  "style": "form"
-                },
-                "StateId": {
-                  "style": "form"
-                },
-                "District": {
-                  "style": "form"
-                },
-                "DistrictId": {
-                  "style": "form"
-                },
-                "ZipCode": {
-                  "style": "form"
-                },
-                "PhoneNumber": {
-                  "style": "form"
-                },
-                "AlternativePhoneNumber": {
-                  "style": "form"
-                },
-                "PhoneVerificationCode": {
-                  "style": "form"
-                },
-                "EmailAddress": {
-                  "style": "form"
-                },
-                "EmailVerificationCode": {
-                  "style": "form"
-                },
-                "Category": {
-                  "style": "form"
-                },
-                "TechnicianPhotoId": {
-                  "style": "form"
-                },
-                "UserId": {
-                  "style": "form"
-                },
-                "IsApproved": {
-                  "style": "form"
-                },
-                "IsRejected": {
-                  "style": "form"
-                },
-                "IsPending": {
-                  "style": "form"
-                },
-                "Status": {
-                  "style": "form"
-                },
-                "IsActive": {
-                  "style": "form"
-                }
+                "$ref": "#/components/schemas/Technician"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Technician"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Technician"
               }
             }
           }
@@ -5649,6 +5675,48 @@
           },
           {
             "name": "District",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/GetTechnicianPincodesBycategory": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "name": "Category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Technician/GetTechniciannamesByPincode": {
+      "get": {
+        "tags": [
+          "Technician"
+        ],
+        "parameters": [
+          {
+            "name": "pincode",
             "in": "query",
             "schema": {
               "type": "string"
@@ -6591,6 +6659,34 @@
           "technicianConfirmationCode": {
             "type": "string",
             "nullable": true
+          },
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "paidAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceURL": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -6715,10 +6811,7 @@
       },
       "BuyProduct": {
         "required": [
-          "address",
-          "category",
           "district",
-          "productName",
           "state"
         ],
         "type": "object",
@@ -6732,17 +6825,16 @@
             "nullable": true
           },
           "address": {
-            "maxLength": 250,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "date": {
             "type": "string",
             "nullable": true
           },
           "category": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "deliveryDate": {
             "type": "string",
@@ -6760,6 +6852,13 @@
             "type": "string",
             "nullable": true
           },
+          "uploadInvoice": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
           "assignedTo": {
             "type": "string",
             "nullable": true
@@ -6769,8 +6868,8 @@
             "nullable": true
           },
           "productName": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "productCatalogue": {
             "type": "string",
@@ -6832,6 +6931,10 @@
             "type": "string",
             "nullable": true
           },
+          "customerEmail": {
+            "type": "string",
+            "nullable": true
+          },
           "customerPhoneNumber": {
             "type": "string",
             "nullable": true
@@ -6848,6 +6951,10 @@
             "type": "string",
             "nullable": true
           },
+          "warrentyPeriod": {
+            "type": "string",
+            "nullable": true
+          },
           "deliveryCharges": {
             "type": "string",
             "nullable": true
@@ -6857,6 +6964,34 @@
             "nullable": true
           },
           "totalPaymentAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "paidAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceURL": {
             "type": "string",
             "nullable": true
           }
@@ -7370,6 +7505,48 @@
         },
         "additionalProperties": false
       },
+      "PaymentRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "orederId": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "paidAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "utrNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceURL": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Product": {
         "required": [
           "catalogue",
@@ -7388,6 +7565,10 @@
           "productId": {
             "type": "string",
             "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
           },
           "category": {
             "minLength": 1,
@@ -7637,6 +7818,14 @@
             "type": "string",
             "nullable": true
           },
+          "customerEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
           "address": {
             "type": "string",
             "nullable": true
@@ -7707,6 +7896,14 @@
             "type": "string",
             "nullable": true
           },
+          "paymentMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "utrTransactionNumber": {
+            "type": "string",
+            "nullable": true
+          },
           "isMaterialType": {
             "type": "integer",
             "format": "int32"
@@ -7757,6 +7954,34 @@
             "nullable": true
           },
           "option2Time": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "paidAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "invoiceURL": {
             "type": "string",
             "nullable": true
           }
@@ -8025,6 +8250,108 @@
               "type": "string"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Technician": {
+        "type": "object",
+        "properties": {
+          "technicianId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "technicianFullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "panNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberOfTechnicians": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "aadharNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "district": {
+            "type": "string",
+            "nullable": true
+          },
+          "districtId": {
+            "type": "string",
+            "nullable": true
+          },
+          "zipCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "alternativePhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneVerificationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailVerificationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "technicianPhotoId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isApproved": {
+            "type": "boolean"
+          },
+          "isRejected": {
+            "type": "boolean"
+          },
+          "isPending": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false

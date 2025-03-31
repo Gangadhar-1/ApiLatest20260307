@@ -4494,7 +4494,9 @@
           "Technician"
         ],
         "consumes": [
-          "multipart/form-data"
+          "application/json",
+          "text/json",
+          "application/*+json"
         ],
         "parameters": [
           {
@@ -4504,132 +4506,11 @@
             "type": "string"
           },
           {
-            "in": "formData",
-            "name": "TechnicianId",
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "in": "formData",
-            "name": "id",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "TechnicianFullName",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "PANNumber",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "NumberOfTechnicians",
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "in": "formData",
-            "name": "AadharNumber",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "Address",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "State",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "StateId",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "District",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "DistrictId",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "ZipCode",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "PhoneNumber",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "AlternativePhoneNumber",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "PhoneVerificationCode",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "EmailAddress",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "EmailVerificationCode",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "Category",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "TechnicianPhotoId",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "UserId",
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "in": "formData",
-            "name": "IsApproved",
-            "type": "boolean"
-          },
-          {
-            "in": "formData",
-            "name": "IsRejected",
-            "type": "boolean"
-          },
-          {
-            "in": "formData",
-            "name": "IsPending",
-            "type": "boolean"
-          },
-          {
-            "in": "formData",
-            "name": "Status",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "IsActive",
-            "type": "boolean"
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Technician"
+            }
           }
         ],
         "responses": {
@@ -6908,6 +6789,89 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "Technician": {
+      "type": "object",
+      "properties": {
+        "technicianId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "technicianFullName": {
+          "type": "string"
+        },
+        "panNumber": {
+          "type": "string"
+        },
+        "numberOfTechnicians": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "aadharNumber": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "stateId": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "districtId": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "alternativePhoneNumber": {
+          "type": "string"
+        },
+        "phoneVerificationCode": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "emailVerificationCode": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "technicianPhotoId": {
+          "type": "string"
+        },
+        "userId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "isApproved": {
+          "type": "boolean"
+        },
+        "isRejected": {
+          "type": "boolean"
+        },
+        "isPending": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
         }
       }
     },

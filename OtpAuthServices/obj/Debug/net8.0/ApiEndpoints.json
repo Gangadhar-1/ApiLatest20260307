@@ -472,7 +472,7 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.BookTechnicianController",
-    "Method": "bookTechnicianEdit",
+    "Method": "BookTechnicianEdit",
     "RelativePath": "api/BookTechnician/bookTechnicianEdit",
     "HttpMethod": "POST",
     "IsController": true,

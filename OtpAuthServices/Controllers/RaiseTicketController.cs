@@ -888,27 +888,42 @@ namespace OtpAuthServices.Controllers
             {
                 return StatusCode(500, $"Error retrieving data from Cosmos DB: {ex.Message}");
             }
-
-            existingRaiseTicket.OrderId = payment.OrederId;
-
-            existingRaiseTicket.OrderDate = payment.OrderDate;
-            existingRaiseTicket.PaidAmount = payment.PaidAmount;
-            existingRaiseTicket.TransactionStatus = payment.TransactionStatus;
-            existingRaiseTicket.TransactionType = payment.TransactionType;
-            existingRaiseTicket.InvoiceId = payment.InvoiceId;
-            existingRaiseTicket.InvoiceURL = payment.InvoiceURL;
-
-
             try
+            { 
+            if (payment.OrederId != null)
             {
-                await _cosmosDbService.UpdateItemAsync(existingRaiseTicket);
+                existingRaiseTicket.OrderId = payment.OrederId;
 
-                return Ok(existingRaiseTicket);
+                existingRaiseTicket.OrderDate = payment.OrderDate;
+                existingRaiseTicket.PaidAmount = payment.PaidAmount;
+                existingRaiseTicket.TransactionStatus = payment.TransactionStatus;
+                existingRaiseTicket.TransactionType = payment.TransactionType;
+                existingRaiseTicket.InvoiceId = payment.InvoiceId;
+                existingRaiseTicket.InvoiceURL = payment.InvoiceURL;
+                    existingRaiseTicket.internalStatus = "PaymentDone";
+
             }
-            catch (Exception ex)
+            else
             {
-                return StatusCode(500, "An error occurred while updating RaiseTicket data.");
+                    existingRaiseTicket.internalStatus = "PaymentDone";
+                    existingRaiseTicket.UTRTransactionNumber = string.Empty;
+                    existingRaiseTicket.PaymentMode = "Payment Failed!";
             }
+
+               
+                    await _cosmosDbService.UpdateItemAsync(existingRaiseTicket);
+
+                    return Ok(existingRaiseTicket);
+                }
+            catch(CosmosException ex)
+            {
+                return StatusCode(500, "An error Occured While Updationg RaiseTicket Payment.");
+            }
+
+                catch (Exception ex)
+                {
+                    return StatusCode(500, "An error occurred while updating RaiseTicket data.");
+                }
         }
 
     }
