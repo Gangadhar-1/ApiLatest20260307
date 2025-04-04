@@ -545,6 +545,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.BookTechnicianController",
+    "Method": "GetBookTechnicanNotifications",
+    "RelativePath": "api/BookTechnician/GetBookTechnicianNotifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "pincode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "technicianName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.BuilderController",
     "Method": "GetBuilderById",
     "RelativePath": "api/Builder/{builderId}",

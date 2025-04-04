@@ -5001,7 +5001,7 @@ string district, string category, string technicianId)
             {
                 // Corrected query with IS NOT NULL
                 var queryDefinition = new QueryDefinition(
-                    "SELECT * FROM c WHERE c.BookTechnicianId !=null AND c.Category !=null "
+                    "SELECT * FROM c WHERE c.BookTechnicianId !=null AND c.Category !=null"
                 );
 
                 // Create a query iterator
@@ -5109,6 +5109,42 @@ string district, string category, string technicianId)
         }
 
 
+        public async Task<List<T>> GetBookTechnicianNotification<T>(string category, string pincode, string technicianName)
+        {
+            try
+            {
+                var queryDefinition = new QueryDefinition("SELECT * FROM c WHERE c.BookTechnicianId !=null and c.Category=@category " +
+                    "and c.TechnicianPincode=@pincode AND ARRAY_CONTAINS(c.TechnicianName, @technicianName) order by c.date desc")
+                    .WithParameter("@category", category)
+                    .WithParameter("@pincode", pincode)
+                    .WithParameter("@technicianName", technicianName);
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                var results = new List<T>();
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    results.AddRange(response);
+
+                }
+                return results;
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"CosmosDB Error: {ex.Message}");
+                return new List<T>();
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"UnExpected Error: {ex.Message}");
+                return new List<T>();
+            }
+                 
+            }
+        
 
 
 

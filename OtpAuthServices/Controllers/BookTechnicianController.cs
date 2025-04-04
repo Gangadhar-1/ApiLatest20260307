@@ -105,6 +105,8 @@ namespace OtpAuthServices.Controllers
             return Ok(bookTechnicians);
         }
 
+       
+
 
         [HttpGet("GetBookTechnicianDetailsForUserList")]
         public async Task<IActionResult> GetBookTechnicianDetailsForUserList(string userId)
@@ -213,6 +215,9 @@ namespace OtpAuthServices.Controllers
 
             existingBookTechnician.UTRTransactionNumber= BookTechnician.UTRTransactionNumber;
 
+            existingBookTechnician.TechnicianName = BookTechnician.TechnicianName;
+            existingBookTechnician.TechnicianPincode = BookTechnician.TechnicianPincode;
+
             existingBookTechnician.status =BookTechnician.status;   
             existingBookTechnician.AssignedTo = BookTechnician.AssignedTo;  
             await _cosmosDbService.UpdateItemAsync(existingBookTechnician);
@@ -221,7 +226,7 @@ namespace OtpAuthServices.Controllers
             {
                 Message = "BookTechnician updated successfully",
                 PaymentId = existingBookTechnician.id,
-                TechnicianConfirmationCode = existingBookTechnician.TechnicianConfirmationCode // Always return the correct value
+                TechnicianConfirmationCode = existingBookTechnician.TechnicianConfirmationCode 
             });
         }
 
@@ -237,6 +242,17 @@ namespace OtpAuthServices.Controllers
                 int randomNumber = BitConverter.ToInt32(bytes, 0);
                 return (Math.Abs(randomNumber % 900000) + 100000).ToString("D6");
             }
+        }
+
+        [HttpGet("GetBookTechnicianNotifications")]
+        public async Task<IActionResult> GetBookTechnicanNotifications(string category, string pincode, string technicianName)
+        {
+            var bookTechnicianNotification = await _cosmosDbService.GetBookTechnicianNotification<BookTechnician>(category, pincode, technicianName);
+            if (bookTechnicianNotification == null || !bookTechnicianNotification.Any())
+            {
+                return NotFound("No BookTechnicanNotification Found");
+            }
+            return Ok(bookTechnicianNotification);
         }
 
     }

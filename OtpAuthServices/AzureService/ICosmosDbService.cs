@@ -265,6 +265,8 @@ string district, string category, string technicianId);
 
 
         Task<List<T>> GetAllProductList();
+
+        Task<List<T>> GetBookTechnicianNotification<T>(string category, string pincode, string technicianName);
     }
 
 

@@ -894,6 +894,41 @@
         }
       }
     },
+    "/api/BookTechnician/GetBookTechnicianNotifications": {
+      "get": {
+        "tags": [
+          "BookTechnician"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pincode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "technicianName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Builder/BuilderUpload": {
       "post": {
         "tags": [
@@ -6686,6 +6721,17 @@
           },
           "invoiceURL": {
             "type": "string",
+            "nullable": true
+          },
+          "technicianPincode": {
+            "type": "string",
+            "nullable": true
+          },
+          "technicianName": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           }
         },

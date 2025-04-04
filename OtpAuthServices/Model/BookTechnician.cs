@@ -78,7 +78,12 @@
 
         public   string InvoiceURL { get;set; }
 
+        public string TechnicianPincode { get; set; }
 
+
+        public List<string> TechnicianName { get; set; } = new List<string>();
+
+     
 
 
     }
