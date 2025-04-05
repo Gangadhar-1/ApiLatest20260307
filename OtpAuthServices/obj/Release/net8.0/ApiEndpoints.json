@@ -3678,13 +3678,18 @@
   {
     "ContainingType": "OtpAuthServices.Controllers.TechnicianController",
     "Method": "GetTechniciannamesByPincode",
-    "RelativePath": "api/Technician/GetTechniciannamesByPincode",
+    "RelativePath": "api/Technician/GetTechniciannamesByPincodeAndCategory",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "pincode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "category",
         "Type": "System.String",
         "IsRequired": false
       }

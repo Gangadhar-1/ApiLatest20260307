@@ -25,6 +25,7 @@
 
         public string District { get; set; }
 
+       public string  ZipCode { get; set; }
 
     }
 }

@@ -123,6 +123,7 @@ namespace OtpAuthServices.Controllers
                     // Extract FirstName and LastName safely
                     profileData.FullName = user.TechnicianFullName;
                     profileData.MobileNumber = user.PhoneNumber;
+                    profileData.ZipCode = user.ZipCode;
 
                     //profileData.cate= user.Category;
 
@@ -469,9 +470,9 @@ namespace OtpAuthServices.Controllers
         }
 
 
-        [HttpGet("GetTechniciannamesByPincode")]
+        [HttpGet("GetTechniciannamesByPincodeAndCategory")]
 
-        public async Task<IActionResult> GetTechniciannamesByPincode(string pincode)
+        public async Task<IActionResult> GetTechniciannamesByPincode(string pincode, string category)
         {
             try
             {
@@ -480,10 +481,10 @@ namespace OtpAuthServices.Controllers
                     throw new ArgumentException(nameof(pincode), "pincode cannot be null or Empty.");
                 }
 
-                var techniciapincode = await _cosmosDbService.GetTechniciannamesByPincode(pincode);
+                var techniciapincode = await _cosmosDbService.GetTechniciannamesByPincode(pincode, category);
                 if (techniciapincode == null || !techniciapincode.Any())
                 {
-                    return NotFound("No Pincode Found");
+                    return NotFound("No TechnicianName  Found");
                 }
                 return Ok(techniciapincode);
             }
@@ -492,7 +493,7 @@ namespace OtpAuthServices.Controllers
                 Console.WriteLine($"Error:{ex.Message}");
                 return StatusCode(500, "Unexpected error occured.");
             }
-        
+
         }
 
         [HttpPut("UpdateIsActive/{technicianId}")]

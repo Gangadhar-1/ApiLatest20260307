@@ -15,7 +15,7 @@ namespace OtpAuthServices.Model
         public string CustomerName { get; set; }
 
         public string CustomerEmail { get; set; }
-       public string CustomerPhoneNumber { get; set; }
+        public string CustomerPhoneNumber { get; set; }
         public string Address { get; set; }
         public string Subject { get; set; }
 
@@ -23,7 +23,7 @@ namespace OtpAuthServices.Model
         public string Category { get; set; }
         public string AssignedTo { get; set; }
 
-        public string RateQuotedBy { get; set; }   
+        public string RateQuotedBy { get; set; }
 
         public string id { get; set; }
         public string status { get; set; }
@@ -36,7 +36,7 @@ namespace OtpAuthServices.Model
         public string Rating { get; set; }
 
         public List<string> TechnicianList { get; set; } = new List<string>();
-        public  List<string>  DealerList { get; set; }  =new List<string>();        
+        public List<string> DealerList { get; set; } = new List<string>();
 
         public string LowestBidderTechnicainId { get; set; }
         public string LowestBidderDealerId { get; set; }

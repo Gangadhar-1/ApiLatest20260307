@@ -246,7 +246,7 @@ string district, string category, string technicianId);
 
         Task<List<T>> GetUploadJobDescriptionDetails<T>();
         Task<List<T>> GetBookTechnicianListForAdmin<T>();
-
+        //Task<List<T>> GetBookTechnicianListForAdmin();
 
         Task<List<T>> GetBuyProductDetailsForAdmin<T>();
 
@@ -259,7 +259,7 @@ string district, string category, string technicianId);
 
         Task<List<T>> GetTechnicianPincodesByCategory(string category);
 
-        Task<List<T>> GetTechniciannamesByPincode(string pincode);
+        Task<List<T>> GetTechniciannamesByPincode(string pincode, string category);
 
 
 
@@ -267,6 +267,8 @@ string district, string category, string technicianId);
         Task<List<T>> GetAllProductList();
 
         Task<List<T>> GetBookTechnicianNotification<T>(string category, string pincode, string technicianName);
+
+       
     }
 
 

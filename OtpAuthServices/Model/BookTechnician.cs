@@ -26,7 +26,7 @@
 
         // public string TechnicianPincode { get; set; }       
 
-        // public string TechnicianFullName { get; set; }    
+         public string TechnicianFullName { get; set; }    
         
         // public string TechnicianAddress { get; set; }   
 

@@ -4294,7 +4294,7 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
         }
 
 
-        public async Task<List<T>> GetTechniciannamesByPincode(string pincode)
+        public async Task<List<T>> GetTechniciannamesByPincode(string pincode, string category)
         {
             try
             {
@@ -4303,7 +4303,9 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
                     throw new ArgumentException(nameof(pincode), "pincode cannot be null or Empty.");
                 }
 
-                var queryDefinition = new QueryDefinition("select c.TechnicianFullName from  c where c.TechnicianId !=null and c.TechnicianFullName !=null and c.ZipCode=@pincode").WithParameter("@pincode", pincode);
+                var queryDefinition = new QueryDefinition("select c.TechnicianFullName from  c where c.TechnicianId !=null and c.TechnicianFullName !=null and c.ZipCode=@pincode  and c.Category = @category")
+                    .WithParameter("@pincode", pincode)
+                    .WithParameter("@category", category);
 
                 var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
 
@@ -5001,7 +5003,7 @@ string district, string category, string technicianId)
             {
                 // Corrected query with IS NOT NULL
                 var queryDefinition = new QueryDefinition(
-                    "SELECT * FROM c WHERE c.BookTechnicianId !=null AND c.Category !=null"
+                    "SELECT * FROM c WHERE c.BookTechnicianId !=null AND c.Category !=null order by  c.Date desc"
                 );
 
                 // Create a query iterator
@@ -5031,7 +5033,7 @@ string district, string category, string technicianId)
 
         }
 
-
+        
 
 
         public async Task<List<T>> GetBuyProductDetailsForAdminList<T>()
@@ -5040,7 +5042,7 @@ string district, string category, string technicianId)
             {
                 // Corrected query with IS NOT NULL
                 var queryDefinition = new QueryDefinition(
-                    "SELECT * FROM c where c.BuyProductId  !=null and c.TotalPaymentAmount !=null  and c.CustomerId !=null "
+                    "SELECT * FROM c where c.BuyProductId  !=null and c.TotalPaymentAmount !=null  and c.CustomerId !=null  order by  c.Date desc "
                 );
 
                 // Create a query iterator

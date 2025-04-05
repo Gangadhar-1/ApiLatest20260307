@@ -182,6 +182,13 @@ namespace OtpAuthServices.Controllers
         }
 
 
+
+
+
+
+
+
+
         [HttpGet("GetTicketsNotificationsForTechnicianForSMS")]
         public async Task<IActionResult> GetTicketsNotificationsForTechnicianForSMS()
         {

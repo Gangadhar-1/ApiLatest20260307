@@ -5744,7 +5744,7 @@
         }
       }
     },
-    "/api/Technician/GetTechniciannamesByPincode": {
+    "/api/Technician/GetTechniciannamesByPincodeAndCategory": {
       "get": {
         "tags": [
           "Technician"
@@ -5752,6 +5752,13 @@
         "parameters": [
           {
             "name": "pincode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
             "in": "query",
             "schema": {
               "type": "string"
@@ -6628,6 +6635,10 @@
             "nullable": true
           },
           "assignedTo": {
+            "type": "string",
+            "nullable": true
+          },
+          "technicianFullName": {
             "type": "string",
             "nullable": true
           },

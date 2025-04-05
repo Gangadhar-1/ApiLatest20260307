@@ -105,7 +105,11 @@ namespace OtpAuthServices.Controllers
             return Ok(bookTechnicians);
         }
 
-       
+
+
+        
+
+
 
 
         [HttpGet("GetBookTechnicianDetailsForUserList")]
@@ -215,6 +219,8 @@ namespace OtpAuthServices.Controllers
 
             existingBookTechnician.UTRTransactionNumber= BookTechnician.UTRTransactionNumber;
 
+            existingBookTechnician.TechnicianFullName = BookTechnician.TechnicianFullName;
+
             existingBookTechnician.TechnicianName = BookTechnician.TechnicianName;
             existingBookTechnician.TechnicianPincode = BookTechnician.TechnicianPincode;
 
@@ -258,3 +264,5 @@ namespace OtpAuthServices.Controllers
     }
 
 }
+
+

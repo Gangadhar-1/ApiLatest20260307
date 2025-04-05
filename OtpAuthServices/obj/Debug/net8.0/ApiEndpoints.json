@@ -536,7 +536,7 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.BookTechnicianController",
-    "Method": "GetBookTechnicianListForAdmin",
+    "Method": "GetBookTechnicianForAdminList",
     "RelativePath": "api/BookTechnician/GetBookTechnicianForAdminList",
     "HttpMethod": "GET",
     "IsController": true,

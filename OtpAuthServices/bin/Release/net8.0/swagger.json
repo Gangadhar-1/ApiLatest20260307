@@ -727,6 +727,35 @@
         }
       }
     },
+    "/api/BookTechnician/GetBookTechnicianNotifications": {
+      "get": {
+        "tags": [
+          "BookTechnician"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "pincode",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "technicianName",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Builder/BuilderUpload": {
       "post": {
         "tags": [
@@ -4752,7 +4781,7 @@
         }
       }
     },
-    "/api/Technician/GetTechniciannamesByPincode": {
+    "/api/Technician/GetTechniciannamesByPincodeAndCategory": {
       "get": {
         "tags": [
           "Technician"
@@ -4761,6 +4790,11 @@
           {
             "in": "query",
             "name": "pincode",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "category",
             "type": "string"
           }
         ],
@@ -5479,6 +5513,9 @@
         "assignedTo": {
           "type": "string"
         },
+        "technicianFullName": {
+          "type": "string"
+        },
         "customerId": {
           "type": "string"
         },
@@ -5548,6 +5585,15 @@
         },
         "invoiceURL": {
           "type": "string"
+        },
+        "technicianPincode": {
+          "type": "string"
+        },
+        "technicianName": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -6511,6 +6557,12 @@
           "type": "string"
         },
         "lowestBidderDealerId": {
+          "type": "string"
+        },
+        "paymentMode": {
+          "type": "string"
+        },
+        "utrTransactionNumber": {
           "type": "string"
         },
         "isMaterialType": {
