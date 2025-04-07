@@ -310,7 +310,7 @@ SELECT
     c.StateId,
     c.DistrictId
 FROM c
-WHERE 1=1";
+WHERE 1=1 AND c.CustomerId !=null AND c.FirstName !=null"   ;
 
                 if (!string.IsNullOrEmpty(State))
                     query += " AND (LOWER(c.State) = LOWER(@State) OR c.StateId = @State)";
@@ -2878,7 +2878,7 @@ SELECT
     c.DistrictId,
     c.IsActive
 FROM c
-WHERE 1=1";
+WHERE 1=1 and c.DealerFirmName !=null AND c.DealerId !=null";
 
                 // Apply filters
 
@@ -2980,7 +2980,7 @@ SELECT
     c.DistrictId,
     c.IsActive
 FROM c
-WHERE 1=1"; // Makes appending dynamic conditions easier
+WHERE 1=1 AND c.BuilderId !=null AND c.BuilderName !=null"; // Makes appending dynamic conditions easier
 
                 // Apply filters
 
@@ -3084,7 +3084,7 @@ SELECT
     c.DistrictId,
     c.IsActive
 FROM c
-WHERE 1=1"; // Allows appending dynamic conditions easily
+WHERE 1=1 c.EstimatorId !=null AND c.EstimatorName !=null"; // Allows appending dynamic conditions easily
 
                 // Apply filters
 
@@ -3188,7 +3188,7 @@ SELECT
     c.DistrictId,
     c.IsActive
 FROM c
-WHERE 1=1"; // Allows appending dynamic conditions easily
+WHERE 1=1 AND c.TechnicianId !=null  AND c.TechnicianFullName !=null"; // Allows appending dynamic conditions easily
 
                 // Apply filters
 
