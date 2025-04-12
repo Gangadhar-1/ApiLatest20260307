@@ -71,6 +71,7 @@ builder.Services.AddSingleton<ICosmosDbService<UsersCount>>(sp => new CosmosDbSe
 builder.Services.AddSingleton<ICosmosDbService<Product>>(sp => new CosmosDbService<Product>(cosmosClient, databaseName, containerName));
 builder.Services.AddSingleton<ICosmosDbService<BuyProduct>>(sp => new CosmosDbService<BuyProduct>(cosmosClient, databaseName, containerName));
 builder.Services.AddSingleton<ICosmosDbService<UpdateDocumentRequest>>(sp => new CosmosDbService<UpdateDocumentRequest>(cosmosClient, databaseName, containerName));
+builder.Services.AddSingleton<ICosmosDbService<GuestUser>>(sp => new CosmosDbService<GuestUser>(cosmosClient, databaseName, containerName));
 builder.Services.AddSingleton<ICosmosDbService<UserProfileApproval>>(sp => new CosmosDbService<UserProfileApproval>(cosmosClient, databaseName, containerName));
 builder.Services.AddSingleton<ICosmosDbService<MyAccounts>>(sp => new CosmosDbService<MyAccounts>(cosmosClient, databaseName, containerName));
 

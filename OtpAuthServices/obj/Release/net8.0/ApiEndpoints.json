@@ -2249,6 +2249,22 @@
     ]
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.GuestUserController",
+    "Method": "UploadGuestUser",
+    "RelativePath": "api/GuestUser/UploadGuestUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "GuestUser",
+        "Type": "OtpAuthServices.Model.GuestUser",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.MasterDataController",
     "Method": "GetCategories",
     "RelativePath": "api/MasterData/getCategories",
