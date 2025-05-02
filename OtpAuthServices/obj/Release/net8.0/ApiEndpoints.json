@@ -1179,6 +1179,22 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.CustomerController",
+    "Method": "BookTechnicianEdit",
+    "RelativePath": "api/Customer/CustomerAddressEdit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addressModel",
+        "Type": "OtpAuthServices.Model.AddressModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.CustomerController",
     "Method": "EditUserData",
     "RelativePath": "api/Customer/CustomerEdit",
     "HttpMethod": "POST",
@@ -1233,109 +1249,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "CustomerId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "FirstName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "LastName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "MobileNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "MobileVerificationCode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "EmailAddress",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "EmailVerificationCode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "AlternativeMobileNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "GSTNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Address",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Landmark",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "State",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "StateId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "District",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "DistrictId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "ZipCode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "CustomerPhotoId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "UserId",
-        "Type": "System.Guid",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsApproved",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "Status",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "customer",
+        "Type": "OtpAuthServices.Model.Customer",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -1403,6 +1319,22 @@
         "Name": "userId",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.CustomerController",
+    "Method": "GuestUserExistingVerification",
+    "RelativePath": "api/Customer/GuestUserExistingVerification/{mobileNo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mobileNo",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -2287,6 +2219,27 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.GuestUserController",
+    "Method": "GetGuestUserProfileData",
+    "RelativePath": "api/GuestUser/GetGuestUserProfileData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "profileType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.GuestUserController",
     "Method": "GetBookTechnician",
     "RelativePath": "api/GuestUser/GuestUser/{id}",
     "HttpMethod": "GET",
@@ -2295,6 +2248,22 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.GuestUserController",
+    "Method": "GuestUserExistingVerification",
+    "RelativePath": "api/GuestUser/GuestUserExistingVerification/{mobileNo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mobileNo",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -4245,6 +4214,22 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.UserOnBoardingController",
+    "Method": "GuestUserVerificationByMobileNo",
+    "RelativePath": "api/UserOnBoarding/GuestUserVerificationByMobileNo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mobileNo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UserOnBoardingController",
     "Method": "UploadUserData",
     "RelativePath": "api/UserOnBoarding/UserUpload",
     "HttpMethod": "POST",
@@ -4252,49 +4237,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "UserId",
-        "Type": "System.Guid",
-        "IsRequired": false
-      },
-      {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "UserName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "UserPassword",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "MobileNo",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "EmailId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsMobileNumberValidate",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsEmailValidate",
-        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "ProfileType",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "userOnBoarding",
+        "Type": "OtpAuthServices.Model.UserOnBoarding",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

@@ -5,6 +5,8 @@
          public Guid UserId { get; set; }
 
         public string id { get; set; }
+
+        public  DateTime Date { get; set; }
         public string? UserName { get; set; }
         public string? UserPassword { get; set; }
         public string MobileNo { get; set; }

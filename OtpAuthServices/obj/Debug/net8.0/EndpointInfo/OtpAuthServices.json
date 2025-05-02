@@ -3299,6 +3299,142 @@
         }
       }
     },
+    "/api/GuestUser/UploadGuestUser": {
+      "post": {
+        "tags": [
+          "GuestUser"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuestUser"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuestUser"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuestUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/GuestUser/{id}": {
+      "delete": {
+        "tags": [
+          "GuestUser"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "GuestUser"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuestUser"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuestUser"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuestUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/GuestUser/GuestUser/{id}": {
+      "get": {
+        "tags": [
+          "GuestUser"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/GuestUser/GuestUserExistingVerification/{mobileNo}": {
+      "get": {
+        "tags": [
+          "GuestUser"
+        ],
+        "parameters": [
+          {
+            "name": "mobileNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/MasterData/getStates": {
       "get": {
         "tags": [
@@ -5744,7 +5880,7 @@
         }
       }
     },
-    "/api/Technician/GetTechniciannamesByPincode": {
+    "/api/Technician/GetTechniciannamesByPincodeAndCategory": {
       "get": {
         "tags": [
           "Technician"
@@ -5752,6 +5888,13 @@
         "parameters": [
           {
             "name": "pincode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
             "in": "query",
             "schema": {
               "type": "string"
@@ -6631,6 +6774,10 @@
             "type": "string",
             "nullable": true
           },
+          "technicianFullName": {
+            "type": "string",
+            "nullable": true
+          },
           "customerId": {
             "type": "string",
             "nullable": true
@@ -7307,6 +7454,48 @@
             "nullable": true
           },
           "assignedTo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GuestUser": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "otpVerificationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "pincode": {
+            "type": "string",
+            "nullable": true
+          },
+          "profileType": {
             "type": "string",
             "nullable": true
           }

@@ -758,9 +758,6 @@ WHERE 1=1 AND c.CustomerId !=null AND c.FirstName !=null"   ;
             }
         }
 
-
-
-
         public async Task<Dictionary<string, int>> GetAllUsersCountAsync()
         {
             try
@@ -773,7 +770,7 @@ WHERE 1=1 AND c.CustomerId !=null AND c.FirstName !=null"   ;
                 foreach (var profileType in profileTypes)
                 {
                     // Cosmos DB query to count users by profile type (case-insensitive)
-                    string query = "SELECT VALUE COUNT(1) FROM c WHERE LOWER(c.ProfileType) = @ProfileType";
+                    string query = "SELECT VALUE COUNT(1) FROM c WHERE LOWER(c.ProfileType) = @ProfileType ";
                     var queryDefinition = new QueryDefinition(query)
                         .WithParameter("@ProfileType", profileType.ToLower()); // Pass the lowercase profile type as a parameter
 
@@ -845,6 +842,7 @@ WHERE 1=1 AND c.CustomerId !=null AND c.FirstName !=null"   ;
                 return null; // Return null to indicate an error
             }
         }
+
 
 
         public async Task<Dictionary<string, int>> GetAllUsersCountByStateAndDistrictAsync(string state, string district)
@@ -5223,7 +5221,63 @@ string district, string category, string technicianId)
 
         }
 
-       
+        public async Task<List<T>> GuestUserExistingVerification<T>(string mobileNo)
+        {
+            try
+            {
+                var queryDefinition = new QueryDefinition("SELECT * FROM c WHERE  c.FirstName  !=null     and c.CustomerPhotoId !=null  and c.State !=null  and c.IsApproved !=null and c.MobileVerificationCode !=null  and c.MobileNumber =@mobileNo")
+                    .WithParameter("@mobileNo", mobileNo);
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                var results = new List<T>();
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    results.AddRange(response);
+                }
+
+                return results;
+
+            }
+
+            catch (CosmosException ex)
+            {
+
+                Console.WriteLine($"Cosmos DB Error: {ex.Message}");
+                return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"UnExpected Error:{ex.Message} ");
+
+                return new List<T>();
+            }
+        }
+
+
+        public async Task<T> GetGuestUserProfileData (string profileType ,string userId)
+        {
+            try
+            {
+                var queryDefiniftion = new QueryDefinition("select * from c where  c.FullName !=null and c.OTPVerificationCode !=null and c.UserId=@UserId and c.ProfileType=@profileType")
+                    .WithParameter("@UserId", userId)
+                    .WithParameter("@profileType", profileType);
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefiniftion);
+
+                var response = await queryIterator.ReadNextAsync();
+
+                return response.Resource.FirstOrDefault();
+            }
+           
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error retrieving guest user profile", ex);
+            }
+        }
+        
 
 
             public async Task<List<T>> GetAllTicketsList<T>(string userId, string type)
@@ -5291,6 +5345,28 @@ AND c.UTRTransactionNumber !=null  and c.status !='Draft'  AND c.CustomerId = @u
                 return new List<T>();
             }
         }
+
+        public async Task<T> GuestUserVerificationByMobileNo(string mobileNo)
+        {
+            try
+            {
+                var queryDefiniftion = new QueryDefinition("select * from c where c.ProfileType ='customer' and c.UserName !=null and c.MobileNo=@mobileNo")
+                    .WithParameter("@mobileNo", mobileNo);
+
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefiniftion);
+
+                var response = await queryIterator.ReadNextAsync();
+
+                return response.Resource.FirstOrDefault();
+            }
+
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error retrieving guest user profile", ex);
+            }
+        }
+
 
     }
 }

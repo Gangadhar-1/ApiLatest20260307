@@ -3413,6 +3413,56 @@
         }
       }
     },
+    "/api/GuestUser/GuestUserExistingVerification/{mobileNo}": {
+      "get": {
+        "tags": [
+          "GuestUser"
+        ],
+        "parameters": [
+          {
+            "name": "mobileNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/GuestUser/GetGuestUserProfileData": {
+      "get": {
+        "tags": [
+          "GuestUser"
+        ],
+        "parameters": [
+          {
+            "name": "profileType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/MasterData/getStates": {
       "get": {
         "tags": [
@@ -7458,6 +7508,10 @@
             "nullable": true
           },
           "mobileNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "otpVerificationCode": {
             "type": "string",
             "nullable": true
           },

@@ -6,7 +6,9 @@ namespace OtpAuthServices.Model
     {
         public string CustomerId { get; set; }
 
-        public string id { get; set; }    
+        public string id { get; set; }   
+        
+        public DateTime Date { get; set; }      
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
         public required string MobileNumber { get; set; }

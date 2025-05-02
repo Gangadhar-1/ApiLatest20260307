@@ -268,7 +268,12 @@ string district, string category, string technicianId);
 
         Task<List<T>> GetBookTechnicianNotification<T>(string category, string pincode, string technicianName);
 
-       
+        Task<List<T>> GuestUserExistingVerification<T>(string mobileNo);
+
+        Task<T> GetGuestUserProfileData(string profileType, string userId);
+
+        Task<T> GuestUserVerificationByMobileNo(string mobileNo);
+
     }
 
 
