@@ -536,7 +536,7 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.BookTechnicianController",
-    "Method": "GetBookTechnicianForAdminList",
+    "Method": "GetBookTechnicianListForAdmin",
     "RelativePath": "api/BookTechnician/GetBookTechnicianForAdminList",
     "HttpMethod": "GET",
     "IsController": true,
@@ -2249,6 +2249,91 @@
     ]
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.GuestUserController",
+    "Method": "DeleteGuestUser",
+    "RelativePath": "api/GuestUser/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.GuestUserController",
+    "Method": "UpdateGuestUser",
+    "RelativePath": "api/GuestUser/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "GuestUser",
+        "Type": "OtpAuthServices.Model.GuestUser",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.GuestUserController",
+    "Method": "GetBookTechnician",
+    "RelativePath": "api/GuestUser/GuestUser/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.GuestUserController",
+    "Method": "GuestUserExistingVerification",
+    "RelativePath": "api/GuestUser/GuestUserExistingVerification/{mobileNo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mobileNo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.GuestUserController",
+    "Method": "UploadGuestUser",
+    "RelativePath": "api/GuestUser/UploadGuestUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "GuestUser",
+        "Type": "OtpAuthServices.Model.GuestUser",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.MasterDataController",
     "Method": "GetCategories",
     "RelativePath": "api/MasterData/getCategories",
@@ -3678,13 +3763,18 @@
   {
     "ContainingType": "OtpAuthServices.Controllers.TechnicianController",
     "Method": "GetTechniciannamesByPincode",
-    "RelativePath": "api/Technician/GetTechniciannamesByPincode",
+    "RelativePath": "api/Technician/GetTechniciannamesByPincodeAndCategory",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "pincode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "category",
         "Type": "System.String",
         "IsRequired": false
       }

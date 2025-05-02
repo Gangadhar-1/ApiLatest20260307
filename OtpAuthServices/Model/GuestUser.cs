@@ -12,10 +12,12 @@
 
         public string MobileNo { get; set; }
 
+        public string OTPVerificationCode { get; set; }
+
         public string Address { get; set; }
 
         public string Pincode { get; set; }
 
-        public string ProfileType { get; set; }
+       public string ProfileType { get; set; }
     }
 }

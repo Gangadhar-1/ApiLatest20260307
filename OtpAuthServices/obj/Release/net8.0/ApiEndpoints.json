@@ -2287,6 +2287,27 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.GuestUserController",
+    "Method": "GetGuestUserProfileData",
+    "RelativePath": "api/GuestUser/GetGuestUserProfileData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "profileType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.GuestUserController",
     "Method": "GetBookTechnician",
     "RelativePath": "api/GuestUser/GuestUser/{id}",
     "HttpMethod": "GET",
@@ -2295,6 +2316,22 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.GuestUserController",
+    "Method": "GuestUserExistingVerification",
+    "RelativePath": "api/GuestUser/GuestUserExistingVerification/{mobileNo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mobileNo",
         "Type": "System.String",
         "IsRequired": true
       }

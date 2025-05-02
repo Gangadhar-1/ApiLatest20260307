@@ -220,7 +220,8 @@ namespace OtpAuthServices.Controllers
             existingBookTechnician.UTRTransactionNumber= BookTechnician.UTRTransactionNumber;
 
             existingBookTechnician.TechnicianFullName = BookTechnician.TechnicianFullName;
-
+          existingBookTechnician.AfterDiscount = BookTechnician.AfterDiscount;
+            existingBookTechnician.JobDescription = BookTechnician.JobDescription;  
             existingBookTechnician.TechnicianName = BookTechnician.TechnicianName;
             existingBookTechnician.TechnicianPincode = BookTechnician.TechnicianPincode;
 

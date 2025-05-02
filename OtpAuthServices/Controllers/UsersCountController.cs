@@ -100,10 +100,10 @@ namespace OtpAuthServices.Controllers
                 return Ok(new
                 {
                     DealerCount        = countsFromUser.GetValueOrDefault("DealerId", 0),
-                    CustomerCount = countsFromUser.GetValueOrDefault("CustomerId", 0),
-                    BuilderCount = countsFromUser.GetValueOrDefault("BuilderId", 0),
-                    TechnicianCount = countsFromUser.GetValueOrDefault("TechnicianId", 0),
-                    EstimatorCount=countsFromUser.GetValueOrDefault("EstimatorId",0),
+                    CustomerCount      = countsFromUser.GetValueOrDefault("CustomerId", 0),
+                    BuilderCount       = countsFromUser.GetValueOrDefault("BuilderId", 0),
+                    TechnicianCount    = countsFromUser.GetValueOrDefault("TechnicianId", 0),
+                    EstimatorCount     =countsFromUser.GetValueOrDefault("EstimatorId",0),
 
 
                     TotalCount         = totalCount

@@ -70,6 +70,51 @@ namespace OtpAuthServices.Controllers
             return Ok(bookTechnician);
         }
 
+      
+        
+        
+        [HttpGet("GuestUserExistingVerification/{mobileNo}")]
+        public async Task<IActionResult> GuestUserExistingVerification(string mobileNo)
+        {
+            if (string.IsNullOrEmpty(mobileNo))
+            {
+                return BadRequest("GuestUser MobileNo cannot be null or empty.");
+            }
+
+            var guestuser = await _cosmosDbService.GuestUserExistingVerification<GuestUser>(mobileNo);
+            if (guestuser != null)
+            {
+                return Ok(guestuser);
+               
+            }
+
+            return NotFound($"GuestUser with MobileNo {mobileNo} not found.");
+        }
+
+
+
+        [HttpGet("GetGuestUserProfileData")]
+        public async Task<IActionResult> GetGuestUserProfileData(string profileType, string userId)
+        {
+            if (string.IsNullOrEmpty(profileType) || string.IsNullOrEmpty(userId))
+            {
+                return BadRequest("ProfileType and UserId cannot be null or empty.");
+            }
+
+            var userProfile = await _cosmosDbService.GetGuestUserProfileData(profileType, userId);
+
+            if (userProfile == null)
+            {
+                return NotFound("UserProfileData not found.");
+            }
+
+            return Ok(userProfile);
+        }
+
+
+
+
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateGuestUser(string id, [FromBody] GuestUser GuestUser)
         {
