@@ -740,13 +740,7 @@ namespace OtpAuthServices.Controllers
                     // OTP is valid, you can now proceed with further logic
                     _memoryCache.Remove(request.SenderValue); // Optionally remove OTP after successful validation
 
-                    // Use await here since the method is now async
-                    //var user = await _cosmosDbService.GetUserByEmailOrMobileAsync(request.SenderValue);
-
-                    //if (user != null)
-                    //{
-                    //    return Ok("Email or Mobile Number already exists, choose another email or mobile.");
-                    //}
+                    
                     //else
                     //{
                     return Ok(new { Message = "OTP validated successfully." });
