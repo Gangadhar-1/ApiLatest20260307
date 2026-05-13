@@ -106,12 +106,6 @@ namespace OtpAuthServices.Controllers
         }
 
 
-
-        
-
-
-
-
         [HttpGet("GetBookTechnicianDetailsForUserList")]
         public async Task<IActionResult> GetBookTechnicianDetailsForUserList(string userId)
         {
@@ -154,9 +148,9 @@ namespace OtpAuthServices.Controllers
 
             try
             {
-                if (payment.OrederId !=null)
+                if (payment.OrederId != null)
                 {
-                    existingBookTechnician.OrderId = payment.OrederId; 
+                    existingBookTechnician.OrderId = payment.OrederId;
                     existingBookTechnician.OrderDate = payment.OrderDate;
                     existingBookTechnician.PaidAmount = payment.PaidAmount;
                     existingBookTechnician.TransactionStatus = payment.TransactionStatus;
@@ -165,6 +159,9 @@ namespace OtpAuthServices.Controllers
                     existingBookTechnician.status = "Open";
                     existingBookTechnician.InvoiceURL = payment.InvoiceURL;
                     existingBookTechnician.UTRTransactionNumber = payment.UTRNumber;
+                    //existingBookTechnician.NoOfQuantity = payment.NoOfQuantity;
+                    //existingBookTechnician.TotalAmount = payment.TotalAmount;
+
                 }
                 else
                 {
@@ -185,8 +182,6 @@ namespace OtpAuthServices.Controllers
                 return StatusCode(500, "An unexpected error occurred while updating BookTechnician data.");
             }
         }
-
-
 
 
         [HttpPut("{id}")]
@@ -215,25 +210,26 @@ namespace OtpAuthServices.Controllers
 
             // Other fields can still be updated
             existingBookTechnician.BookTechnicianId = BookTechnician.BookTechnicianId;
-            existingBookTechnician.PaymentMode = BookTechnician.PaymentMode; 
+            existingBookTechnician.PaymentMode = BookTechnician.PaymentMode;
 
-            existingBookTechnician.UTRTransactionNumber= BookTechnician.UTRTransactionNumber;
+            existingBookTechnician.UTRTransactionNumber = BookTechnician.UTRTransactionNumber;
 
             existingBookTechnician.TechnicianFullName = BookTechnician.TechnicianFullName;
-          existingBookTechnician.AfterDiscount = BookTechnician.AfterDiscount;
-            existingBookTechnician.JobDescription = BookTechnician.JobDescription;  
+            existingBookTechnician.AfterDiscount = BookTechnician.AfterDiscount;
+            existingBookTechnician.JobDescription = BookTechnician.JobDescription;
             existingBookTechnician.TechnicianName = BookTechnician.TechnicianName;
             existingBookTechnician.TechnicianPincode = BookTechnician.TechnicianPincode;
-
-            existingBookTechnician.status =BookTechnician.status;   
-            existingBookTechnician.AssignedTo = BookTechnician.AssignedTo;  
+            existingBookTechnician.NoOfQuantity = BookTechnician.NoOfQuantity;
+            existingBookTechnician.TotalAmount = BookTechnician.TotalAmount;
+            existingBookTechnician.status = BookTechnician.status;
+            existingBookTechnician.AssignedTo = BookTechnician.AssignedTo;
             await _cosmosDbService.UpdateItemAsync(existingBookTechnician);
 
             return Ok(new
             {
                 Message = "BookTechnician updated successfully",
                 PaymentId = existingBookTechnician.id,
-                TechnicianConfirmationCode = existingBookTechnician.TechnicianConfirmationCode 
+                TechnicianConfirmationCode = existingBookTechnician.TechnicianConfirmationCode
             });
         }
 
@@ -265,5 +261,6 @@ namespace OtpAuthServices.Controllers
     }
 
 }
+
 
 

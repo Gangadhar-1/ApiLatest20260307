@@ -101,7 +101,7 @@
                 "apiRevision": "1",
                 "description": null,
                 "subscriptionRequired": true,
-                "serviceUrl": "https://handymanapiv2.azurewebsites.net",
+                "serviceUrl": "https://handymanapiv4-d4baa3hhdcftgabe.centralindia-01.azurewebsites.net",
                 "path": "",
                 "protocols": [
                   "https"

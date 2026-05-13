@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Caching.Memory;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
@@ -10,9 +10,13 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Azure.Cosmos;
 using OtpAuthServices.Models;
 using OtpAuthServices.Model;
-using OtpAuthServices.Services;  // Import this for CosmosClient
+using OtpAuthServices.Services;
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;  // Import this for CosmosClient
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -34,6 +38,17 @@ builder.Services.AddCors(options =>
                   .AllowAnyMethod();
         });
 });
+
+builder.Services.AddRateLimiter(_ => _.AddFixedWindowLimiter(policyName: "ratepolicy", Options =>
+{
+    Options.Window = TimeSpan.FromSeconds(2);
+    Options.PermitLimit = 1;
+    Options.QueueLimit = 0;
+    Options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+
+}));
+
+
 
 // Configure FormOptions for file upload limits
 builder.Services.Configure<FormOptions>(options =>
@@ -77,7 +92,9 @@ builder.Services.AddSingleton<ICosmosDbService<MyAccounts>>(sp => new CosmosDbSe
 
 builder.Services.AddSingleton<ICosmosDbService<Payment>>(sp => new CosmosDbService<Payment>(cosmosClient, databaseName, containerName));
 
+builder.Services.AddSingleton<ICosmosDbService<ApartmentMaintenance>>(sp => new CosmosDbService<ApartmentMaintenance>(cosmosClient, databaseName, containerName));
 
+builder.Services.AddSingleton<ICosmosDbService<ApartmentRaiseTicket>>(sp => new CosmosDbService<ApartmentRaiseTicket>(cosmosClient, databaseName, containerName));
 
 
 builder.Services.AddSingleton<ICosmosDbService<DeliveryNote>>(sp => new CosmosDbService<DeliveryNote>(cosmosClient, databaseName, containerName));
@@ -96,10 +113,39 @@ builder.Services.AddSingleton<ICosmosDbService<AddressModel>>(sp => new CosmosDb
 builder.Services.AddSingleton<ICosmosDbService<AddMember>>(sp => new CosmosDbService<AddMember>(cosmosClient, databaseName, containerName));
 builder.Services.AddSingleton<ICosmosDbService<AddTechnician>>(sp => new CosmosDbService<AddTechnician>(cosmosClient, databaseName, containerName));
 
+builder.Services.AddSingleton<ICosmosDbService<AddToCart>>(sp => new CosmosDbService<AddToCart>(cosmosClient, databaseName, containerName));
+
+builder.Services.AddSingleton<ICosmosDbService<ChatBot>>(sp => new  CosmosDbService<ChatBot>(cosmosClient,databaseName, containerName));
+
+builder.Services.AddSingleton<ICosmosDbService<MarkMessageSeen>>(sp => new CosmosDbService<MarkMessageSeen>(cosmosClient, databaseName, containerName));
+
+builder.Services.AddSingleton<ICosmosDbService<ChatMessageTabSeenByUser>>(sp=>new CosmosDbService<ChatMessageTabSeenByUser>(cosmosClient,databaseName,containerName));
+
+builder.Services.AddSingleton<ICosmosDbService<UserLikes>>(sp => new CosmosDbService<UserLikes>(cosmosClient, databaseName, containerName));
+
+builder.Services.AddSingleton<ICosmosDbService<UploadGrocery>>(sp => new CosmosDbService<UploadGrocery>(cosmosClient, databaseName, containerName));
+
+builder.Services.AddSingleton<ICosmosDbService<Lakshmincollection>>(sp => new CosmosDbService<Lakshmincollection>(cosmosClient, databaseName, containerName));
+
+builder.Services.AddSingleton<ICosmosDbService<Location>>(sp => new CosmosDbService<Location>(cosmosClient, databaseName, containerName));
+
+builder.Services.AddSingleton<ICosmosDbService<ReferralPoints>>(sp => new CosmosDbService<ReferralPoints >(cosmosClient, databaseName,containerName));
+
+//builder.Services.AddSingleton<ICosmosDbService<DeliveryPartnerForm>>(sp => new CosmosDbService<DeliveryPartnerForm>(cosmosClient, databaseName, containerName));
+
+builder.Services.AddSingleton<ICosmosDbService<DeliveryPartner>>(sp => new CosmosDbService<DeliveryPartner>(cosmosClient, databaseName, containerName));
+builder.Services.AddSingleton<ICosmosDbService<Collections>>(sp => new CosmosDbService<Collections>(cosmosClient,databaseName, containerName));
+builder.Services.AddSingleton<ICosmosDbService<MartController>>(sp => new CosmosDbService<MartController>(cosmosClient,databaseName,containerName));
+builder.Services.AddSingleton<ICosmosDbService<LakshmiMart>>(sp => new CosmosDbService<LakshmiMart>(cosmosClient, databaseName, containerName));
+builder.Services.AddSingleton<ICosmosDbService<LmartLogs>>(sp => new CosmosDbService<LmartLogs>(cosmosClient, databaseName, containerName));
+builder.Services.AddSingleton<ICosmosDbService<UploadBanners>>(sp => new CosmosDbService<UploadBanners>(cosmosClient, databaseName, containerName));
+builder.Services.Configure<bhashsms>(builder.Configuration.GetSection("BhashSms"));
+
+builder.Services.AddSingleton<ICosmosDbService<OtpCache>>(sp => new CosmosDbService<OtpCache>(cosmosClient, databaseName, containerName));
 var app = builder.Build();
 
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseDeveloperExceptionPage();
@@ -110,6 +156,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     });
 }
 
+app.UseRateLimiter();
 app.UseHttpsRedirection();
 
 // Enable CORS with the "AllowAll" policy
@@ -120,3 +167,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+

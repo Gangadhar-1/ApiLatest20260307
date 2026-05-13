@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Writers;
 using Newtonsoft.Json;
 using OtpAuthServices.Controllers;
 using OtpAuthServices.Model;
@@ -18,17 +19,32 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using static OtpAuthServices.Controllers.MarkMessageSeenController;
 using Formatting = Newtonsoft.Json.Formatting;
+
+
 
 namespace OtpAuthServices.AzureService
 {
     public class CosmosDbService<T> : ICosmosDbService<T> where T : class
     {
+
         private readonly Container _container;
+        private QueryDefinition queryDefinition;
 
         public CosmosDbService(CosmosClient cosmosClient, string databaseName, string containerName)
         {
             _container = cosmosClient.GetContainer(databaseName, containerName);
+        }
+
+        
+
+        public async Task UpsertItemAsync(OtpCache otpData)
+        {
+            await _container.UpsertItemAsync(
+                otpData,
+                new PartitionKey(otpData.senderValue)
+            );
         }
 
         // Create (Add) an item in Cosmos DB
@@ -45,11 +61,6 @@ namespace OtpAuthServices.AzureService
             }
         }
 
-
-
-
-
-        // Read an item by id
         public async Task<T> GetItemAsync(string id)
         {
             try
@@ -129,12 +140,23 @@ namespace OtpAuthServices.AzureService
             }
         }
 
+        public async Task UpdateItemAsync(string id, T item, string partitionKey)
+        {
+            await _container.UpsertItemAsync(item, new PartitionKey(partitionKey));
+        }
+
+        public async Task DeleteItemAsync(string id, string partitionKey)
+        {
+            await _container.DeleteItemAsync<T>(id, new PartitionKey(partitionKey));
+        }
+
         // Helper to get the partition key value from the item
         private string GetPartitionKey(T item)
         {
             var property = item.GetType().GetProperty("id"); // Assuming "Id" is the partition key field
             return property?.GetValue(item)?.ToString();
         }
+
 
         // Helper to get the ID from the item for updates
         private string GetId(T item)
@@ -195,7 +217,6 @@ namespace OtpAuthServices.AzureService
             }
         }
 
-
         // Get user by useName
         public async Task<T> GetUserByUserIdAsync(string username)
         {
@@ -226,10 +247,6 @@ namespace OtpAuthServices.AzureService
                 return null;
             }
         }
-
-
-
-
 
         public async Task<T> GetUserProflie(string value, string profileType)
         {
@@ -267,11 +284,6 @@ namespace OtpAuthServices.AzureService
 
                 return customer;
 
-
-                // Query the full user object by ID
-                // var user = await GetItemAsync(userdata);
-
-                // return userdata;
             }
             catch (CosmosException ex)
             {
@@ -286,9 +298,11 @@ namespace OtpAuthServices.AzureService
 
         public async Task<List<CustomerDTO>> GetCustomerDirectoryDetails(
       string searchQuery = null,
+      string firstname = null,
       string State = null,
       string District = null,
       string ZipCode = null
+
      )
         {
             try
@@ -310,7 +324,10 @@ SELECT
     c.StateId,
     c.DistrictId
 FROM c
-WHERE 1=1 AND c.CustomerId !=null AND c.FirstName !=null"   ;
+WHERE 1=1 AND c.CustomerId !=null AND c.FirstName !=null";
+
+                if (!string.IsNullOrEmpty(firstname))
+                    query += " AND (LOWER(c.FirstName) = LOWER(@firstname) OR c.FirstName=@firstname)";
 
                 if (!string.IsNullOrEmpty(State))
                     query += " AND (LOWER(c.State) = LOWER(@State) OR c.StateId = @State)";
@@ -338,6 +355,8 @@ WHERE 1=1 AND c.CustomerId !=null AND c.FirstName !=null"   ;
 
                 // Create query definition
                 var queryDefinition = new QueryDefinition(query);
+                if (!string.IsNullOrEmpty(firstname))
+                    queryDefinition = queryDefinition.WithParameter("@firstname", firstname);
 
                 if (!string.IsNullOrEmpty(State))
                     queryDefinition = queryDefinition.WithParameter("@State", State);
@@ -1903,7 +1922,7 @@ WHERE 1=1 AND c.CustomerId !=null AND c.FirstName !=null"   ;
                 // Define the query with a parameter for UserId
                 var queryDefinition = new QueryDefinition(
                     "SELECT c.id,c.AddressId,c.IsPrimaryAddress,c.UserId,c.Address,c.State,c.District,c.ZipCode," +
-                    "c.MobileNumber,c.FirstName,c.LastName,c.EmailAddress, CONCAT (c.FirstName, ' ', c.LastName) AS FullName from c WHERE c.UserId = @userId and c.ZipCode !=null")
+                    "c.MobileNumber,c.WalletAmount,c.FirstName,c.LastName,c.EmailAddress, CONCAT (c.FirstName, ' ', c.LastName) AS FullName from c WHERE c.UserId = @userId and c.ZipCode !=null")
                     .WithParameter("@userId", userId);
 
                 // Create a query iterator
@@ -4234,7 +4253,7 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
                     .WithParameter("@District", District);
 
                 var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
-                var results = new List<T>(); 
+                var results = new List<T>();
 
                 while (queryIterator.HasMoreResults)
                 {
@@ -4246,7 +4265,7 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
             }
             catch (CosmosException ex)
             {
-                return new List<T>(); 
+                return new List<T>();
             }
             catch (Exception ex)
             {
@@ -4261,7 +4280,7 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
             {
                 if (string.IsNullOrEmpty(category))
                 {
-                    throw new ArgumentException(nameof(category),"Category cannot be null or Empty.");
+                    throw new ArgumentException(nameof(category), "Category cannot be null or Empty.");
                 }
 
                 var queryDefinition = new QueryDefinition("select distinct c.ZipCode from  c where c.TechnicianId !=null and c.TechnicianFullName  !=null and c.Category=@category").WithParameter("@category", category);
@@ -4270,7 +4289,7 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
 
                 var results = new List<T>();
 
-                while(queryIterator.HasMoreResults)
+                while (queryIterator.HasMoreResults)
                 {
                     var response = await queryIterator.ReadNextAsync();
 
@@ -4279,7 +4298,7 @@ c.RaiseTicketId !=null  and c.Date !=null and c.status = 'Pending'"; // WHERE 1=
 
                 return results;
             }
-            catch(CosmosException ex)
+            catch (CosmosException ex)
             {
                 return new List<T>();
             }
@@ -5031,9 +5050,6 @@ string district, string category, string technicianId)
 
         }
 
-        
-
-
         public async Task<List<T>> GetBuyProductDetailsForAdminList<T>()
         {
             try
@@ -5142,11 +5158,8 @@ string district, string category, string technicianId)
                 Console.WriteLine($"UnExpected Error: {ex.Message}");
                 return new List<T>();
             }
-                 
-            }
-        
 
-
+        }
 
 
         public async Task<List<T>> GetBuyProductDetailsForUserList<T>(string UserId)
@@ -5221,6 +5234,43 @@ string district, string category, string technicianId)
 
         }
 
+
+        public async Task<List<T>> ListOfGuestUsers<T>()
+        {
+            try
+            {
+                var queryDefinition = new QueryDefinition("select * from c where   c.CustomerPhotoId  !=null and c.FirstName='Guest' ");
+                //.WithParameter("@guest", guest);
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                var results = new List<T>();
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    results.AddRange(response);
+
+
+                }
+
+                return results;
+            }
+
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"Cosmos DB Error: {ex.Message}");
+                return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"UnExpected Error:{ex.Message} ");
+
+                return new List<T>();
+            }
+        }
+
+
         public async Task<List<T>> GuestUserExistingVerification<T>(string mobileNo)
         {
             try
@@ -5257,7 +5307,7 @@ string district, string category, string technicianId)
         }
 
 
-        public async Task<T> GetGuestUserProfileData (string profileType ,string userId)
+        public async Task<T> GetGuestUserProfileData(string profileType, string userId)
         {
             try
             {
@@ -5271,16 +5321,14 @@ string district, string category, string technicianId)
 
                 return response.Resource.FirstOrDefault();
             }
-           
+
             catch (Exception ex)
             {
                 throw new ApplicationException("Error retrieving guest user profile", ex);
             }
         }
-        
 
-
-            public async Task<List<T>> GetAllTicketsList<T>(string userId, string type)
+        public async Task<List<T>> GetAllTicketsList<T>(string userId, string type)
         {
             try
             {
@@ -5312,9 +5360,18 @@ AND c.UTRTransactionNumber !=null  and c.status !='Draft'  AND c.CustomerId = @u
                 else if (type == "bookTechnician")
                 {
                     queryString = @"
-                SELECT * FROM c  
+                 SELECT * FROM c  
                 WHERE c.BookTechnicianId !=null  
                 AND c.Category !=null and c.status !='Draft'   AND c.CustomerId = @userId  order by  c.date  desc  ";
+                }
+                else if (type == "mart")
+                {
+                    queryString = @"
+ select * from c where c.MartId !=null  and c.IsDelivered !=null  and  c.DeliveryPartnerUserId !=null and c.customerId =@userId order by c.Date desc";
+                }
+                else if (type == "collections")
+                {
+                    queryString = @"select * from c where c.LakshmiCollectionId !=null  and c.CustomerId =@userId order by c.Date desc";
                 }
                 else
                 {
@@ -5345,6 +5402,606 @@ AND c.UTRTransactionNumber !=null  and c.status !='Draft'  AND c.CustomerId = @u
                 return new List<T>();
             }
         }
+
+
+        public async Task<T> GuestUserVerificationByMobileNo(string mobileNo)
+        {
+            try
+            {
+                var queryDefiniftion = new QueryDefinition("select * from c where  c.UserName !=null and c.MobileNo=@mobileNo")
+                    .WithParameter("@mobileNo", mobileNo);
+
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefiniftion);
+
+                var response = await queryIterator.ReadNextAsync();
+
+                return response.Resource.FirstOrDefault();
+            }
+
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error retrieving guest user profile", ex);
+            }
+
+        }
+
+
+        public async Task<MessageSeenCount> GetMarkMessageSeen(string messageId)
+        {
+            try
+            {
+                var queryDefinition = new QueryDefinition(@"
+            SELECT VALUE COUNT(1)
+            FROM (
+                SELECT c.UserId
+                FROM c
+                WHERE c.messageId = @messageId
+                GROUP BY c.UserId
+            )")
+                    .WithParameter("@messageId", messageId);
+
+                var queryIterator = _container.GetItemQueryIterator<int>(
+                    queryDefinition,
+                    requestOptions: new QueryRequestOptions() // <- don't restrict partition
+                );
+
+                var response = await queryIterator.ReadNextAsync();
+                var count = response.Resource.FirstOrDefault();
+
+                return new MessageSeenCount { UsersCount = count };
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error Retrieving MarkMessageSeen Data", ex);
+            }
+        }
+
+        public async Task<T> GetAddressMaintenanceDataByMobileNo(string mobileNo)
+        {
+            try
+            {
+                var queryDefiniftion = new QueryDefinition("select * from c where c.ApartmentName !=null and c.ApartmentMaintenanceId !=null and c.MobileNumber=@mobileNo")
+                    .WithParameter("@mobileNo", mobileNo);
+
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefiniftion);
+
+                var response = await queryIterator.ReadNextAsync();
+
+                return response.Resource.FirstOrDefault();
+            }
+
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error retrieving guest user profile", ex);
+            }
+        }
+
+
+
+
+
+        public Task<T> GetApartmentMaintenanceData(string mobileNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public async Task<List<T>> GetChatMessages<T>()
+        {
+
+            try
+            {
+                var queryDefinition = new QueryDefinition(
+
+                    "select * from  c where c.ChatBotId !=null");
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+                var results = new List<T>();
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+
+                    results.AddRange(response);
+                }
+
+                return results;
+            }
+
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"Cosmos DB Error: {ex.Message}");
+                return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected Error: {ex.Message}");
+                return new List<T>();
+            }
+
+
+        }
+
+        public async Task<List<T>> GetChatMessagesByType<T>(string type)
+        {
+
+            try
+            {
+                var queryDefinition = new QueryDefinition("select * from  c where c.ChatBotId !=null and c.ChatType=@type")
+                    .WithParameter("@type", type);
+
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                var results = new List<T>();
+
+                while (queryIterator.HasMoreResults)
+                {
+
+                    var response = await queryIterator.ReadNextAsync();
+                    results.AddRange(response);
+                }
+
+                return results;
+            }
+
+            catch (CosmosException ex)
+            {
+
+                Console.WriteLine($"CosmosDB Error: {ex.Message}");
+
+                return new List<T>();
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"UnExpected Error : {ex.Message}");
+
+                return new List<T>();
+            }
+        }
+
+
+        public async Task<List<T>> GetApartmentMaintenanceForAdminList<T>()
+        {
+            try
+            {
+                // Corrected query with IS NOT NULL
+                var queryDefinition = new QueryDefinition(
+                    "select * from c where c.ApartmentName !=null and c.ApartmentRaiseTicketId !=null  and c.phoneNumber != null   order by c.date desc"
+                );
+
+                // Create a query iterator
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                var results = new List<T>();
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    results.AddRange(response);
+                }
+
+                return results;
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"Cosmos DB Error: {ex.Message}");
+                return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected Error: {ex.Message}");
+                return new List<T>();
+            }
+
+
+        }
+
+        public async Task<Dictionary<string, int>> GetApartmentRegistrationsCount()
+        {
+            try
+            {
+                string[] ticketStatus = { "Open" };
+                var ticketsCounts = new Dictionary<string, int>();
+
+                foreach (string ticket in ticketStatus)
+                {
+                    // Modify the query for each status
+                    string query = "select VALUE count (1) from c where c.ApartmentMaintenanceId !=null and c.PaymentId !=null  and c.IsSubscription= 'Yes'  and c.PaidAmount !=null  and c.Status = @internalStatus";
+                    var queryDefinition = new QueryDefinition(query)
+                        .WithParameter("@internalStatus", ticket); // Set the status for each iteration
+
+                    var iterator = _container.GetItemQueryIterator<int>(queryDefinition);
+                    int count = 0;
+
+                    // Read the result
+                    while (iterator.HasMoreResults)
+                    {
+                        var response = await iterator.ReadNextAsync();
+                        count += response.FirstOrDefault(); // Add the count to the result
+                    }
+
+                    // Add the count for the current status to the dictionary
+                    ticketsCounts[ticket] = count;
+                }
+
+                return ticketsCounts;
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"Error querying ticket counts: {ex.Message}");
+                return null; // Return null if there's an error
+            }
+        }
+
+
+
+        public async Task<List<ChatBot>> GetItemsByUserIdAsync(string userId)
+        {
+            var query = new QueryDefinition("SELECT * FROM c WHERE c.ChatBotId !=null and c.UserId = @userId")
+                            .WithParameter("@userId", userId);
+
+            var results = new List<ChatBot>();
+            using var iterator = _container.GetItemQueryIterator<ChatBot>(query);
+
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+
+        public async Task<List<UserLikes>> GetUserLikesAsync(string userId)
+        {
+            var query = new QueryDefinition("select * from c where c.userLikesId !=null and c.userId =@userId")
+                .WithParameter("@userId", userId);
+            var results = new List<UserLikes>();
+            using var iterator = _container.GetItemQueryIterator<UserLikes>(query);
+
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+
+
+
+        public async Task<List<UploadGrocery>> GetGroceryItemsByCategory(string Category)
+        {
+            var query = new QueryDefinition("SELECT * from c where c.GroceryItemId !=null and c.Category=@Category")
+                .WithParameter("@Category", Category);
+            var results = new List<UploadGrocery>();
+            using var iterator = _container.GetItemQueryIterator<UploadGrocery>(query);
+
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+
+
+        public async Task<List<UploadGrocery>> GetAllGroceryItems()
+        {
+            var query = new QueryDefinition("SELECT * from c where c.GroceryItemId !=null and  c.Status='Approved' and c.Category !=null");
+            var results = new List<UploadGrocery>();
+            using var iterator = _container.GetItemQueryIterator<UploadGrocery>(query);
+
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+
+
+
+        public async Task<List<UploadGrocery>> GetAllGroceryItemsForAdmin()
+        {
+            var query = new QueryDefinition("SELECT * from c where c.GroceryItemId !=null  and c.Category !=null");
+            var results = new List<UploadGrocery>();
+            using var iterator = _container.GetItemQueryIterator<UploadGrocery>(query);
+
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+
+
+        public async Task<List<Lakshmincollection>> GetAllLakshmiCollections()
+        {
+
+            var query = new QueryDefinition("select * from c where c.LakshmicollectionId !=null and c.videos !=null");
+            var results = new List<Lakshmincollection>();
+
+            using var iterator = _container.GetItemQueryIterator<Lakshmincollection>(query);
+
+            while (iterator.HasMoreResults)
+            {
+
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+
+
+        public async Task<List<Lakshmincollection>> GetLakshmiCollectionByCategory(string category)
+        {
+            var query = new QueryDefinition("select * from c where c.LakshmicollectionId !=null and c.videos !=null  and c.Category=@category")
+                .WithParameter("@category", category);
+
+            var results = new List<Lakshmincollection>();
+
+            using var iterator = _container.GetItemQueryIterator<Lakshmincollection>(query);
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+
+
+        public async Task<List<LakshmiMart>> GetAllMartItems()
+        {
+            var query = new QueryDefinition("select * from c where c.MartId !=null   and c.CustomerPhoneNumber !=null and c.customerId !=null");
+
+            var results = new List<LakshmiMart>();
+            using var iterator = _container.GetItemQueryIterator<LakshmiMart>(query);
+
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+
+
+        public async Task<List<DeliveryPartner>> GetDeliveryPartnerByUserId(string UserId)
+        {
+            var query = new QueryDefinition("select * from c where c.DeliveryPartnerId !=null  and c.DeliveryPartnerName !=null and c.UserId=@userId")
+                .WithParameter("@userId", UserId);
+
+            var results = new List<DeliveryPartner>();
+
+            using var iterator = _container.GetItemQueryIterator<DeliveryPartner>(query);
+
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+
+            }
+
+            return results;
+        }
+
+
+
+        public async Task<List<T>> GetAllDeliveryPartners<T>()
+        {
+            try
+            {
+                // Corrected query with IS NOT NULL
+                var queryDefinition = new QueryDefinition(
+                    "select * from c where c.DeliveryPartnerId !=null  and c.DeliveryPartnerName !=null and c.UserId !=null"
+                );
+
+                // Create a query iterator
+                var queryIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+                var results = new List<T>();
+
+                while (queryIterator.HasMoreResults)
+                {
+                    var response = await queryIterator.ReadNextAsync();
+                    results.AddRange(response);
+                }
+
+                return results;
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"Cosmos DB Error: {ex.Message}");
+                return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected Error: {ex.Message}");
+                return new List<T>();
+            }
+
+
+        }
+
+
+        public async Task<List<LakshmiMart>> GetMartTicketsByUserId(string UserId)
+        {
+            var query = new QueryDefinition("select * from c where c.MartId !=null   and c.CustomerPhoneNumber !=null and c.customerId !=null   and c.Status= 'In Progress' and  c.DeliveryPartnerUserId =@userId")
+                .WithParameter("@userId", UserId);
+
+            var results = new List<LakshmiMart>();
+
+            using var iterator = _container.GetItemQueryIterator<LakshmiMart>(query);
+
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+
+            }
+
+            return results;
+        }
+
+        public async Task<List<LakshmiMartProductResponse>> GetMartItemsByProductName(string productName)
+        {
+            var query = new QueryDefinition(
+                "SELECT TOP 1 c.id, cat.CategoryName, p " +
+                "FROM c " +
+                "JOIN cat IN c.Categories " +
+                "JOIN p IN cat.Products " +
+                "WHERE p.ProductName = @ProductName " +
+                "ORDER BY c.Date DESC"
+            ).WithParameter("@ProductName", productName);
+
+            var results = new List<LakshmiMartProductResponse>();
+
+            using var iterator = _container.GetItemQueryIterator<LakshmiMartProductResponse>(query);
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+
+        public async Task<List<LakshmiMart>> CheckFirstOrder(string CustomerPhoneNumber)
+        {
+            var query = new QueryDefinition("SELECT * FROM c WHERE c.MartId != null   and c.CustomerPhoneNumber=@CustomerPhoneNumber")
+                .WithParameter("@CustomerPhoneNumber", CustomerPhoneNumber);
+
+            var results = new List<LakshmiMart>();
+            using var iterator = _container.GetItemQueryIterator<LakshmiMart>(query);
+
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+
+        public async Task<List<UploadGrocery>> GetGroceryItemsByproductName(string productname)
+        {
+            //var query = new QueryDefinition("select * from c where c.GroceryItemId !=null and c.Category  !=null and c.Name=@productname")
+            //    .WithParameter("@productname", productname);
+
+            var query = new QueryDefinition(
+    "SELECT * FROM c WHERE " +
+    "c.GroceryItemId != null AND " +
+    "c.Category != null AND " +
+    "CONTAINS(c.Name, @productname, true)"
+)
+.WithParameter("@productname", productname.Trim());
+            var results = new List<UploadGrocery>();
+
+            using var iterator = _container.GetItemQueryIterator<UploadGrocery>(query);
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+        
+
+        public async Task<List<ReferralPoints>> GetReferralpointsByUserId(string referreId)
+        {
+            var query = new QueryDefinition(
+                "SELECT * FROM c WHERE c.referreId = @referreId"
+            ).WithParameter("@referreId", referreId);
+
+            var results = new List<ReferralPoints>();
+            using var iterator = _container.GetItemQueryIterator<ReferralPoints>(query);
+
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+
+
+        public async Task<List<Collections>> GetAllLakshmiCollectionsByopoen()
+        {
+            var query = new QueryDefinition("select * from c where c.LakshmiCollectionId !=null and c.Status='Open'");
+
+            var results = new List<Collections>();
+            using var iterator = _container.GetItemQueryIterator<Collections>(query);
+
+            while (iterator.HasMoreResults)
+
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+            return results;
+        }
+
+        public async Task<List<Lakshmincollection>> GetcollectionItemsByproductName(string productName)
+        {
+            var query = new QueryDefinition("select * from c where c.LakshmicollectionId !=null  and c.colour !=null and c.ProductName=@ProductName")
+                .WithParameter("@ProductName", productName);
+
+            var results = new List<Lakshmincollection>();
+
+            using var iterator = _container.GetItemQueryIterator<Lakshmincollection>(query);
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+
+            }
+            return results;
+        }
+
+
+
+        public async Task<List<UploadBanners>> GetBanners()
+        {
+            var query = new QueryDefinition("SELECT * FROM c where  c.Title !=null");
+
+            var results = new List<UploadBanners>();
+            using var iterator = _container.GetItemQueryIterator<UploadBanners>(query);
+
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+
        
     }
+
+
+
+        public class LakshmiMartProductResponse
+    {
+        public string id { get; set; }
+        public string CategoryName { get; set; }
+        public Products p { get; set; }
+    }
 }
+
+
+
+   

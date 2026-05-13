@@ -94,25 +94,7 @@ namespace OtpAuthServices.Controllers
 
         }
 
-        //[HttpGet("GetRaiseAQuoteLowestDealerByid")]
-        //public async Task<IActionResult> GetRaiseAQuoteLowestDealerByid(string raiseAQuotetDealerId)
-        //{
-        //    try
-        //    {
-        //        var RaiseAQuoteLowestDealer = await _cosmosDbService.GetRaiseAQuoteLowestDealerById(raiseAQuotetDealerId);
-
-
-        //        return Ok(RaiseAQuoteLowestDealer);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Log and return 500 Internal Server Error
-        //        Console.WriteLine($"Error retrieving tickets: {ex.Message}");
-        //        return StatusCode(500, "An error occurred while retrieving tickets.");
-        //    }
-
-        //}
-
+       
             [HttpGet("GetRaiseAQuoteLowestDealerByid")]
             public async Task<IActionResult> GetRaiseAQuoteLowestDealerByid(string raiseAQuotetDealerId)
             {

@@ -66,6 +66,8 @@ namespace OtpAuthServices.Controllers
                 technician.TechnicianId = Guid.NewGuid();
                 technician.Status = "Pending";
                 technician.IsActive = true;
+
+                technician.Date= DateTime.Now;  
                 await _cosmosDbService.AddItemAsync(technician);
                 return Ok(new { Message = "Technician data Inserted successfully", JsonFile = technician.id });
             }

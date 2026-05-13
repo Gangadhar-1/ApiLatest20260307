@@ -1,4 +1,4 @@
-﻿namespace OtpAuthServices.AzureService
+﻿    namespace OtpAuthServices.AzureService
 {
     using Azure.Storage.Blobs;
     using Azure.Storage.Blobs.Models;

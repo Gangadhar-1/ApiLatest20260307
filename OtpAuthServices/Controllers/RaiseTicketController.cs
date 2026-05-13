@@ -6,6 +6,8 @@ using OtpAuthServices.Models;
 using OtpAuthServices.Services;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 
 
@@ -23,8 +25,6 @@ namespace OtpAuthServices.Controllers
             _cosmosDbService = cosmosDbService;
 
         }
-
-
 
 
         [HttpPost("CreateRaiseTicket")]
@@ -856,7 +856,17 @@ namespace OtpAuthServices.Controllers
                     {
                         result = await _cosmosDbService.GetAllTicketsList<BookTechnician>(userId, type);
                     }
-                    else
+
+                else if (type == "mart")
+                {
+                    result = await _cosmosDbService.GetAllTicketsList<LakshmiMart>(userId, type);
+                }
+
+                else if (type == "collections")
+                {
+                    result = await _cosmosDbService.GetAllTicketsList<Collections>(userId, type);
+                }
+                else
                     {
                         return BadRequest("Invalid type provided.");
                     }
@@ -934,8 +944,141 @@ namespace OtpAuthServices.Controllers
                 }
         }
 
+
+
+        //[HttpGet("sendCustomerCareRaiseTicketNotifications")]
+        //public async Task<IActionResult> sendCustomerCareRaiseTicketNotifications(string ticketId, string CustomerName, string CustomerContact, string Location, string Subject, string Category)
+        //{
+        //    if (string.IsNullOrEmpty(ticketId))
+        //    {
+        //        return BadRequest("ticketId  cannot be null or empty.");
+        //    }
+
+        //    if (string.IsNullOrEmpty(CustomerContact))
+        //    {
+        //        return BadRequest("CustomerContact cannot be null or empty.");
+        //    }
+
+        //    try
+        //    {
+        //        //string dynmaicTechrrotp = GenerateRandomOtp();
+
+
+        //        //var appendeTicketId = "REFIDHM-" + ticketId;
+
+        //        string result;
+        //        string apiKey = "NTgzNDZjNzY3MjQ5NDI0YTMxNTE0ZjRlNjQ2MjY0NDU=";
+        //        //string numbers = request.SenderValue;
+        //        //string dynamicOtp = GenerateRandomOtp();
+        //        string message = $"Dear Customer Care, A new service ticket {ticketId} has been raised by the customer. \r\nCustomer Name: {CustomerName}. Contact Number: {CustomerContact}. \r\nLocation:{Location}.Subject:{Subject}.Category:{Category}.\r\nPlease assign this ticket to an appropriate technician and initiate the necessary follow-up. Track status at https://handymanserviceproviders.com — Thanks, Handy Man Service Providers.\r\n";
+        //        string sender = "LSSPHM";
+
+        //        // URL encode the message
+        //        string encodedMessage = WebUtility.UrlEncode(message);
+
+        //        string postData = $"apikey={apiKey}&numbers={CustomerContact}&message={encodedMessage}&sender={sender}";
+
+        //        // Create the HTTP request
+        //        HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create("https://api.textlocal.in/send/");
+        //        objRequest.Method = "POST";
+        //        objRequest.ContentType = "application/x-www-form-urlencoded";
+        //        objRequest.ContentLength = Encoding.UTF8.GetByteCount(postData);
+
+
+        //        // Write the post data to the request stream
+        //        using (StreamWriter writer = new StreamWriter(objRequest.GetRequestStream()))
+        //        {
+        //            writer.Write(postData);
+        //        }
+
+        //        // Get the response from the server
+        //        HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();
+        //        using (StreamReader reader = new StreamReader(objResponse.GetResponseStream()))
+        //        {
+        //            result = reader.ReadToEnd();
+        //        }
+        //        //_memoryCache.Set(request.SenderValue, dynmaicotp, TimeSpan.FromMinutes(3));
+
+        //        return Ok(new { Message = "OTP SMS sent successfully." });
+
+        //    }
+        //    catch
+        //    {
+        //        return BadRequest("sms not sent");
+
+        //    }
+        //}
+
+
+        [HttpGet("sendCustomerCareRaiseTicketNotifications")]
+        public async Task<IActionResult> SendCustomerCareRaiseTicketNotifications(
+     string ticketId,
+     string CustomerName,
+     string CustomerContact,
+     string Location,
+     string Subject,
+     string Category)
+        {
+            if (string.IsNullOrEmpty(ticketId))
+                return BadRequest("ticketId cannot be null or empty.");
+
+            if (string.IsNullOrEmpty(CustomerContact))
+                return BadRequest("CustomerContact cannot be null or empty.");
+
+            try
+            {
+                string apiKey = "NTgzNDZjNzY3MjQ5NDI0YTMxNTE0ZjRlNjQ2MjY0NDU="; 
+                string fixedCustomerCareNumber = "9182667922"; 
+                string sender = "LSHMAN";
+                string DLTTemplateId = "1207174772749333904"; 
+                string PEID = "1001614809791487959";                
+                string message = $@"Dear Customer Care, a new service ticket {ticketId} has been raised by the customer. 
+Customer Name: {CustomerName}. 
+Contact Number: {CustomerContact}. 
+Location: {Location}. 
+Subject: {Subject}. 
+Category: {Category}. 
+Please assign this ticket to an appropriate technician and initiate the necessary follow-up. 
+Track status at https://handymanserviceproviders.com 
+— Thanks, Handy Man Service Providers.";
+
+
+                string encodedMessage = WebUtility.UrlEncode(message);
+
+                string postData = $"apikey={apiKey}" +
+                                  $"&numbers={fixedCustomerCareNumber}" +
+                                  $"&message={encodedMessage}" +
+                                  $"&sender={sender}" +
+                                  $"&template_id={DLTTemplateId}" +
+                                  $"&pe_id={PEID}";
+
+                HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create("https://api.textlocal.in/send/");
+                objRequest.Method = "POST";
+                objRequest.ContentType = "application/x-www-form-urlencoded";
+                objRequest.ContentLength = Encoding.UTF8.GetByteCount(postData);
+
+                using (StreamWriter writer = new StreamWriter(objRequest.GetRequestStream()))
+                {
+                    writer.Write(postData);
+                }
+
+                string result;
+                using (HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse())
+                using (StreamReader reader = new StreamReader(objResponse.GetResponseStream()))
+                {
+                    result = reader.ReadToEnd();
+                }
+
+                return Ok(new { Message = "Notification SMS sent successfully.", Response = result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = "SMS not sent", Error = ex.Message });
+            }
+        }
+
     }
-    }
+}
 
 
 

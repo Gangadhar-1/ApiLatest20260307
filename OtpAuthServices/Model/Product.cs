@@ -19,16 +19,19 @@ namespace OtpAuthServices.Models
             
             public string id { get; set; } // Auto-generated unique identifier
              public string  ProductId { get; set; }
+             public string  DeliveryInDays { get; set; }    
 
-        public  DateTime Date { get; set; }
+             public string  NumberOfStockAvailable  { get; set; }  
+
+            public  DateTime Date { get; set; }
 
             [Required(ErrorMessage = "Category is required.")]
             public string Category { get; set; }
 
-              [Required(ErrorMessage = "Product Name  is required.")]
-        public string ProductName { get; set; }
-
-        [Required(ErrorMessage = "Catalogue is required.")]
+            [Required(ErrorMessage = "Product Name  is required.")]
+            public string ProductName { get; set; }
+  
+            [Required(ErrorMessage = "Catalogue is required.")]
             public string Catalogue { get; set; }
 
             [Required(ErrorMessage = "Product size is required.")]

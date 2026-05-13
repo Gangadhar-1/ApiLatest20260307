@@ -68,6 +68,9 @@ namespace OtpAuthServices.Controllers
                 return BadRequest("UserId is required.");
             }
 
+
+
+
             try
             {
                 // Fetch the address by UserId from Cosmos DB
@@ -101,6 +104,8 @@ namespace OtpAuthServices.Controllers
                 return StatusCode(500, "An error occurred while retrieving the address. Please try again.");
             }
         }
+
+
 
         [HttpGet("GetAddressById/{profileType}/{userId}")]
         public async Task<ActionResult<List<AddressModel>>> GetSecondaryAddressByProfileType(string profileType, string userId)
@@ -165,35 +170,7 @@ namespace OtpAuthServices.Controllers
         }
 
 
-        //[HttpPut("UpdateAddress")]
-        //public async Task<IActionResult> UpdateAddress([FromBody]  Address  address)
-        //{
-        //    try
-        //    {
-        //        if (address == null || string.IsNullOrEmpty((string)address?.AddressId))
-        //        {
-        //            return BadRequest("Invalid request. AddressId is required.");
-        //        }
-
-        //        string addressId = address.AddressId;
-
-        //        bool isUpdated = await _cosmosDbService.UpdateAddressAsync(addressId, address);
-
-        //        if (isUpdated)
-        //        {
-        //            return Ok(new { message = "Address updated successfully." });
-        //        }
-        //        else
-        //        {
-        //            return NotFound(new { message = "Address not found." });
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, $"Internal server error: {ex.Message}");
-        //    }
-        //}
-
+        
 
 
     }

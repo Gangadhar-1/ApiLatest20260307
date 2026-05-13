@@ -112,8 +112,7 @@ namespace OtpAuthServices.Controllers
         }
 
         [HttpGet("GetProductList")]
-
-
+        
         public async Task<ActionResult<List<AddressModel>>> GetProductList(string ProductOwnedBy)
         {
             if ((string.IsNullOrEmpty(ProductOwnedBy)))
@@ -199,8 +198,6 @@ namespace OtpAuthServices.Controllers
 
 
         [HttpGet("GetProductsByCategory")]
-
-
         public async Task<ActionResult<List<AddressModel>>> GetProductsByCategory(string category)
         {
             if ((string.IsNullOrEmpty(category)))
@@ -245,10 +242,9 @@ namespace OtpAuthServices.Controllers
             {
                 existingProduct.ProductName = product.ProductName;
                 existingProduct.ProductPhotos = product.ProductPhotos;
-
-
+                existingProduct.DeliveryInDays = product.DeliveryInDays;
+                existingProduct.NumberOfStockAvailable = product.NumberOfStockAvailable;  
             }
-
             await _cosmosDbService.UpdateItemAsync(product); // Use the correct method signature
             return Ok($"Product Data Updated Successfully. At with respectiveId {id}.");
         }

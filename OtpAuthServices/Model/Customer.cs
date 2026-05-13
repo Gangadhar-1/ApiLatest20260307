@@ -6,7 +6,9 @@ namespace OtpAuthServices.Model
     {
         public string CustomerId { get; set; }
 
-        public string id { get; set; }    
+        public string id { get; set; }                                                                 
+        
+        public string Date { get; set;}      
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
         public required string MobileNumber { get; set; }
@@ -39,7 +41,11 @@ namespace OtpAuthServices.Model
         //public bool IsPending { get; set; }   // Whether the dealer is pending
 
         public string Status { get; set; } = string.Empty;
-      
-        //public string Password { get; set; } = string.Empty; // Optional
+
+
+
+        public string WalletAmount { get; set; }
+
+        
     }
 }

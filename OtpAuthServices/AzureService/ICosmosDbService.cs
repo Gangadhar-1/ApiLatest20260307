@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OtpAuthServices.Controllers;
 using OtpAuthServices.Model;
 using OtpAuthServices.Models;
+using static OtpAuthServices.Controllers.MarkMessageSeenController;
 
 namespace OtpAuthServices.AzureService
 {
@@ -9,6 +11,8 @@ namespace OtpAuthServices.AzureService
         // Create (Add) an item in Cosmos DB
         Task AddItemAsync(T item);
 
+        Task UpdateItemAsync(string id, T item, string partitionKey);
+        Task DeleteItemAsync(string id, string partitionKey);
 
         // Read an item by id
         Task<T> GetItemAsync(string id);
@@ -27,11 +31,13 @@ namespace OtpAuthServices.AzureService
 
 
         Task<List<CustomerDTO>> GetCustomerDirectoryDetails(
-        string searchQuery = null,
-        string State = null,
-        string District = null,
-        string ZipCode = null
-        );
+       string searchQuery = null,
+       string firstname = null,
+       string State = null,
+       string District = null,
+       string ZipCode = null
+
+      );
         Task<List<T>> GetAllDealersDetails();
 
         Task<List<T>> GetAllTechniciansDetails();
@@ -43,7 +49,7 @@ namespace OtpAuthServices.AzureService
         Task<string> UpdateDocumentAsync(UpdateDocumentRequest request);
 
         Task<List<T>> GetTechnicianDetailsByUserId(string userId);
-      Task<List <T>> GetBuilderDetailsByUserId (string userId);
+        Task<List<T>> GetBuilderDetailsByUserId(string userId);
 
         Task<List<Technician>> GetTechnicianDirectoryDetails(
       string searchQuery = null,
@@ -64,8 +70,8 @@ namespace OtpAuthServices.AzureService
         Task<T> GetUserByLogin(string username, string password);
         Task<T> GetUserByUserIdAsync(string username);
 
-        Task<T> GetUserProflie(string value,string ProfileType);
-        Task<T> GetDealerProflie(string value,string ProfileType);
+        Task<T> GetUserProflie(string value, string ProfileType);
+        Task<T> GetDealerProflie(string value, string ProfileType);
 
         Task<T> GetEstimatorProflie(string value, string ProfileType);
 
@@ -73,16 +79,16 @@ namespace OtpAuthServices.AzureService
 
         Task<T> GetBuilderProflie(string value, string ProfileType);
         Task<Dictionary<string, int>> GetAllUsersCountAsync();
-         Task<Dictionary<string,int>>   GetAllUsersCountByStateAsync(string state);
-        Task<Dictionary<string,int>> GetAllUsersCountByStateAndDistrictAsync(string state,string district);
-        Task<Dictionary<string,int>> GetAllUsersCountByStateAndDistrictAndZipcodeAsync(string state,string district ,string zipcode);   
+        Task<Dictionary<string, int>> GetAllUsersCountByStateAsync(string state);
+        Task<Dictionary<string, int>> GetAllUsersCountByStateAndDistrictAsync(string state, string district);
+        Task<Dictionary<string, int>> GetAllUsersCountByStateAndDistrictAndZipcodeAsync(string state, string district, string zipcode);
 
         Task<List<T>> GetRaiseTicketsAsync(string customerId);
 
         Task<List<T>> GetAddress(string userId);
-     
-         Task<List<T>> GetSecondaryAddress( string ProfileType,  string userId);
-       
+
+        Task<List<T>> GetSecondaryAddress(string ProfileType, string userId);
+
 
         Task<List<T>> GetBuyProductdetails(string BuyProductId);
 
@@ -99,7 +105,7 @@ namespace OtpAuthServices.AzureService
         Task<Dictionary<string, int>> GetTotalCountOfBuyProductsByStateWiseAndDistrictWise(string state, string district);
 
         Task<Dictionary<string, int>> GetTotalCountOfBuyProductsByStateWiseAndDistrictWiseAndZipcodeWise(string state, string district, string zipCode);
-          Task<Dictionary<string, int>> GetRaiseTicketCountAsync();
+        Task<Dictionary<string, int>> GetRaiseTicketCountAsync();
 
 
         Task<Dictionary<string, int>> GetRaiseTicketCountByStateAsync(string state);
@@ -137,12 +143,12 @@ namespace OtpAuthServices.AzureService
      string ZipCode = null,
      string Status = null);
 
-         Task<List<DealerDTO>> GetDealerDirectoryDetails(
-    string searchQuery = null,
-    string State = null,
-    string District = null,
-    string zipcode = null,
-     string Status = null);
+        Task<List<DealerDTO>> GetDealerDirectoryDetails(
+   string searchQuery = null,
+   string State = null,
+   string District = null,
+   string zipcode = null,
+    string Status = null);
 
 
         Task<List<T>> GetRecentNotifications();
@@ -150,7 +156,7 @@ namespace OtpAuthServices.AzureService
         Task<List<T>> GetRaiseTicketForTechnician(string state, string district);
         Task<List<T>> GetRaiseTicketForTechnicians(string state, string district);
         Task<List<T>> GetRaiseAQuoteDetails();
-        Task<List<T>> GetRaiseTicketNotificationsByDistrict(string district,string category);
+        Task<List<T>> GetRaiseTicketNotificationsByDistrict(string district, string category);
 
 
         Task<List<T>> GetRaiseAQuoteDetailsById(string raiseAQuotetId);
@@ -174,7 +180,7 @@ namespace OtpAuthServices.AzureService
         Task<List<T>> GetRaiseTicketNotificationsByStateAndDistrict(string district, string category);
 
         Task<List<T>> GetRaiseAQuoteDealerDetailsById(string raiseTicketId, string dealerId);
-        
+
 
         Task<List<T>> GetRaiseAQuoteLowestDealerByIdAsync(string raiseAQuotetDealerId);
 
@@ -215,7 +221,7 @@ string district, string category, string technicianId);
         Task<List<RaiseTicket>> GetRaiseTicketNotificationsByNotExistDealerId(
     string category, string district, string dealerId);
 
-        Task<List<RaiseTicket>> GetNotificationsByExistingDealerId( string category, string district, string dealerId);
+        Task<List<RaiseTicket>> GetNotificationsByExistingDealerId(string category, string district, string dealerId);
 
 
 
@@ -231,9 +237,9 @@ string district, string category, string technicianId);
 
         Task<List<T>> GetRaiseTicketsNotificationsForTechnicianForSMS();
 
-        Task<List<T>> GetDealerMobileAndEmail( string District);
+        Task<List<T>> GetDealerMobileAndEmail(string District);
 
-         Task<List<T>> GetRaiseTicketsForDealerForSMS();
+        Task<List<T>> GetRaiseTicketsForDealerForSMS();
 
 
 
@@ -272,10 +278,68 @@ string district, string category, string technicianId);
 
         Task<T> GetGuestUserProfileData(string profileType, string userId);
 
+
+        Task<T> GuestUserVerificationByMobileNo(string mobileNo);
+
+        Task<T> GetApartmentMaintenanceData(string mobileNumber);
+
+        Task<T> GetAddressMaintenanceDataByMobileNo(string mobileNo);
+
+        Task<List<T>> GetApartmentMaintenanceForAdminList<T>();
+
+        Task<Dictionary<string, int>> GetApartmentRegistrationsCount();
+
+
+        Task<List<T>> ListOfGuestUsers<T>();
+
+
+        Task<List<T>> GetChatMessages<T>();
+
+
+
+        Task<List<T>> GetChatMessagesByType<T>(string type);
+
+
+        Task<MessageSeenCount> GetMarkMessageSeen(string messageId);
+
+
+        Task<List<ChatBot>> GetItemsByUserIdAsync(string userId);
+
+        Task<List<UserLikes>> GetUserLikesAsync(string userId);
+
+        Task<List<UploadGrocery>> GetGroceryItemsByCategory(string Category);
+
+        Task<List<UploadGrocery>> GetAllGroceryItems();
+        Task<List<Lakshmincollection>> GetAllLakshmiCollections();
+
+
+        Task<List<Lakshmincollection>> GetLakshmiCollectionByCategory(string category);
+
+        Task<List<LakshmiMart>> GetAllMartItems();
+
+
+        Task<List<DeliveryPartner>> GetDeliveryPartnerByUserId(string UserId);
+
+
+
+        Task<List<T>> GetAllDeliveryPartners<T>();
+        Task<List<LakshmiMart>> GetMartTicketsByUserId(string UserId);
+
+
+        Task<List<LakshmiMartProductResponse>> GetMartItemsByProductName(string productName);
+
+        Task<List<UploadGrocery>> GetGroceryItemsByproductName(string productname);
+
+
+        Task<List<ReferralPoints>> GetReferralpointsByUserId(string referreId);
+
+        Task<List<Collections>> GetAllLakshmiCollectionsByopoen();
+        Task<List<LakshmiMart>> CheckFirstOrder(string CustomerPhoneNumber);
+        Task<List<Lakshmincollection>> GetcollectionItemsByproductName(string productName);
+
+        Task<List<UploadGrocery>> GetAllGroceryItemsForAdmin();
+
+        Task<List<UploadBanners>> GetBanners();
+        Task UpsertItemAsync(OtpCache otpData);
     }
-
-
-
-
-
 }

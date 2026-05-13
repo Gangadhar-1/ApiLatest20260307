@@ -16,6 +16,9 @@ C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Azure.Storage.Blobs.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Azure.Storage.Common.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Bogus.dll
+C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Google.Apis.dll
+C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Google.Apis.Auth.dll
+C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Google.Apis.Core.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Microsoft.Azure.Cosmos.Client.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Microsoft.Azure.Cosmos.Core.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Microsoft.Azure.Cosmos.Direct.dll
@@ -38,12 +41,18 @@ C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\System.ClientModel.dll
+C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\System.CodeDom.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\System.Configuration.ConfigurationManager.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\System.IO.Hashing.dll
+C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\System.IO.Pipelines.dll
+C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\System.Management.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\System.Memory.Data.dll
+C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\System.Net.Http.Json.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\System.Runtime.Caching.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\System.Text.Encodings.Web.dll
+C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\System.Text.Json.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Twilio.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Twilio.AspNet.Common.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\Twilio.AspNet.Core.dll
@@ -73,4 +82,6 @@ C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\runtimes\win\lib\net7.0\System.Management.dll
 C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\runtimes\win\lib\net8.0\System.Runtime.Caching.dll
+C:\Users\Admin\source\repos\APILatest20250325\OtpAuthServices\obj\Release\net8.0\PubTmp\Out\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll

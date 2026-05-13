@@ -444,6 +444,303 @@
         }
       }
     },
+    "/api/AddToCart/AddToCartUpload": {
+      "post": {
+        "tags": [
+          "AddToCart"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AddToCart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ApartmentMaintenance/CreateApartmentMaintence": {
+      "post": {
+        "tags": [
+          "ApartmentMaintenance"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ApartmentMaintenance"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ApartmentMaintenance/GetAddressMaintenanceDataByMobileNo": {
+      "get": {
+        "tags": [
+          "ApartmentMaintenance"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "mobileNo",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ApartmentMaintenance/ApartmentMaintenceEdit": {
+      "post": {
+        "tags": [
+          "ApartmentMaintenance"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ApartmentSubscription"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ApartmentMaintenance/GetApartmentMaintenance/{id}": {
+      "get": {
+        "tags": [
+          "ApartmentMaintenance"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ApartmentMaintenance/GetApartmentRegistrationsCount": {
+      "get": {
+        "tags": [
+          "ApartmentMaintenance"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ApartmentMaintenance/{id}": {
+      "put": {
+        "tags": [
+          "ApartmentMaintenance"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ApartmentMaintenance"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ApartmentRaiseTicket/CreateApartmentRaiseTicket": {
+      "post": {
+        "tags": [
+          "ApartmentRaiseTicket"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ApartmentRaiseTicket"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ApartmentRaiseTicket/GetGetApartmentMaintenanceForAdminList": {
+      "get": {
+        "tags": [
+          "ApartmentRaiseTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ApartmentRaiseTicket/GetApartmentMaintenanceRaiseTicket/{id}": {
+      "get": {
+        "tags": [
+          "ApartmentRaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Auth/bhashsmssendotp": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/OptRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Auth/sendpromosms": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/PromoRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Auth/sendLmartsms": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Lmart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Auth/sendotp": {
       "post": {
         "tags": [
@@ -1441,120 +1738,251 @@
         }
       }
     },
+    "/api/ChatBot/UploadChatBot": {
+      "post": {
+        "tags": [
+          "ChatBot"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ChatBot"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ChatBot/GetChatBotByUserId": {
+      "get": {
+        "tags": [
+          "ChatBot"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ChatBot/GetChatMessages": {
+      "get": {
+        "tags": [
+          "ChatBot"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ChatBot/GetChatMessagesByType": {
+      "get": {
+        "tags": [
+          "ChatBot"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ChatBot/UpdateChatBot": {
+      "put": {
+        "tags": [
+          "ChatBot"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ChatBot"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ChatBot": {
+      "delete": {
+        "tags": [
+          "ChatBot"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ChatMessageTabSeenByUser/UploadChatMessageTabSeenByUser": {
+      "post": {
+        "tags": [
+          "ChatMessageTabSeenByUser"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ChatMessageTabSeenByUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ChatMessageTabSeenByUser/GetChatMessageTabSeenByUserById": {
+      "get": {
+        "tags": [
+          "ChatMessageTabSeenByUser"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ChatMessageTabSeenByUser/UpdateChatMessageTabSeenByUser": {
+      "put": {
+        "tags": [
+          "ChatMessageTabSeenByUser"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ChatMessageTabSeenByUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Customer/CustomerUpload": {
       "post": {
         "tags": [
           "Customer"
         ],
         "consumes": [
-          "multipart/form-data"
+          "application/json",
+          "text/json",
+          "application/*+json"
         ],
         "parameters": [
           {
-            "in": "formData",
-            "name": "CustomerId",
-            "type": "string"
-          },
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customer/GuestCustomerUpload": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
           {
-            "in": "formData",
-            "name": "id",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "FirstName",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "LastName",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "MobileNumber",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "MobileVerificationCode",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "EmailAddress",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "EmailVerificationCode",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "AlternativeMobileNumber",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "GSTNumber",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "Address",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "Landmark",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "State",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "StateId",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "District",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "DistrictId",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "ZipCode",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "CustomerPhotoId",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "UserId",
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "in": "formData",
-            "name": "IsApproved",
-            "type": "boolean"
-          },
-          {
-            "in": "formData",
-            "name": "Status",
-            "type": "string"
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
           }
         ],
         "responses": {
@@ -1657,6 +2085,11 @@
           },
           {
             "in": "query",
+            "name": "firstname",
+            "type": "string"
+          },
+          {
+            "in": "query",
             "name": "State",
             "type": "string"
           },
@@ -1738,6 +2171,64 @@
             "in": "query",
             "name": "PhotoDocumentId",
             "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customer/ListOfGuestUsers": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customer/GuestUserExistingVerification/{mobileNo}": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "mobileNo",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customer/CustomerAddressEdit": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AddressModel"
+            }
           }
         ],
         "responses": {
@@ -2266,6 +2757,114 @@
         }
       }
     },
+    "/api/DeliveryPartner/UploadDeliveryPartnerDetails": {
+      "post": {
+        "tags": [
+          "DeliveryPartner"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/DeliveryPartner"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DeliveryPartner/UpdateDeliveryPartnerDetails": {
+      "put": {
+        "tags": [
+          "DeliveryPartner"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/DeliveryPartner"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DeliveryPartner/GetDeliveryPartnerDetails/{id}": {
+      "get": {
+        "tags": [
+          "DeliveryPartner"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DeliveryPartner/GetDeliveryPartnerDetailsByUserId": {
+      "get": {
+        "tags": [
+          "DeliveryPartner"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DeliveryPartner/GetAllDeliveryPartners": {
+      "get": {
+        "tags": [
+          "DeliveryPartner"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/DisplayTechniciansByRaiseTicketId/GetTechnicianDetailsByRaiseTicketId/{raiseTicketId}": {
       "get": {
         "tags": [
@@ -2723,6 +3322,543 @@
         }
       }
     },
+    "/api/GuestUser/UploadGuestUser": {
+      "post": {
+        "tags": [
+          "GuestUser"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/GuestUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/GuestUser/{id}": {
+      "delete": {
+        "tags": [
+          "GuestUser"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "GuestUser"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/GuestUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/GuestUser/GuestUser/{id}": {
+      "get": {
+        "tags": [
+          "GuestUser"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/GuestUser/GuestUserExistingVerification/{mobileNo}": {
+      "get": {
+        "tags": [
+          "GuestUser"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "mobileNo",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/GuestUser/GetGuestUserProfileData": {
+      "get": {
+        "tags": [
+          "GuestUser"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profileType",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/LakshmiCollection/UploadColectionsDetails": {
+      "post": {
+        "tags": [
+          "LakshmiCollection"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Collections"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/LakshmiCollection/GetLakshmiCollectionDetails/{id}": {
+      "get": {
+        "tags": [
+          "LakshmiCollection"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/LakshmiCollection/UpdateLakshmiCollectionDetails/{id}": {
+      "put": {
+        "tags": [
+          "LakshmiCollection"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Collections"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/LakshmiCollection/GetAllLakshmiCollectionsOpen": {
+      "get": {
+        "tags": [
+          "LakshmiCollection"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/LakshmiCollection/GetLakshmicollectionsById": {
+      "get": {
+        "tags": [
+          "LakshmiCollection"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/LakshmiMart/UploadProductDetails": {
+      "post": {
+        "tags": [
+          "LakshmiMart"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/LakshmiMart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Location/UploadLocation": {
+      "post": {
+        "tags": [
+          "Location"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Location"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MarkMessageSeen/UploadMessageSeenCount": {
+      "post": {
+        "tags": [
+          "MarkMessageSeen"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/MarkMessageSeen"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MarkMessageSeen/GetMarkMessageSeenUsers": {
+      "get": {
+        "tags": [
+          "MarkMessageSeen"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "messageId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mart/UploadProductDetails": {
+      "post": {
+        "tags": [
+          "Mart"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/LakshmiMart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mart/UpdateProductDetails/{id}": {
+      "put": {
+        "tags": [
+          "Mart"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/LakshmiMart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mart/GetProductDetails": {
+      "get": {
+        "tags": [
+          "Mart"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mart/Delete Products": {
+      "delete": {
+        "tags": [
+          "Mart"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mart/GroceryItemsEdit": {
+      "post": {
+        "tags": [
+          "Mart"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/GroceryPaymentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mart/GetAllMartItems": {
+      "get": {
+        "tags": [
+          "Mart"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mart/GetMartTicketsByUserId": {
+      "get": {
+        "tags": [
+          "Mart"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mart/GetMartItemsByProductName": {
+      "get": {
+        "tags": [
+          "Mart"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "productName",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mart/CheckFirstOrder": {
+      "get": {
+        "tags": [
+          "Mart"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "CustomerPhoneNumber",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/MasterData/getStates": {
       "get": {
         "tags": [
@@ -2814,6 +3950,25 @@
             "required": true,
             "type": "integer",
             "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Notifications/send": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "token",
+            "type": "string"
           }
         ],
         "responses": {
@@ -4183,6 +5338,50 @@
         }
       }
     },
+    "/api/RaiseTicket/sendCustomerCareRaiseTicketNotifications": {
+      "get": {
+        "tags": [
+          "RaiseTicket"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ticketId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "CustomerName",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "CustomerContact",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Location",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Subject",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Category",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/RaiseTicketExtention/CreateRaiseTicketExtension": {
       "post": {
         "tags": [
@@ -4231,6 +5430,82 @@
             "in": "query",
             "name": "state",
             "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ReferralPoints/UploadReferralPoints": {
+      "post": {
+        "tags": [
+          "ReferralPoints"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ReferralPoints"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ReferralPoints/GetReferralPointsByUserId": {
+      "get": {
+        "tags": [
+          "ReferralPoints"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "referreId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ReferralPoints/UpdateReferralPoints": {
+      "put": {
+        "tags": [
+          "ReferralPoints"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ReferralPoints"
+            }
           }
         ],
         "responses": {
@@ -4391,6 +5666,12 @@
             "in": "formData",
             "name": "id",
             "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Date",
+            "type": "string",
+            "format": "date-time"
           },
           {
             "in": "formData",
@@ -4959,6 +6240,202 @@
         }
       }
     },
+    "/api/UpLoadBannners/UploadBanners": {
+      "post": {
+        "tags": [
+          "UpLoadBannners"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UploadBanners"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UpLoadBannners/GetBanners": {
+      "get": {
+        "tags": [
+          "UpLoadBannners"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadGrocery/UploadGrocery": {
+      "post": {
+        "tags": [
+          "UploadGrocery"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UploadGrocery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadGrocery/GetGroceryItems/{id}": {
+      "get": {
+        "tags": [
+          "UploadGrocery"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadGrocery/GetGroceryItemsBycategory": {
+      "get": {
+        "tags": [
+          "UploadGrocery"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Category",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadGrocery/GetAllGroceryItems": {
+      "get": {
+        "tags": [
+          "UploadGrocery"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadGrocery/GetAllGroceryItemsForAdmin": {
+      "get": {
+        "tags": [
+          "UploadGrocery"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadGrocery/GetGroceryItemsByProductName": {
+      "get": {
+        "tags": [
+          "UploadGrocery"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "productName",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadGrocery/UpdateGroceryItems": {
+      "put": {
+        "tags": [
+          "UploadGrocery"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UploadGrocery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadGrocery": {
+      "delete": {
+        "tags": [
+          "UploadGrocery"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/UploadJobDescriptionBookTechnician/CreateUploadJobDescriptionBookTechnician": {
       "post": {
         "tags": [
@@ -5086,60 +6563,256 @@
         }
       }
     },
+    "/api/UploadLakshmiCollection/UploadLakshmiCollection": {
+      "post": {
+        "tags": [
+          "UploadLakshmiCollection"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Lakshmincollection"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadLakshmiCollection/GetLakshmiCollections": {
+      "get": {
+        "tags": [
+          "UploadLakshmiCollection"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadLakshmiCollection/GetAllLakshmiCollectionsByCategory": {
+      "get": {
+        "tags": [
+          "UploadLakshmiCollection"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadLakshmiCollection/UpdateLakshmiCollection": {
+      "put": {
+        "tags": [
+          "UploadLakshmiCollection"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Lakshmincollection"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadLakshmiCollection/GetAllLakshmiCollections": {
+      "get": {
+        "tags": [
+          "UploadLakshmiCollection"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UploadLakshmiCollection/GetLakshmiCollectionsItemByProductName": {
+      "get": {
+        "tags": [
+          "UploadLakshmiCollection"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "productName",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserLikes/UploadUserLikesController": {
+      "post": {
+        "tags": [
+          "UserLikes"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserLikes"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserLikes/UpdateUserLikes": {
+      "put": {
+        "tags": [
+          "UserLikes"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserLikes"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserLikes/GetUserLikes": {
+      "get": {
+        "tags": [
+          "UserLikes"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/UserOnBoarding/UserUpload": {
       "post": {
         "tags": [
           "UserOnBoarding"
         ],
         "consumes": [
-          "multipart/form-data"
+          "application/json",
+          "text/json",
+          "application/*+json"
         ],
         "parameters": [
           {
-            "in": "formData",
-            "name": "UserId",
-            "type": "string",
-            "format": "uuid"
-          },
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserOnBoarding"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserOnBoarding/GuestUserUpload": {
+      "post": {
+        "tags": [
+          "UserOnBoarding"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
           {
-            "in": "formData",
-            "name": "id",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "UserName",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "UserPassword",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "MobileNo",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "EmailId",
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "IsMobileNumberValidate",
-            "type": "boolean"
-          },
-          {
-            "in": "formData",
-            "name": "IsEmailValidate",
-            "type": "boolean"
-          },
-          {
-            "in": "formData",
-            "name": "ProfileType",
-            "type": "string"
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserOnBoarding"
+            }
           }
         ],
         "responses": {
@@ -5190,6 +6863,25 @@
           {
             "in": "query",
             "name": "value",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UserOnBoarding/GuestUserVerificationByMobileNo": {
+      "get": {
+        "tags": [
+          "UserOnBoarding"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "mobileNo",
             "type": "string"
           }
         ],
@@ -5435,6 +7127,152 @@
         }
       }
     },
+    "AddToCart": {
+      "required": [
+        "district",
+        "state"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "addToCartId": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "deliveryDate": {
+          "type": "string"
+        },
+        "technicianDetils": {
+          "type": "string"
+        },
+        "productView": {
+          "type": "string"
+        },
+        "invoiceDetails": {
+          "type": "string"
+        },
+        "uploadInvoice": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assignedTo": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "productCatalogue": {
+          "type": "string"
+        },
+        "productSize": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "rate": {
+          "type": "string"
+        },
+        "discount": {
+          "type": "string"
+        },
+        "afterDiscountPrice": {
+          "type": "string"
+        },
+        "selectedColors": {
+          "type": "string"
+        },
+        "totalAmount": {
+          "type": "string"
+        },
+        "requiredQuantity": {
+          "type": "string"
+        },
+        "addressType": {
+          "type": "string"
+        },
+        "state": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "district": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "customerName": {
+          "type": "string"
+        },
+        "customerEmail": {
+          "type": "string"
+        },
+        "customerPhoneNumber": {
+          "type": "string"
+        },
+        "paymentMode": {
+          "type": "string"
+        },
+        "utrTransactionNumber": {
+          "type": "string"
+        },
+        "technicianConfirmationCode": {
+          "type": "string"
+        },
+        "warrentyPeriod": {
+          "type": "string"
+        },
+        "deliveryCharges": {
+          "type": "string"
+        },
+        "serviceCharges": {
+          "type": "string"
+        },
+        "totalPaymentAmount": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "orderDate": {
+          "type": "string"
+        },
+        "paidAmount": {
+          "type": "string"
+        },
+        "transactionStatus": {
+          "type": "string"
+        },
+        "transactionType": {
+          "type": "string"
+        },
+        "invoiceId": {
+          "type": "string"
+        },
+        "invoiceURL": {
+          "type": "string"
+        }
+      }
+    },
     "AddressModel": {
       "type": "object",
       "properties": {
@@ -5468,6 +7306,12 @@
         "emailAddress": {
           "type": "string"
         },
+        "stateId": {
+          "type": "string"
+        },
+        "districtId": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         },
@@ -5478,6 +7322,160 @@
           "type": "string"
         },
         "fullName": {
+          "type": "string"
+        }
+      }
+    },
+    "ApartmentMaintenance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "apartmentMaintenanceId": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "apartmentName": {
+          "type": "string"
+        },
+        "apartmentAddress": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "pinCode": {
+          "type": "string"
+        },
+        "consentPersonName": {
+          "type": "string"
+        },
+        "mobileNumber": {
+          "type": "string"
+        },
+        "numberOfFlats": {
+          "type": "string"
+        },
+        "totalAmount": {
+          "type": "string"
+        },
+        "paymentId": {
+          "type": "string"
+        },
+        "isSubscription": {
+          "type": "string"
+        },
+        "subscriptionDate": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "paidAmount": {
+          "type": "string"
+        }
+      }
+    },
+    "ApartmentRaiseTicket": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "apartmentRaiseTicketId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "date": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "assignedTo": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "apartmentName": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "numberOfFlats": {
+          "type": "string"
+        },
+        "totalAmount": {
+          "type": "string"
+        },
+        "consentPersonName": {
+          "type": "string"
+        },
+        "apartmentAddress": {
+          "type": "string"
+        },
+        "pincode": {
+          "type": "string"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "paymentId": {
+          "type": "string"
+        },
+        "paidAmount": {
+          "type": "string"
+        },
+        "isSubscription": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "ApartmentSubscription": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "paymentId": {
+          "type": "string"
+        },
+        "isSubscription": {
+          "type": "string"
+        },
+        "subscriptionDate": {
+          "type": "string"
+        },
+        "paidAmount": {
           "type": "string"
         }
       }
@@ -5508,6 +7506,12 @@
           "type": "string"
         },
         "status": {
+          "type": "string"
+        },
+        "noOfQuantity": {
+          "type": "string"
+        },
+        "totalAmount": {
           "type": "string"
         },
         "assignedTo": {
@@ -5837,6 +7841,216 @@
         }
       }
     },
+    "Categories": {
+      "type": "object",
+      "properties": {
+        "categoryName": {
+          "type": "string"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "noOfQuantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productImage": {
+          "type": "string"
+        },
+        "mrp": {
+          "format": "double",
+          "type": "number"
+        },
+        "discount": {
+          "format": "double",
+          "type": "number"
+        },
+        "size": {
+          "type": "string"
+        },
+        "colour": {
+          "type": "string"
+        },
+        "stockLeft": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "afterDiscountPrice": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "categoryName": {
+          "type": "string"
+        },
+        "numberOfItemsSelected": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalAmount": {
+          "format": "double",
+          "type": "number"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Products"
+          }
+        }
+      }
+    },
+    "ChatBot": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "dateTime": {
+          "type": "string"
+        },
+        "chatType": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "chatBotId": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "numberOfLikes": {
+          "type": "string"
+        },
+        "uploadFile": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ChatMessageTabSeenByUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "dateTime": {
+          "type": "string"
+        },
+        "chatMessageTabSeenByUserId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "chatTabNews": {
+          "type": "boolean"
+        },
+        "chatTabBuySell": {
+          "type": "boolean"
+        },
+        "chatTabTolet": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Collections": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "lakshmiCollectionId": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "isDelivered": {
+          "type": "boolean"
+        },
+        "latitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "longitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "assignedTo": {
+          "type": "string"
+        },
+        "deliveryPartnerUserId": {
+          "type": "string"
+        },
+        "customerName": {
+          "type": "string"
+        },
+        "customerPhonenumber": {
+          "type": "string"
+        },
+        "totalItemsSelected": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "paymentMode": {
+          "type": "string"
+        },
+        "utrTransactionNumber": {
+          "type": "string"
+        },
+        "transactionNumber": {
+          "type": "string"
+        },
+        "transactionStatus": {
+          "type": "string"
+        },
+        "transactionType": {
+          "type": "string"
+        },
+        "paidAmount": {
+          "type": "string"
+        },
+        "grandTotal": {
+          "type": "string"
+        },
+        "categoriess": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Categories"
+          }
+        }
+      }
+    },
     "Comment": {
       "type": "object",
       "properties": {
@@ -5868,6 +8082,9 @@
           "type": "string"
         },
         "id": {
+          "type": "string"
+        },
+        "date": {
           "type": "string"
         },
         "firstName": {
@@ -6054,6 +8271,371 @@
           }
         },
         "assignedTo": {
+          "type": "string"
+        }
+      }
+    },
+    "DeliveryPartner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "deliveryPartnerId": {
+          "type": "string"
+        },
+        "deliveryPartnerName": {
+          "type": "string"
+        },
+        "photo": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "address": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "zipcode": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "pancardNumber": {
+          "type": "string"
+        },
+        "pancardAttachment": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "aadharAttachment": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "aadharCardNumber": {
+          "type": "string"
+        },
+        "drivingLicense": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "drivingLicenseNumber": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "assignedTo": {
+          "type": "string"
+        },
+        "isRegistered": {
+          "type": "boolean"
+        },
+        "isPickup": {
+          "type": "boolean"
+        },
+        "isDelivered": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Description": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "GroceryPaymentRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "utrTransactionNumber": {
+          "type": "string"
+        },
+        "transactionNumber": {
+          "type": "string"
+        },
+        "transactionStatus": {
+          "type": "string"
+        },
+        "transactionType": {
+          "type": "string"
+        },
+        "paidAmount": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "GuestUser": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "dateTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "mobileNo": {
+          "type": "string"
+        },
+        "otpVerificationCode": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "pincode": {
+          "type": "string"
+        },
+        "profileType": {
+          "type": "string"
+        }
+      }
+    },
+    "LakshmiMart": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "isPickUp": {
+          "type": "boolean"
+        },
+        "isDelivered": {
+          "type": "boolean"
+        },
+        "latitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "longitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "customerName": {
+          "type": "string"
+        },
+        "assignedTo": {
+          "type": "string"
+        },
+        "deliveryPartnerUserId": {
+          "type": "string"
+        },
+        "customerPhoneNumber": {
+          "type": "string"
+        },
+        "martId": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "grandTotal": {
+          "type": "string"
+        },
+        "totalItemsSelected": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "paymentMode": {
+          "type": "string"
+        },
+        "utrTransactionNumber": {
+          "type": "string"
+        },
+        "transactionNumber": {
+          "type": "string"
+        },
+        "transactionStatus": {
+          "type": "string"
+        },
+        "transactionType": {
+          "type": "string"
+        },
+        "paidAmount": {
+          "type": "string"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Category"
+          }
+        }
+      }
+    },
+    "Lakshmincollection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "lakshmicollectionId": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "requestedBy": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "catalogue": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string"
+        },
+        "colour": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "videos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rate": {
+          "type": "string"
+        },
+        "discount": {
+          "type": "string"
+        },
+        "afterDiscount": {
+          "type": "string"
+        },
+        "descriptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Description"
+          }
+        },
+        "optional": {
+          "type": "string"
+        },
+        "moreInfo": {
+          "type": "string"
+        },
+        "deliveryInDays": {
+          "type": "string"
+        },
+        "stockLeft": {
+          "type": "string"
+        }
+      }
+    },
+    "Lmart": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "ticketId": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "latitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "longitude": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "MarkMessageSeen": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "messageId": {
+          "type": "string"
+        },
+        "userId": {
           "type": "string"
         }
       }
@@ -6290,6 +8872,12 @@
         "productId": {
           "type": "string"
         },
+        "deliveryInDays": {
+          "type": "string"
+        },
+        "numberOfStockAvailable": {
+          "type": "string"
+        },
         "date": {
           "format": "date-time",
           "type": "string"
@@ -6353,6 +8941,53 @@
           "type": "string"
         },
         "productOwnedBy": {
+          "type": "string"
+        }
+      }
+    },
+    "Products": {
+      "type": "object",
+      "properties": {
+        "productName": {
+          "type": "string"
+        },
+        "noOfQuantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productImage": {
+          "type": "string"
+        },
+        "mrp": {
+          "format": "double",
+          "type": "number"
+        },
+        "discount": {
+          "format": "double",
+          "type": "number"
+        },
+        "stockLeft": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "units": {
+          "type": "string"
+        },
+        "afterDiscountPrice": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "PromoRequest": {
+      "type": "object",
+      "properties": {
+        "mobile": {
+          "type": "string"
+        },
+        "name": {
           "type": "string"
         }
       }
@@ -6746,6 +9381,29 @@
         }
       }
     },
+    "ReferralPoints": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "referralNumbers": {
+          "type": "string"
+        },
+        "referreId": {
+          "type": "string"
+        },
+        "referralpoints": {
+          "type": "string"
+        },
+        "isReferralUsed": {
+          "type": "boolean"
+        }
+      }
+    },
     "SelectedJob": {
       "type": "object",
       "properties": {
@@ -6852,6 +9510,10 @@
           "type": "string"
         },
         "id": {
+          "type": "string"
+        },
+        "date": {
+          "format": "date-time",
           "type": "string"
         },
         "technicianFullName": {
@@ -7052,6 +9714,79 @@
         }
       }
     },
+    "UploadBanners": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "bannerId": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "file": {
+          "type": "string"
+        }
+      }
+    },
+    "UploadGrocery": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "groceryItemId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mrp": {
+          "type": "string"
+        },
+        "discount": {
+          "type": "string"
+        },
+        "afterDiscount": {
+          "type": "string"
+        },
+        "stockLeft": {
+          "type": "string"
+        },
+        "deliveryIn": {
+          "type": "string"
+        },
+        "requestedBy": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "units": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "string"
+        }
+      }
+    },
     "UploadJobDescriptionBookTechnician": {
       "type": "object",
       "properties": {
@@ -7076,6 +9811,29 @@
         }
       }
     },
+    "UserLikes": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userLikesId": {
+          "type": "string"
+        },
+        "messageId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "islike": {
+          "type": "boolean"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
     "UserOnBoarding": {
       "type": "object",
       "properties": {
@@ -7084,6 +9842,9 @@
           "type": "string"
         },
         "id": {
+          "type": "string"
+        },
+        "date": {
           "type": "string"
         },
         "userName": {

@@ -4,7 +4,6 @@
         PaymentRequest
     {
 
-
         public string id { get; set; }
         public string OrederId { get; set; }
 

@@ -72,9 +72,12 @@ namespace OtpAuthServices.Controllers
         }
 
 
+
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBuyProduct(string id, [FromBody] BuyProduct buyProduct)
         {
+
             if (buyProduct == null || buyProduct.id != id)
             {
                 return BadRequest("BookTechnician information is incorrect.");
@@ -155,8 +158,6 @@ namespace OtpAuthServices.Controllers
             await _cosmosDbService.DeleteItemAsync(id);
             return   Ok("Successfully  deleted  BuyProduct  Item. ");
         }
-
-
 
 
         [HttpGet("GetBuyProductDetailsById/{id}")]
@@ -345,6 +346,8 @@ namespace OtpAuthServices.Controllers
                 return StatusCode(500, "Unexpected error occurred.");
             }
         }
+
+
 
         [HttpPost]
         [Route("buyProductEdit")]

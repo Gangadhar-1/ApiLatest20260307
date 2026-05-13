@@ -354,6 +354,191 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.AddToCartController",
+    "Method": "AddToCartUpload",
+    "RelativePath": "api/AddToCart/AddToCartUpload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addToCart",
+        "Type": "OtpAuthServices.Model.AddToCart",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ApartmentMaintenanceController",
+    "Method": "UpdateApartmentMaintenance",
+    "RelativePath": "api/ApartmentMaintenance/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "apartmentMaintenance",
+        "Type": "OtpAuthServices.Model.ApartmentMaintenance",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ApartmentMaintenanceController",
+    "Method": "ApartmentMaintenceEdit",
+    "RelativePath": "api/ApartmentMaintenance/ApartmentMaintenceEdit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "apartmentSubscription",
+        "Type": "OtpAuthServices.Model.ApartmentSubscription",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ApartmentMaintenanceController",
+    "Method": "CreateTicket",
+    "RelativePath": "api/ApartmentMaintenance/CreateApartmentMaintence",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "apartmentMaintenance",
+        "Type": "OtpAuthServices.Model.ApartmentMaintenance",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ApartmentMaintenanceController",
+    "Method": "GetAddressMaintenanceDataByMobileNo",
+    "RelativePath": "api/ApartmentMaintenance/GetAddressMaintenanceDataByMobileNo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mobileNo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ApartmentMaintenanceController",
+    "Method": "GetApartmentMaintenance",
+    "RelativePath": "api/ApartmentMaintenance/GetApartmentMaintenance/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ApartmentMaintenanceController",
+    "Method": "GetApartmentRegistrationsCount",
+    "RelativePath": "api/ApartmentMaintenance/GetApartmentRegistrationsCount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ApartmentRaiseTicketController",
+    "Method": "CreateTicket",
+    "RelativePath": "api/ApartmentRaiseTicket/CreateApartmentRaiseTicket",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "apartmentRaiseTicket",
+        "Type": "OtpAuthServices.Model.ApartmentRaiseTicket",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ApartmentRaiseTicketController",
+    "Method": "GetApartmentMaintenanceRaiseTicket",
+    "RelativePath": "api/ApartmentRaiseTicket/GetApartmentMaintenanceRaiseTicket/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ApartmentRaiseTicketController",
+    "Method": "GetApartmentMaintenanceForAdminList",
+    "RelativePath": "api/ApartmentRaiseTicket/GetGetApartmentMaintenanceForAdminList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.AuthController",
+    "Method": "bhashsmssendotp",
+    "RelativePath": "api/Auth/bhashsmssendotp",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "OtpAuthServices.OptRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.AuthController",
+    "Method": "SendLmartsms",
+    "RelativePath": "api/Auth/sendLmartsms",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lmart",
+        "Type": "OtpAuthServices.Controllers.AuthController\u002BLmart",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.AuthController",
     "Method": "SendOtp",
     "RelativePath": "api/Auth/sendotp",
@@ -380,6 +565,22 @@
       {
         "Name": "request",
         "Type": "OtpAuthServices.OptRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.AuthController",
+    "Method": "SendPromoSms",
+    "RelativePath": "api/Auth/sendpromosms",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "OtpAuthServices.Controllers.AuthController\u002BPromoRequest",
         "IsRequired": true
       }
     ],
@@ -1141,6 +1342,154 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.ChatBotController",
+    "Method": "DeleteChatMessage",
+    "RelativePath": "api/ChatBot",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ChatBotController",
+    "Method": "GetChatBotMessagesByUserId",
+    "RelativePath": "api/ChatBot/GetChatBotByUserId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ChatBotController",
+    "Method": "GetChatMessages",
+    "RelativePath": "api/ChatBot/GetChatMessages",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ChatBotController",
+    "Method": "GetChatMessagesByType",
+    "RelativePath": "api/ChatBot/GetChatMessagesByType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ChatBotController",
+    "Method": "UpdateChatbot",
+    "RelativePath": "api/ChatBot/UpdateChatBot",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "chatbot",
+        "Type": "OtpAuthServices.Model.ChatBot",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ChatBotController",
+    "Method": "UploadChatBot",
+    "RelativePath": "api/ChatBot/UploadChatBot",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chatbot",
+        "Type": "OtpAuthServices.Model.ChatBot",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ChatMessageTabSeenByUserController",
+    "Method": "GetChatMessageTabSeenByUser",
+    "RelativePath": "api/ChatMessageTabSeenByUser/GetChatMessageTabSeenByUserById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ChatMessageTabSeenByUserController",
+    "Method": "UpdateChatMessageTabSeenByUser",
+    "RelativePath": "api/ChatMessageTabSeenByUser/UpdateChatMessageTabSeenByUser",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "chatMessageTabSeenByUser",
+        "Type": "OtpAuthServices.Model.ChatMessageTabSeenByUser",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ChatMessageTabSeenByUserController",
+    "Method": "UploadChatMessageTabSeenByUser",
+    "RelativePath": "api/ChatMessageTabSeenByUser/UploadChatMessageTabSeenByUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chatMessageTabSeenByUser",
+        "Type": "OtpAuthServices.Model.ChatMessageTabSeenByUser",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.CustomerController",
     "Method": "GetCustomerId",
     "RelativePath": "api/Customer/{customerId}",
@@ -1172,6 +1521,22 @@
       {
         "Name": "customer",
         "Type": "OtpAuthServices.Model.Customer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.CustomerController",
+    "Method": "CustomerEdit",
+    "RelativePath": "api/Customer/CustomerAddressEdit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addressModel",
+        "Type": "OtpAuthServices.Model.AddressModel",
         "IsRequired": true
       }
     ],
@@ -1233,109 +1598,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "CustomerId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "FirstName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "LastName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "MobileNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "MobileVerificationCode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "EmailAddress",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "EmailVerificationCode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "AlternativeMobileNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "GSTNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Address",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Landmark",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "State",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "StateId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "District",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "DistrictId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "ZipCode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "CustomerPhotoId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "UserId",
-        "Type": "System.Guid",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsApproved",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "Status",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "customer",
+        "Type": "OtpAuthServices.Model.Customer",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -1374,6 +1639,11 @@
         "IsRequired": false
       },
       {
+        "Name": "firstname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "State",
         "Type": "System.String",
         "IsRequired": false
@@ -1405,6 +1675,48 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.CustomerController",
+    "Method": "UploadGuestUserData",
+    "RelativePath": "api/Customer/GuestCustomerUpload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customer",
+        "Type": "OtpAuthServices.Model.Customer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.CustomerController",
+    "Method": "GuestUserExistingVerification",
+    "RelativePath": "api/Customer/GuestUserExistingVerification/{mobileNo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mobileNo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.CustomerController",
+    "Method": "ListOfGuestUsers",
+    "RelativePath": "api/Customer/ListOfGuestUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -1843,6 +2155,85 @@
         "Name": "RaiseTicketId",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.DeliveryPartnerController",
+    "Method": "GetAllDeliveryPartners",
+    "RelativePath": "api/DeliveryPartner/GetAllDeliveryPartners",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.DeliveryPartnerController",
+    "Method": "GetDeliveryPartnerDetails",
+    "RelativePath": "api/DeliveryPartner/GetDeliveryPartnerDetails/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.DeliveryPartnerController",
+    "Method": "GetDeliveryPartnerDetailsByUserId",
+    "RelativePath": "api/DeliveryPartner/GetDeliveryPartnerDetailsByUserId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.DeliveryPartnerController",
+    "Method": "UpdateDeliveryPartnerDetails",
+    "RelativePath": "api/DeliveryPartner/UpdateDeliveryPartnerDetails",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "deliveryPartner",
+        "Type": "OtpAuthServices.Model.DeliveryPartner",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.DeliveryPartnerController",
+    "Method": "UploadProductDetails",
+    "RelativePath": "api/DeliveryPartner/UploadDeliveryPartnerDetails",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "deliveryPartner",
+        "Type": "OtpAuthServices.Model.DeliveryPartner",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -2355,6 +2746,308 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.LakshmiCollectionController",
+    "Method": "GetAllLakshmiCollectionsOpen",
+    "RelativePath": "api/LakshmiCollection/GetAllLakshmiCollectionsOpen",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.LakshmiCollectionController",
+    "Method": "GetLakshmiCollectionDetails",
+    "RelativePath": "api/LakshmiCollection/GetLakshmiCollectionDetails/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.LakshmiCollectionController",
+    "Method": "GetLakshmicollectionsById",
+    "RelativePath": "api/LakshmiCollection/GetLakshmicollectionsById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.LakshmiCollectionController",
+    "Method": "UpdateLakshmiCollectionDetails",
+    "RelativePath": "api/LakshmiCollection/UpdateLakshmiCollectionDetails/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedCollection",
+        "Type": "OtpAuthServices.Model.Collections",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.LakshmiCollectionController",
+    "Method": "UploadColectionsDetails",
+    "RelativePath": "api/LakshmiCollection/UploadColectionsDetails",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "collections",
+        "Type": "OtpAuthServices.Model.Collections",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.LakshmiMartController",
+    "Method": "UploadProductDetails",
+    "RelativePath": "api/LakshmiMart/UploadProductDetails",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lakshmiMart",
+        "Type": "OtpAuthServices.Model.LakshmiMart",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.LmartLogsController",
+    "Method": "UploadlogsDetails",
+    "RelativePath": "api/LmartLogs/UploadlogsDetails",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lmartLogs",
+        "Type": "OtpAuthServices.Model.LmartLogs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.LocationController",
+    "Method": "UploadProductDetails",
+    "RelativePath": "api/Location/UploadLocation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "location",
+        "Type": "OtpAuthServices.Model.Location",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.MarkMessageSeenController",
+    "Method": "GetMarkMessageSeenUsers",
+    "RelativePath": "api/MarkMessageSeen/GetMarkMessageSeenUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "messageId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.MarkMessageSeenController",
+    "Method": "UploadMessageSeenCount",
+    "RelativePath": "api/MarkMessageSeen/UploadMessageSeenCount",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "markmessageseen",
+        "Type": "OtpAuthServices.Model.MarkMessageSeen",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.MartController",
+    "Method": "CheckFirstOrder",
+    "RelativePath": "api/Mart/CheckFirstOrder",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CustomerPhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.MartController",
+    "Method": "Deleteproducts",
+    "RelativePath": "api/Mart/Delete Products",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.MartController",
+    "Method": "GetAllMartItems",
+    "RelativePath": "api/Mart/GetAllMartItems",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.MartController",
+    "Method": "GetMartItemsByProductName",
+    "RelativePath": "api/Mart/GetMartItemsByProductName",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.MartController",
+    "Method": "GetMartTicketsByUserId",
+    "RelativePath": "api/Mart/GetMartTicketsByUserId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.MartController",
+    "Method": "GetMartProductDetails",
+    "RelativePath": "api/Mart/GetProductDetails",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.MartController",
+    "Method": "GroceryItemsEdit",
+    "RelativePath": "api/Mart/GroceryItemsEdit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groceryPaymentRequest",
+        "Type": "OtpAuthServices.Model.GroceryPaymentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.MartController",
+    "Method": "UpdateProductDetails",
+    "RelativePath": "api/Mart/UpdateProductDetails/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "lakshmiMart",
+        "Type": "OtpAuthServices.Model.LakshmiMart",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.MartController",
+    "Method": "UploadProductDetails",
+    "RelativePath": "api/Mart/UploadProductDetails",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lakshmiMart",
+        "Type": "OtpAuthServices.Model.LakshmiMart",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.MasterDataController",
     "Method": "GetCategories",
     "RelativePath": "api/MasterData/getCategories",
@@ -2431,6 +3124,22 @@
     "Parameters": [
       {
         "Name": "value",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.NotificationsController",
+    "Method": "Send",
+    "RelativePath": "api/Notifications/send",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "token",
         "Type": "System.String",
         "IsRequired": false
       }
@@ -3540,6 +4249,47 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.RaiseTicketController",
+    "Method": "SendCustomerCareRaiseTicketNotifications",
+    "RelativePath": "api/RaiseTicket/sendCustomerCareRaiseTicketNotifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CustomerName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CustomerContact",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Location",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Subject",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Category",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.RaiseTicketExtentionController",
     "Method": "CreateTicket",
     "RelativePath": "api/RaiseTicketExtention/CreateRaiseTicketExtension",
@@ -3577,6 +4327,59 @@
         "Name": "state",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ReferralPointsController",
+    "Method": "GetReferralPointsByUserId",
+    "RelativePath": "api/ReferralPoints/GetReferralPointsByUserId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "referreId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ReferralPointsController",
+    "Method": "UpdateReferralPoints",
+    "RelativePath": "api/ReferralPoints/UpdateReferralPoints",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "referralPoints",
+        "Type": "OtpAuthServices.Model.ReferralPoints",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.ReferralPointsController",
+    "Method": "UploadReferralPoints",
+    "RelativePath": "api/ReferralPoints/UploadReferralPoints",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "referralPoints",
+        "Type": "OtpAuthServices.Model.ReferralPoints",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -3941,6 +4744,11 @@
         "IsRequired": false
       },
       {
+        "Name": "Date",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
         "Name": "TechnicianFullName",
         "Type": "System.String",
         "IsRequired": false
@@ -4165,6 +4973,174 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.UpLoadBannners",
+    "Method": "GetBanners",
+    "RelativePath": "api/UpLoadBannners/GetBanners",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UpLoadBannners",
+    "Method": "UpdateBannerDetails",
+    "RelativePath": "api/UpLoadBannners/UpdateBannerDetails",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "uploadBanners",
+        "Type": "OtpAuthServices.Model.UploadBanners",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UpLoadBannners",
+    "Method": "UploadBanners",
+    "RelativePath": "api/UpLoadBannners/UploadBanners",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "uploadBanners",
+        "Type": "OtpAuthServices.Model.UploadBanners",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadGroceryController",
+    "Method": "DeleteGroceryItem",
+    "RelativePath": "api/UploadGrocery",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadGroceryController",
+    "Method": "GetAllGroceryItems",
+    "RelativePath": "api/UploadGrocery/GetAllGroceryItems",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadGroceryController",
+    "Method": "GetAllGroceryItemsForAdmin",
+    "RelativePath": "api/UploadGrocery/GetAllGroceryItemsForAdmin",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadGroceryController",
+    "Method": "GetGroceryItems",
+    "RelativePath": "api/UploadGrocery/GetGroceryItems/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadGroceryController",
+    "Method": "GetGroceryItemsBycategory",
+    "RelativePath": "api/UploadGrocery/GetGroceryItemsBycategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Category",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadGroceryController",
+    "Method": "GetGroceryItemsByProductName",
+    "RelativePath": "api/UploadGrocery/GetGroceryItemsByProductName",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadGroceryController",
+    "Method": "UpdateGroceryItems",
+    "RelativePath": "api/UploadGrocery/UpdateGroceryItems",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "uploadGrocery",
+        "Type": "OtpAuthServices.Model.UploadGrocery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadGroceryController",
+    "Method": "UploadGrocery",
+    "RelativePath": "api/UploadGrocery/UploadGrocery",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "uploadGrocery",
+        "Type": "OtpAuthServices.Model.UploadGrocery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.UploadJobDescriptionBookTechnicianController",
     "Method": "DeleteUploadJobDescriptionBookTechnician",
     "RelativePath": "api/UploadJobDescriptionBookTechnician/{id}",
@@ -4260,6 +5236,159 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OtpAuthServices.Controllers.UploadLakshmiCollectionController",
+    "Method": "GetAllLakshmiCollection",
+    "RelativePath": "api/UploadLakshmiCollection/GetAllLakshmiCollections",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadLakshmiCollectionController",
+    "Method": "GetAllLakshmiCollectionsByCategory",
+    "RelativePath": "api/UploadLakshmiCollection/GetAllLakshmiCollectionsByCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadLakshmiCollectionController",
+    "Method": "GetLakshmiCollections",
+    "RelativePath": "api/UploadLakshmiCollection/GetLakshmiCollections",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadLakshmiCollectionController",
+    "Method": "GetLakshmiCollectionsItemByProductName",
+    "RelativePath": "api/UploadLakshmiCollection/GetLakshmiCollectionsItemByProductName",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadLakshmiCollectionController",
+    "Method": "UpdateLakshmiCollection",
+    "RelativePath": "api/UploadLakshmiCollection/UpdateLakshmiCollection",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "lakshmincollection",
+        "Type": "OtpAuthServices.Model.Lakshmincollection",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UploadLakshmiCollectionController",
+    "Method": "UploadGrocery",
+    "RelativePath": "api/UploadLakshmiCollection/UploadLakshmiCollection",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lakshmincollection",
+        "Type": "OtpAuthServices.Model.Lakshmincollection",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UserLikesController",
+    "Method": "GetUserLikes",
+    "RelativePath": "api/UserLikes/GetUserLikes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UserLikesController",
+    "Method": "UpdateUserLikes",
+    "RelativePath": "api/UserLikes/UpdateUserLikes",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userLikes",
+        "Type": "OtpAuthServices.Model.UserLikes",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UserLikesController",
+    "Method": "UploadChatBot",
+    "RelativePath": "api/UserLikes/UploadUserLikesController",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userLikes",
+        "Type": "OtpAuthServices.Model.UserLikes",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OtpAuthServices.Controllers.UserOnBoardingController",
     "Method": "UpdateUserOnBoarding",
     "RelativePath": "api/UserOnBoarding/{id}",
@@ -4282,6 +5411,38 @@
   },
   {
     "ContainingType": "OtpAuthServices.Controllers.UserOnBoardingController",
+    "Method": "GuestUploadUserData",
+    "RelativePath": "api/UserOnBoarding/GuestUserUpload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userOnBoarding",
+        "Type": "OtpAuthServices.Model.UserOnBoarding",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UserOnBoardingController",
+    "Method": "GuestUserVerificationByMobileNo",
+    "RelativePath": "api/UserOnBoarding/GuestUserVerificationByMobileNo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mobileNo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OtpAuthServices.Controllers.UserOnBoardingController",
     "Method": "UploadUserData",
     "RelativePath": "api/UserOnBoarding/UserUpload",
     "HttpMethod": "POST",
@@ -4289,49 +5450,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "UserId",
-        "Type": "System.Guid",
-        "IsRequired": false
-      },
-      {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "UserName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "UserPassword",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "MobileNo",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "EmailId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsMobileNumberValidate",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsEmailValidate",
-        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "ProfileType",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "userOnBoarding",
+        "Type": "OtpAuthServices.Model.UserOnBoarding",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

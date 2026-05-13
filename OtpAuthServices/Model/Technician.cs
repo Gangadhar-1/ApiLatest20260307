@@ -8,6 +8,8 @@ public class Technician
    public Guid TechnicianId { get; set; }   
 
     public string id { get; set; }
+
+    public DateTime Date { get; set; }
     public required string TechnicianFullName { get; set; }
     public  string ? PANNumber { get; set; }
     public int  NumberOfTechnicians  { get; set; }  
